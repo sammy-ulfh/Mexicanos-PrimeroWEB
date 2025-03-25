@@ -22,35 +22,33 @@ const Initial = ({ children }) => {
 
                 <nav className='w-[100%] h-[90%] lg:hidden xl:hidden'>
                   <ul className='w-full h-full flex flex-col justify-start items-center mt-[15%] text-xs sm:text-sm md:text-base'>
-                    <li className='hover:scale-110 transition duration-300 border border-black rounded-3xl m-[1%] bg-[#39A945] flex justify-center items-center w-[80%] h-[7%] font-bold font-montserrat'>
-                      <a href=''>
+                    <li className='w-[80%] h-[7%] m-[1%]'>
+                      <a className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#39A945] flex justify-center items-center font-bold font-montserrat w-full h-full' href=''>
                         Cuentas
                       </a>
                     </li>
-                    <li className='hover:scale-110 transition duration-300 border border-black rounded-3xl m-[1%] bg-[#39A945] flex justify-center items-center w-[80%] h-[7%] font-bold font-montserrat'>
-                      <a href=''>
+                    <li className='w-[80%] h-[7%] m-[1%]'>
+                      <a className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#39A945] flex justify-center items-center font-bold font-montserrat w-full h-full' href=''>
                         Apoyos
                       </a>
                     </li>
-                    <li className='hover:scale-110 transition duration-300 border border-black rounded-3xl m-[1%] bg-[#39A945] flex justify-center items-center w-[80%] h-[7%] font-bold font-montserrat'>
-                      <a href=''>
+                    <li className='w-[80%] h-[7%] m-[1%]'>
+                      <a className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#39A945] flex justify-center items-center font-bold font-montserrat w-full h-full' href=''>
                         Mis chats
                       </a>
                     </li>
-                    <li className='hover:scale-110 transition duration-300 border border-black rounded-3xl m-[1%] bg-[#39A945] flex justify-center items-center w-[80%] h-[7%] font-bold font-montserrat'>
-                      <a href=''>
+                    <li className='w-[80%] h-[7%] m-[1%]'>
+                      <a className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#39A945] flex justify-center items-center font-bold font-montserrat w-full h-full' href=''>
                         Mi perfil
                       </a>
                     </li>
-                    <li className='hover:scale-110 transition duration-300 border border-black rounded-3xl m-[1%] bg-[#39A945] flex justify-center items-center w-[80%] h-[7%] font-bold font-montserrat'>
-                      <a href=''>
+                    <li className='w-[80%] h-[7%] m-[1%]'>
+                      <a className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#39A945] flex justify-center items-center font-bold font-montserrat w-full h-full' href=''>
                         Configuración
                       </a>
                     </li>
                   </ul>
                 </nav>
-
-
             </div>
           )
           }
@@ -58,35 +56,35 @@ const Initial = ({ children }) => {
 
             <nav className='w-[100%] h-[30%] bg-[#D9D9D9] hidden lg:block xl:block'>
               <ul className='w-full h-full flex justify-center items-center'>
-                <li className='hover:scale-110 transition duration-300 border border-black rounded-3xl m-[0.5%] bg-[#39A945] flex justify-center items-center w-[13%] h-[70%] font-bold font-montserrat'>
-                  <a href=''>
+                <li className='w-[13%] h-[70%] m-[0.5%]'>
+                  <a className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#39A945] flex justify-center items-center  font-bold font-montserrat w-full h-full' href=''>
                     Cuentas
                   </a>
                 </li>
-                <li className='hover:scale-110 transition duration-300 border border-black rounded-3xl m-[0.5%] bg-[#39A945] flex justify-center items-center w-[13%] h-[70%] font-bold font-montserrat'>
-                  <a href=''>
+                <li className='w-[13%] h-[70%] m-[0.5%]'>
+                  <a className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#39A945] flex justify-center items-center font-bold font-montserrat w-full h-full' href=''>
                     Apoyos
                   </a>
                 </li>
-                <li className='hover:scale-110 transition duration-300 border border-black rounded-3xl m-[0.5%] bg-[#39A945] flex justify-center items-center w-[13%] h-[70%] font-bold font-montserrat'>
-                  <a href=''>
+                <li className='w-[13%] h-[70%] m-[0.5%]'>
+                  <a className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#39A945] flex justify-center items-center font-bold font-montserrat w-full h-full' href=''>
                     Mis chats
                   </a>
                 </li>
-                <li className='hover:scale-110 transition duration-300 border border-black rounded-3xl m-[0.5%] bg-[#39A945] flex justify-center items-center w-[13%] h-[70%] font-bold font-montserrat'>
-                  <a href=''>
+                <li className='w-[13%] h-[70%] m-[0.5%]'>
+                  <a className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#39A945] flex justify-center items-center font-bold font-montserrat w-full h-full' href=''>
                     Mi perfil
                   </a>
                 </li>
-                <li className='hover:scale-110 transition duration-300 border border-black rounded-3xl m-[0.5%] bg-[#39A945] flex justify-center items-center w-[13%] h-[70%] font-bold font-montserrat'>
-                  <a href=''>
+                <li className='w-[13%] h-[70%] m-[0.5%]'>
+                  <a className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#39A945] flex justify-center items-center font-bold font-montserrat w-full h-full' href=''>
                     Configuración
                   </a>
                 </li>
               </ul>
             </nav>
           </header>
-          <main className='w-[100vw] bg-[#FBFBE6]'>
+          <main className='w-[100vw] flex justify-center items-center bg-[#FBFBE6]'>
             {children}
           </main>
       </>

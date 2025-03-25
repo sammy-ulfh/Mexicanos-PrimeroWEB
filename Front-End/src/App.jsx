@@ -1,7 +1,7 @@
 import '@fontsource/montserrat';
 import Login from '/src/client/Pages/Login';
 import Principal from '/src/client/Pages/Principal';
-import PrincipalAdmin from '/src/admin/Pages/PrincipalAdmin';
+import Apoyos from '/src/admin/Pages/Apoyos';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 function App() {
 
@@ -13,7 +13,7 @@ function App() {
         <Route path='/login' element={<Login />} />
 
     // Admins
-        <Route path='/admin/apoyos' element={<PrincipalAdmin />} />
+        <Route path='/admin/apoyos' element={<Apoyos />} />
       </Routes>
     </Router>
   )
