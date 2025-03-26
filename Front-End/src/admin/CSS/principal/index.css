@@ -1,0 +1,22 @@
+@media (min-width: 1280px) and (max-width: 1700px){
+  .center{
+    justify-content: center;
+  }
+
+  .max_width{
+    width: 85%;
+  }
+
+  .margin_top{
+    margin-top: 4.5vh;
+  }
+
+  .width_image{
+    width: 100%;
+  }
+
+  .margin_right{
+    margin-right: 0px;
+  }
+}
+
