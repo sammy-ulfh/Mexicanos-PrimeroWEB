@@ -1,4 +1,4 @@
-# Los cambios de Sammy
+# Los cambios de Generales
 
 ## Menu
 - [Cambios](#Cambios)
