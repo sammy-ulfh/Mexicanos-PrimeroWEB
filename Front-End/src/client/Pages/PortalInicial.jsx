@@ -10,21 +10,24 @@ function PortalInicial() {
         <div className="min-h-screen min-w-screen z-0 font-montserrat flex flex-col justify-between" style={{ backgroundColor: '#FFFFFF' }}>
           <Initial>
           
-            <section id="about" className="flex flex-wrap items-center justify-center xl:justify-between w-[100%] xl:w-[100%] h-full mt-[5vh] mb-[5vh] xl:ml-[10px] center">
-              <div className="border border-white bg-white w-[90%] xl:w-[820px] rounded-3xl flex flex-col items-center max_width">
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mt-[20px] mb-[40px] w-[80%] flex justify-center">
+            <section id="about" className="flex flex-wrap items-center justify-center w-[100%] h-full mt-[5vh] mb-[5vh] xl:ml-[10px] center">
+              <div className="border border-white bg-white w-[80%] rounded-3xl flex flex-col items-center justify-center max_width text-justify">
+                <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-bold mt-[5vh] mb-[40px] w-full flex justify-center items-center text-center">
                   ¡Mi escuela primero!
-                </h2>
-                <span className="text-base sm:text-base md:text-base lg:text-lg xl:text-xl w-[80%]">
-                Para habilitar el acceso total al portal tendrá que cargar la información obligatoria.<br/><br/>
-                ¡En mexicanos primero tu seguridad es primero!
+                </h1>
+                <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl w-[95%] mt-[5vh]">
+                  Para habilitar el acceso total al portal tendrá que cargar la información obligatoria.
                 </span>
-                <button className='flex justify-center items-start w-[40%] xl:w-[20vw] h-full py-[3%] mt-[50px] rounded-full border-3 border-solid text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold' style={{ backgroundColor: '#009933' }}>
+                <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl w-[95%] mt-[5vh]">
+                  ¡En <span className='text-blue-700'>mexicanos primero</span> tu <span className='text-blue-700'>seguridad es primero</span>!
+                </span>
+
+                <button className='flex justify-center items-center w-[40%] h-[10vh] mt-[50px] rounded-full border-3 border-solid text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold hover:scale-105 transition duration-300' style={{ backgroundColor: '#009933' }}>
                 Subir información
                 </button>
 
                 <div className="w-[80%] h-[20vh] mt-[2vh]">
-                  <img src="src/client/assets/pages/principal/happy_runing.jpg" alt="foto de ejemplo" className='h-full w-full object-cover object-top rounded-2xl'/>
+                  <img src="/src/client/assets/pages/principal/happy_runing.jpg" alt="foto de ejemplo" className='h-full w-full object-cover object-top rounded-2xl'/>
                 </div>
               </div> 
             </section>
