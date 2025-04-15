@@ -1,6 +1,7 @@
 import '@fontsource/montserrat';
-import PortalMatchingLayout from '../Layouts/PortalMatchingLayout.jsx';
-import MiniPerfil from '../Layouts/MiniPerfil.jsx';
+import MainLayout from '../Layouts/MainLayout';
+import MiniPerfil from '../../GeneralComponents/MiniPerfil';
+import SearchBar from '../../GeneralComponents/SearchBar';
 
 
 function PortalMatchingEscuela() {
@@ -9,9 +10,10 @@ function PortalMatchingEscuela() {
     return (
       <>
         <div className="min-h-screen min-w-screen z-0 font-montserrat flex flex-col justify-between" style={{ backgroundColor: '#FBFBE6' }}>
-          <PortalMatchingLayout>
-          <section id="about" className="flex flex-wrap items-center justify-center w-[100%] h-full mt-[5vh] mb-[5vh] xl:ml-[10px] center">
-            <div className="border border-black bg-white w-[90%] rounded-3xl flex flex-row justify-center flex-wrap flex-col items-center max_width">
+          <MainLayout>
+          <section id="about" className="flex flex-col items-center justify-center w-[100%] h-full">
+            <SearchBar/>
+            <div className="border border-black bg-white w-[90%] mt-[3vh] mb-[5vh] rounded-3xl flex flex-row justify-center flex-wrap flex-col items-center max_width">
               <MiniPerfil/>
               <MiniPerfil/>
               <MiniPerfil/>
@@ -22,7 +24,7 @@ function PortalMatchingEscuela() {
 
             </div>
           </section>
-          </PortalMatchingLayout>
+          </MainLayout>
         </div>
       </>
     )

@@ -1,6 +1,6 @@
 import '@fontsource/montserrat';
 import Initial from '../Layouts/Initial.jsx';
-import SubirArchivo from '../Layouts/SubirArchivo.jsx';
+import SubirArchivo from '../../GeneralComponents/SubirArchivo.jsx';
 
 
 function FormularioDonador() {

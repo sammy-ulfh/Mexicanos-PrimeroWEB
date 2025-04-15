@@ -1,15 +1,15 @@
 import '@fontsource/montserrat';
-import MainLayout from '../Layouts/MainLayout';
-import MostrarOpcion from '../../GeneralComponents/MostrarOpcion';
+import Initial from '../Layouts/Initial.jsx';
+import MostrarOpcion from '../Layouts/MostrarOpcion.jsx';
 
 
-function ConfigurarPerfilDonador() {
+function ConfigurarPerfil() {
 
 
     return (
       <>
         <div className="min-h-screen min-w-screen z-0 font-montserrat flex flex-col justify-between" style={{ backgroundColor: '#FBFBE6' }}>
-          <MainLayout>
+          <Initial>
           <section id="about" className="flex flex-wrap items-center justify-center w-[100%] h-full mt-[5vh] mb-[5vh] xl:ml-[10px] center">
             <div className="border border-black bg-white w-[80%] rounded-3xl flex flex-col items-center max_width">
             <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-bold mt-[20px] mt-[100px] mb-[40px] w-[80%] flex justify-center">
@@ -82,10 +82,10 @@ function ConfigurarPerfilDonador() {
                 </button>
                 </div>
             </section>
-          </MainLayout>
+          </Initial>
         </div>
       </>
     )
   }
  
-  export default ConfigurarPerfilDonador
+  export default ConfigurarPerfil
