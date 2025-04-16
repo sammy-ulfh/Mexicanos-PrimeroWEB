@@ -5,7 +5,7 @@ import Apoyos from '/src/admin/Pages/Apoyos';
 import Chats from '/src/admin/Pages/Chats';
 import Config from '/src/admin/Pages/Config';
 import InfoSolicitudApoyo from '/src/admin/Pages/InfoSolicitudApoyo';
-import InfoApoyo from '/src/admin/Pages/InfoApoyo';
+import InfoApoyo from '/src/GeneralPages/InfoApoyo';
 import Chat from '/src/admin/Pages/Chat';
 import Perfil from '/src/admin/Pages/Perfil';
 import Cuentas from '/src/admin/Pages/Cuentas';
@@ -21,6 +21,7 @@ import ConfigurarPerfilEscuela from '/src/client/Pages/ConfigurarPerfilEscuela';
 import ConfigurarPerfilDonador from '/src/client/Pages/ConfigurarPerfilDonador';
 import PortalMatchingEscuela from '/src/client/Pages/PortalMatchingEscuela';
 import ClientChats from '/src/client/Pages/Chats';
+import ClientChat from '/src/client/Pages/Chat';
 import ClientConfig from '/src/client/Pages/Config';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -46,17 +47,20 @@ function App() {
         <Route path='/configuration/profile/donator' element={<ConfigurarPerfilDonador />} />
         <Route path='/portal/matching' element={<PortalMatchingEscuela />} />
         <Route path='/portal/chats' element={<ClientChats />} />
+        <Route path='/portal/chat' element={<ClientChat />} />
         <Route path='/portal/config' element={<ClientConfig />} />
 
     // Admins
         <Route path='/admin/apoyos' element={<Apoyos />} />
         <Route path='/admin/chats' element={<Chats />} />
         <Route path='/admin/config' element={<Config />} />
-        <Route path='/admin/apoyos/info' element={<InfoApoyo />} />
         <Route path='/admin/solicitudes/apoyos/info' element={<InfoSolicitudApoyo />} />
         <Route path='/admin/chat' element={<Chat />} />
         <Route path='/admin/perfil' element={<Perfil />} />
         <Route path='/admin/solicitudes/cuentas' element={<Cuentas />} />
+
+    //General
+        <Route path='/apoyos/info' element={<InfoApoyo />} />
       </Routes>
     </Router>
   )

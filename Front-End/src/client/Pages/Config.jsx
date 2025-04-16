@@ -11,7 +11,7 @@ function ClientConfig() {
       <>
         <MainLayout>
           
-          <section className="w-[80%] min-h-[73vh] p-[1%] rounded-3xl border border-gray-500 bg-white flex flex-col justify-start items-center mt-[2vh]">
+          <section className="w-[80%] min-h-[73vh] p-[1%] rounded-3xl border border-gray-500 bg-white flex flex-col justify-start items-center">
             <div className='w-full h-[20vh] text-black font-bold font-montserrat flex flex-col justify-center items-center'>
               <h1 className='text-5xl lg:text-5xl xl:text-6xl 2xl:text-6xl'>Configuración</h1> 
             </div>

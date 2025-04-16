@@ -10,7 +10,7 @@ function ConfigurarPerfilDonador() {
       <>
         <div className="min-h-screen min-w-screen z-0 font-montserrat flex flex-col justify-between" style={{ backgroundColor: '#FBFBE6' }}>
           <MainLayout>
-          <section id="about" className="flex flex-wrap items-center justify-center w-[100%] h-full mt-[5vh] mb-[5vh] xl:ml-[10px] center">
+          <section id="about" className="flex flex-wrap items-center justify-center w-[100%] h-full mb-[5vh]">
             <div className="border border-black bg-white w-[80%] rounded-3xl flex flex-col items-center max_width">
             <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-bold mt-[20px] mt-[100px] mb-[40px] w-[80%] flex justify-center">
                 Mi perfil 

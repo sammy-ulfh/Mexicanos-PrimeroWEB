@@ -77,7 +77,7 @@ const MainLayout = ({ children }) => {
             </nav>
           </header>
           <main className='w-[100vw] flex justify-center items-center bg-[#FBFBE6]'>
-            <div className='mt-[15vh] lg:mt-[23vh] xl:mt-[23vh] 2xl:mt-[23vh] w-full h-full flex items-center justify-center'>
+            <div className='mt-[17vh] lg:mt-[25vh] xl:mt-[25vh] 2xl:mt-[25vh] w-full h-full flex items-center justify-center'>
               {children}
             </div>
           </main>

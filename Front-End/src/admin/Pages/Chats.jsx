@@ -3,6 +3,7 @@ import Initial from '../Layouts/Initial.jsx';
 import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import TarjetaProcesos from '/src/GeneralComponents/TarjetaProcesos';
 
 const Info = [
   {
@@ -106,7 +107,7 @@ const Tarjeta = ({chat_id, type, last_message, navigate, data}) => (
   <article className='p-[2%] w-[80%] h-auto font-bold font-montserrat flex justify-center items-start text-black font-montserrat border rounded-3xl m-[1%]'>
     <div className='w-[60%] h-[15vh] flex flex-col items-center justify-center'>
       <h2 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>{type}</h2>
-      <button className='border rounded-3xl text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl w-[80%] lg:w-[40%] xl:w-[40%] h-[5vh] mt-[1%] bg-[#009933] hover:scale-105 transition duration-300' onClick={() => navigate('/admin/apoyos/info', { state: data })}>
+      <button className='border rounded-3xl text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl w-[80%] lg:w-[40%] xl:w-[40%] h-[5vh] mt-[1%] bg-[#009933] hover:scale-105 transition duration-300' onClick={() => navigate('/admin/apoyos/info', { state: [data,user_rol] })}>
         Ver información
       </button>
     </div>
@@ -150,7 +151,7 @@ function Chats() {
             {
               Info.length > 0 && isActive ? (
                 Info.map((tarjeta) => (
-                  <Tarjeta chat_id={tarjeta.chat_id} type={tarjeta.type} last_message={tarjeta.last_message} navigate={navigate} data={tarjeta.info} />
+                  <TarjetaProcesos chat_id={tarjeta.chat_id} type={tarjeta.type} last_message={tarjeta.last_message} navigate={navigate} data={tarjeta.info} user_rol='admin' />
                 ))
               ) : (
                 <span className='font-bold font-montserrat text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl mt-[16%] mb-[2%]'>Sin chats disponibles.</span>
