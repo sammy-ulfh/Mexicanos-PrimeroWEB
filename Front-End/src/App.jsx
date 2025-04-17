@@ -23,6 +23,7 @@ import PortalMatchingEscuela from '/src/client/Pages/PortalMatchingEscuela';
 import ClientChats from '/src/client/Pages/Chats';
 import ClientChat from '/src/client/Pages/Chat';
 import ClientConfig from '/src/client/Pages/Config';
+import ClientProfile from '/src/client/Pages/Profile';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -49,6 +50,7 @@ function App() {
         <Route path='/portal/chats' element={<ClientChats />} />
         <Route path='/portal/chat' element={<ClientChat />} />
         <Route path='/portal/config' element={<ClientConfig />} />
+        <Route path='/portal/perfil' element={<ClientProfile />} />
 
     // Admins
         <Route path='/admin/apoyos' element={<Apoyos />} />

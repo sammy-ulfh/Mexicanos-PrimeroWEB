@@ -15,7 +15,7 @@ const TarjetaProcesos = ({chat_id, type, last_message, navigate, data, user_rol}
       }}>
       {last_message}
       </span>
-      <button className='w-[100%] xl:w-[50%] 2xl:w-[50%] h-[40%] flex justify-center items-center bg-[#009933] mt-[1%] rounded-3xl border font-bold font-montserrat hover:scale-105 transition duration-300 text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl' onClick={() => navigate('/portal/chat', { state: chat_id })}>
+      <button className='w-[100%] xl:w-[50%] 2xl:w-[50%] h-[40%] flex justify-center items-center bg-[#009933] mt-[1%] rounded-3xl border font-bold font-montserrat hover:scale-105 transition duration-300 text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl' onClick={() => navigate(user_rol == 'admin' ? '/admin/chat' : '/portal/chat', { state: [chat_id,user_rol] })}>
         Entrar al chat
       </button>
     </div>

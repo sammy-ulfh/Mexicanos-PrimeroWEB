@@ -103,7 +103,7 @@ const Info = [
   }
     ]
 
-const Tarjeta = ({chat_id, type, last_message, navigate, data}) => (
+const Tarjeta = ({chat_id, type, last_message, navigate, data, user_rol}) => (
   <article className='p-[2%] w-[80%] h-auto font-bold font-montserrat flex justify-center items-start text-black font-montserrat border rounded-3xl m-[1%]'>
     <div className='w-[60%] h-[15vh] flex flex-col items-center justify-center'>
       <h2 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>{type}</h2>
