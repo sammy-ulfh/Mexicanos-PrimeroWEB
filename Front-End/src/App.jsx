@@ -19,7 +19,7 @@ import PortalRechazo from '/src/client/Pages/PortalRechazo';
 import ConfigurarPerfil from '/src/client/Pages/ConfigurarPerfil';
 import ConfigurarPerfilEscuela from '/src/client/Pages/ConfigurarPerfilEscuela';
 import ConfigurarPerfilDonador from '/src/client/Pages/ConfigurarPerfilDonador';
-import PortalMatchingEscuela from '/src/client/Pages/PortalMatchingEscuela';
+import PortalMatching from '/src/client/Pages/PortalMatching';
 import ClientChats from '/src/client/Pages/Chats';
 import ClientChat from '/src/client/Pages/Chat';
 import ClientConfig from '/src/client/Pages/Config';
@@ -46,7 +46,7 @@ function App() {
         <Route path='/configuration/profile' element={<ConfigurarPerfil />} />
         <Route path='/configuration/profile/school' element={<ConfigurarPerfilEscuela />} />
         <Route path='/configuration/profile/donator' element={<ConfigurarPerfilDonador />} />
-        <Route path='/portal/matching' element={<PortalMatchingEscuela />} />
+        <Route path='/portal/matching' element={<PortalMatching />} />
         <Route path='/portal/chats' element={<ClientChats />} />
         <Route path='/portal/chat' element={<ClientChat />} />
         <Route path='/portal/config' element={<ClientConfig />} />
