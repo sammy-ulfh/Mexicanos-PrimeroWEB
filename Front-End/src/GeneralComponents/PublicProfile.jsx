@@ -1,8 +1,8 @@
 const Profile = ({id, name, email, image, resumen, info, navigate}) => (
   <div className="flex flex-col justify-center items-start w-full h-full mt-[5vh] font-montserrat">
     <div className='flex w-full h-full flex-col justify-center items-center mb-[5vh]'>
-      <div className='w-full h-full flex justify-center items-center'>
-        <div className='w-[50%] h-[100%] flex flex-col justify-between items-start pl-[2vw]'>
+      <div className='w-full h-full flex flex-col lg:flex-row justify-center items-center'>
+        <div className='lg:w-[50%] h-[100%] w-[100%] flex flex-col justify-between items-start p-[2vw]'>
           <img src={image} className='w-[33%] h-50 rounded-full object-cover' />
           <article className='mb-[2vh] mt-[2vh]'>
             {info.institution == 'true' &&(  
@@ -23,7 +23,7 @@ const Profile = ({id, name, email, image, resumen, info, navigate}) => (
           </article>
         </div> 
 
-        <div className='w-[50%] h-[100%] flex flex-col justify-between items-start'>
+        <div className='lg:w-[50%] h-[100%] w-[100%] flex flex-col justify-between items-start p-[2vw]'>
           
            {info.institution == 'true' &&(  
               <img src={info.image} className='w-[80%] h-50 rounded-xl border object-cover' />
