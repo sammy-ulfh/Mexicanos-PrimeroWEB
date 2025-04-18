@@ -1,6 +1,6 @@
-const MiniPerfil = ({id, name, image, resumen, info, navigate}) => {
+const MiniPerfil = ({id, name, image, resumen, info, navigate, route}) => {
     return (
-        <button  className="border border-black bg-white w-[40%] lg:w-[30%] h-[30vh] rounded-3xl flex flex-col items-center justify-center m-[20px] hover:scale-103 transition duration-300 hover:bg-gray-100" onClick={() => navigate('/portal/perfil', {state: id})}>
+        <button  className="border border-black bg-white w-[40%] lg:w-[30%] h-[30vh] rounded-3xl flex flex-col items-center justify-center m-[20px] hover:scale-103 transition duration-300 hover:bg-gray-100" onClick={() => navigate(route, {state: id})}>
           <div className={`relative flex justify-center ${info.institution == 'true' ? 'items-end' : 'items-center'} w-full ${info.institution == 'true' ? 'h-[25vh]' : 'h-auto'}`}>
             {info.institution == 'true' &&(  
                 <img src={info.image} className='absolute w-full h-full object-cover rounded-4xl z-0' />

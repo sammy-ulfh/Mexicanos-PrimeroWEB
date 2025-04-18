@@ -1,14 +1,16 @@
 import '@fontsource/montserrat';
 import React from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Initial = ({ children }) => {
 
     const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate();
 
     return (
       <>
-          <header className='fixed z-2 bg-white flex flex-col justify-center items-center w-[100vw] h-[15vh] lg:h-[23vh] xl:h-[23vh]'>
+          <header className='fixed z-15 bg-white flex flex-col justify-center items-center w-[100vw] h-[15vh] lg:h-[23vh] xl:h-[23vh]'>
             <div className="w-[100%] h-[100%] lg:h-[70%] xl:h-[70%] flex justify-center items-center border border-gray-300">
               <img src="/src/client/assets/logos/Logo.png" alt='Logo'className="h-[70%] sm:h-[80%] md:h-[80%] lg:h-[90%] xl:h-[100%]"/>
               <h1 className='w-[62%] lg:w-[70%] xl:w-[70%] flex items-center justify-center font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl'>Aprender importa</h1>
@@ -23,29 +25,39 @@ const Initial = ({ children }) => {
                 <nav className='w-[100%] h-[90%] lg:hidden xl:hidden'>
                   <ul className='w-full h-full flex flex-col justify-start items-center mt-[15%] text-xs sm:text-sm md:text-base'>
                     <li className='w-[80%] h-[7%] m-[1%]'>
-                      <a className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' href='/admin/solicitudes/cuentas'>
+                      <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' onClick={() => navigate('/admin')}>
+                        <img src="/src/GeneralAssets/search.png" alt='Logo' className="w-[40px]"/>
+                      </button>
+                    </li>
+                    <li className='w-[80%] h-[7%] m-[1%]'>
+                      <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' onClick={() => navigate('/admin/solicitudes/cuentas')}>
                         Cuentas
-                      </a>
+                      </button>
                     </li>
                     <li className='w-[80%] h-[7%] m-[1%]'>
-                      <a className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' href='/admin/apoyos'>
+                      <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' onClick={() => navigate('/admin/apoyos')}>
                         Apoyos
-                      </a>
+                      </button>
                     </li>
                     <li className='w-[80%] h-[7%] m-[1%]'>
-                      <a className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' href='/admin/chats'>
+                      <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' onClick={() => navigate('/admin/chats')}>
                         Mis chats
-                      </a>
+                      </button>
                     </li>
                     <li className='w-[80%] h-[7%] m-[1%]'>
-                      <a className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' href='/admin/perfil'>
+                      <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' onClick={() => navigate('/admin/private/perfil')}>
                         Mi perfil
-                      </a>
+                      </button>
                     </li>
                     <li className='w-[80%] h-[7%] m-[1%]'>
-                      <a className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' href='/admin/config'>
+                      <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' onClick={() => navigate('/admin/config')}>
                         Configuración
-                      </a>
+                      </button>
+                    </li>
+                    <li className='w-[80%] h-[7%] m-[1%]'>
+                      <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full'>
+                        Cerrar sesión
+                      </button>
                     </li>
                   </ul>
                 </nav>
@@ -57,29 +69,39 @@ const Initial = ({ children }) => {
             <nav className='w-[100%] h-[30%] bg-[#D9D9D9] hidden lg:block xl:block'>
               <ul className='w-full h-full flex justify-center items-center'>
                 <li className='w-[13%] h-[70%] m-[0.5%]'>
-                  <a className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center  font-bold font-montserrat w-full h-full' href='/admin/solicitudes/cuentas'>
+                  <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center  font-bold font-montserrat w-full h-full' onClick={() => navigate('/admin')}>
+                      <img src="/src/GeneralAssets/search.png" alt='Logo' className="w-[40px]"/>
+                  </button>
+                </li>
+                <li className='w-[13%] h-[70%] m-[0.5%]'>
+                  <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center  font-bold font-montserrat w-full h-full' onClick={() => navigate('/admin/solicitudes/cuentas')}>
                     Cuentas
-                  </a>
+                  </button>
                 </li>
                 <li className='w-[13%] h-[70%] m-[0.5%]'>
-                  <a className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' href='/admin/apoyos'>
+                  <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' onClick={() => navigate('/admin/apoyos')}>
                     Apoyos
-                  </a>
+                  </button>
                 </li>
                 <li className='w-[13%] h-[70%] m-[0.5%]'>
-                  <a className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' href='/admin/chats'>
+                  <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' onClick={() => navigate('/admin/chats')}>
                     Mis chats
-                  </a>
+                  </button>
                 </li>
                 <li className='w-[13%] h-[70%] m-[0.5%]'>
-                  <a className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' href='/admin/perfil'>
+                  <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' onClick={() => navigate('/admin/private/perfil')}>
                     Mi perfil
-                  </a>
+                  </button>
                 </li>
                 <li className='w-[13%] h-[70%] m-[0.5%]'>
-                  <a className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' href='/admin/config'>
+                  <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' onClick={() => navigate('/admin/config')}>
                     Configuración
-                  </a>
+                  </button>
+                </li>
+                <li className='w-[13%] h-[70%] m-[0.5%]'>
+                  <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full'>
+                    Cerrar sesión
+                  </button>
                 </li>
               </ul>
             </nav>

@@ -10,7 +10,7 @@ const MainLayout = ({ children }) => {
 
     return (
       <>
-          <header className='fixed z-2 bg-white flex flex-col justify-center items-center w-[100vw] h-[15vh] lg:h-[23vh] xl:h-[23vh]'>
+          <header className='fixed z-15 bg-white flex flex-col justify-center items-center w-[100vw] h-[15vh] lg:h-[23vh] xl:h-[23vh]'>
             <div className="w-[100%] h-[100%] lg:h-[70%] xl:h-[70%] flex justify-center items-center border border-gray-300">
               <img src="/src/client/assets/logos/Logo.png" alt='Logo'className="h-[70%] sm:h-[80%] md:h-[80%] lg:h-[90%] xl:h-[100%]"/>
               <h1 className='w-[62%] lg:w-[70%] xl:w-[70%] flex items-center justify-center font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl'>Aprender importa</h1>

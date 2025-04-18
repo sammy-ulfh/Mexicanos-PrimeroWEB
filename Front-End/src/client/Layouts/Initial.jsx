@@ -5,7 +5,7 @@ const Initial = ({ children }) => {
 
     return (
       <>
-          <header className="flex w-full bg-white h-[20vh] z-1 flex items-center border border-gray-300">
+          <header className="flex w-full bg-white h-[20vh] z-15 flex items-center border border-gray-300">
             <div className="w-[20vw] flex justify-end">
     <img src="/src/client/assets/logos/Logo.png" alt='Logo'className="w-[12.5vw]"/>
     </div>
