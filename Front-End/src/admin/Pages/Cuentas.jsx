@@ -40,20 +40,20 @@ function Cuentas() {
       <>
         <Initial>
           
-          <section className="w-[80%] mt-[2%] p-[1%] rounded-3xl border border-gray-500 bg-white flex flex-col justify-start items-center">
+          <section className="w-[80%] min-h-[65vh] mt-[2%] p-[1%] rounded-3xl border border-gray-500 bg-white flex flex-col justify-start items-center">
             <div className='w-full h-[20vh] text-black font-bold font-montserrat flex flex-col justify-center items-center'>
               <h1 className='text-6xl'>Cuentas</h1>
               <div className='w-full h-[30%] m-[1%] flex justify-center items-center'>
-                <button className='flex justify-center items-center border rounded-3xl w-[30%] h-[100%] m-[1%] hover:scale-110 transition duration-300 bg-[#009933] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl'>
-                  Clientes
+                <button className='flex justify-center items-center border rounded-3xl w-[30%] h-[100%] m-[1%] hover:scale-110 transition duration-300 bg-[#009933] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl' onClick={() => {setIsSchool(true); setIsDonator(false)}}>
+                  Escuelas
                 </button>
-                <button className='flex justify-center items-center border rounded-3xl w-[30%] h-[100%] m-[1%] hover:scale-110 transition duration-300 bg-[#009933] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl'>
+                <button className='flex justify-center items-center border rounded-3xl w-[30%] h-[100%] m-[1%] hover:scale-110 transition duration-300 bg-[#009933] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl' onClick={() => {setIsSchool(false); setIsDonator(true)}}>
                   Donadores
                 </button>
               </div>
             </div>
             {
-              Info.length > 0 ? (
+              Info.length > 0 && isDonator ? (
                 Info.map((tarjeta) => (
                   <Tarjeta name={tarjeta.name} image={tarjeta.image} navigate={navigate} data={tarjeta}  />
                 ))

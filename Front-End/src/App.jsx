@@ -10,6 +10,7 @@ import Chat from '/src/admin/Pages/Chat';
 import Perfil from '/src/admin/Pages/Perfil';
 import Cuentas from '/src/admin/Pages/Cuentas';
 import PortalMatching from '/src/admin/Pages/PortalMatching';
+import AdminLogin from '/src/admin/Pages/Login';
 import AdminProfile from '/src/admin/Pages/Profile';
 import PortalInicial from '/src/client/Pages/PortalInicial';
 import FormularioCrearCuenta from '/src/client/Pages/FormularioCrearCuenta';
@@ -62,8 +63,9 @@ function App() {
         <Route path='/admin/chat' element={<Chat />} />
         <Route path='/admin/private/perfil' element={<Perfil />} />
         <Route path='/admin/solicitudes/cuentas' element={<Cuentas />} />
-        <Route path='/admin' element={<PortalMatching />} />
+        <Route path='/admin/matching' element={<PortalMatching />} />
         <Route path='/admin/public/perfil' element={<AdminProfile />} />
+        <Route path='/admin' element={<AdminLogin />} />
 
     //General
         <Route path='/apoyos/info' element={<InfoApoyo />} />

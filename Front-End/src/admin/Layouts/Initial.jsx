@@ -25,7 +25,7 @@ const Initial = ({ children }) => {
                 <nav className='w-[100%] h-[90%] lg:hidden xl:hidden'>
                   <ul className='w-full h-full flex flex-col justify-start items-center mt-[15%] text-xs sm:text-sm md:text-base'>
                     <li className='w-[80%] h-[7%] m-[1%]'>
-                      <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' onClick={() => navigate('/admin')}>
+                      <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' onClick={() => navigate('/admin/matching')}>
                         <img src="/src/GeneralAssets/search.png" alt='Logo' className="w-[40px]"/>
                       </button>
                     </li>
@@ -69,7 +69,7 @@ const Initial = ({ children }) => {
             <nav className='w-[100%] h-[30%] bg-[#D9D9D9] hidden lg:block xl:block'>
               <ul className='w-full h-full flex justify-center items-center'>
                 <li className='w-[13%] h-[70%] m-[0.5%]'>
-                  <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center  font-bold font-montserrat w-full h-full' onClick={() => navigate('/admin')}>
+                  <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center  font-bold font-montserrat w-full h-full' onClick={() => navigate('/admin/matching')}>
                       <img src="/src/GeneralAssets/search.png" alt='Logo' className="w-[40px]"/>
                   </button>
                 </li>
