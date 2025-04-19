@@ -28,6 +28,9 @@ import ClientChat from '/src/client/Pages/Chat';
 import ClientConfig from '/src/client/Pages/Config';
 import ClientProfile from '/src/client/Pages/Profile';
 
+import CuentaDonador from '/src/admin/Pages/CuentaDonador';
+import CuentaEscuela from '/src/admin/Pages/CuentaEscuela';
+
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
@@ -63,6 +66,8 @@ function App() {
         <Route path='/admin/chat' element={<Chat />} />
         <Route path='/admin/private/perfil' element={<Perfil />} />
         <Route path='/admin/solicitudes/cuentas' element={<Cuentas />} />
+        <Route path='/admin/cuentas/escuelas' element={<CuentaEscuela />} />
+        <Route path='/admin/cuentas/donadores' element={<CuentaDonador />} />
         <Route path='/admin/matching' element={<PortalMatching />} />
         <Route path='/admin/public/perfil' element={<AdminProfile />} />
         <Route path='/admin' element={<AdminLogin />} />

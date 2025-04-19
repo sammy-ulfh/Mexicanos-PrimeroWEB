@@ -9,6 +9,7 @@ const Chats = [
   {
       chat_id: 1,
       user_id: 2,
+      rol: 'school',
       info: {
         'Escuela': {
         id: 1,
@@ -172,6 +173,7 @@ function ClientChats() {
                         info={info}
                         last_message={tarjeta.last_message}
                         navigate={navigate}
+                        rol={tarjeta.rol}
                       />
                     );
                   })

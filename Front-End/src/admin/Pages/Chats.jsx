@@ -4,8 +4,32 @@ import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import TarjetaProcesos from '/src/GeneralComponents/TarjetaProcesos';
+import TarjetaChats from '/src/GeneralComponents/TarjetaChats';
 
-const Info = [
+const ChatsData = [
+  {
+      chat_id: 1,
+      user_id: 2,
+      rol: 'admin',
+      info: {
+        'Escuela': {
+        id: 1,
+        name: 'Miguel Hidalgo y Costilla de Sabrade Robles',
+        image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.recreoviral.com%2Fwp-content%2Fuploads%2F2015%2F01%2Fmitad-2-personas-4.jpg&f=1&nofb=1&ipt=a7b13ff6fcf7dabb797806f3cb1aa6da660c7c25a92b157dd688336252bab819',
+        type: 'school'
+        },
+        'Admin': {
+        id: 2,
+        name: 'Jose Pepe',
+        image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcovalto.com%2Fstatic%2F78498ccda70933a5f1e3edc3e40d3cbe%2F34aca%2FHero_Mobile_Cuenta_Personas_V1_1_8046e424ea.webp&f=1&nofb=1&ipt=59a7bca374102c037d0917182ea9914e652a59f006a6afe653ad45790c6088da',
+        type: 'admin'
+        }
+      },
+      last_message: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
+  }
+    ]
+
+const Procesos = [
   {
       chat_id: 1,
       info: {
@@ -103,33 +127,11 @@ const Info = [
   }
     ]
 
-const Tarjeta = ({chat_id, type, last_message, navigate, data, user_rol}) => (
-  <article className='p-[2%] w-[80%] h-auto font-bold font-montserrat flex justify-center items-start text-black font-montserrat border rounded-3xl m-[1%]'>
-    <div className='w-[60%] h-[15vh] flex flex-col items-center justify-center'>
-      <h2 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>{type}</h2>
-      <button className='border rounded-3xl text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl w-[80%] lg:w-[40%] xl:w-[40%] h-[5vh] mt-[1%] bg-[#009933] hover:scale-105 transition duration-300' onClick={() => navigate('/admin/apoyos/info', { state: [data,user_rol] })}>
-        Ver información
-      </button>
-    </div>
-    <div className='w-[40%] h-[15vh] flex flex-col items-center'>
-      <span className='w-[100%] h-[60%] overflow-hidden p-2 flex justify-center items-center' style={{
-        display: "-webkit-box",
-        WebkitBoxOrient: "vertical",
-        WebkitLineClamp: 3,
-        overflow: "hidden"
-      }}>
-      {last_message}
-      </span>
-      <button className='w-[100%] xl:w-[50%] 2xl:w-[50%] h-[40%] flex justify-center items-center bg-[#009933] mt-[1%] rounded-3xl border font-bold font-montserrat hover:scale-105 transition duration-300 text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl' onClick={() => navigate('/admin/chat', { state: chat_id })}>
-        Entrar al chat
-      </button>
-    </div>
-  </article>
-);
-
 function Chats() {
 
     const [isActive, setIsActive] = useState(true);
+    const [isChat, setIsChat] = useState(false);
+    const [isProcess, setIsProcess] = useState(true);
     const navigate = useNavigate();
 
     return (
@@ -140,21 +142,73 @@ function Chats() {
             <div className='w-full h-[20vh] text-black font-bold font-montserrat flex flex-col justify-center items-center'>
               <h1 className='text-6xl'>Mis chats</h1>
               <div className='w-full h-[30%] m-[1%] flex justify-center items-center'>
-                <button className='flex justify-center items-center border rounded-3xl w-[30%] h-[100%] m-[1%] hover:scale-110 transition duration-300 bg-[#009933] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl' onClick={() => setIsActive(false)}>
-                  Completados
+                <button className='flex justify-center items-center border rounded-3xl w-[30%] h-[100%] m-[1%] hover:scale-110 transition duration-300 bg-[#009933] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl' onClick={() => {setIsChat(true); setIsProcess(false);}}>
+                  Chats
                 </button>
-                <button className='flex justify-center items-center border rounded-3xl w-[30%] h-[100%] m-[1%] hover:scale-110 transition duration-300 bg-[#009933] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl' onClick={() => setIsActive(true)}>
-                  Activos
+                <button className='flex justify-center items-center border rounded-3xl w-[30%] h-[100%] m-[1%] hover:scale-110 transition duration-300 bg-[#009933] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl' onClick={() => {setIsProcess(true); setIsChat(false);}}>
+                  Procesos
                 </button>
               </div>
             </div>
             {
-              Info.length > 0 && isActive ? (
-                Info.map((tarjeta) => (
-                  <TarjetaProcesos chat_id={tarjeta.chat_id} type={tarjeta.type} last_message={tarjeta.last_message} navigate={navigate} data={tarjeta.info} user_rol='admin' />
-                ))
-              ) : (
-                <span className='font-bold font-montserrat text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl mt-[16%] mb-[2%]'>Sin chats disponibles.</span>
+              isProcess && (
+                <>
+                  <h2 className='font-bold text-4xl'>Procesos</h2>
+                  <div className='w-full h-[6vh] m-[1%] flex justify-center items-center'>
+                  <button className='flex justify-center items-center border rounded-3xl w-[20%] h-[100%] m-[1%] hover:scale-110 transition duration-300 bg-[#009933] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl' onClick={() => setIsActive(false)}>
+                    Completados
+                  </button>
+                  <button className='flex justify-center items-center border rounded-3xl w-[20%] h-[100%] m-[1%] hover:scale-110 transition duration-300 bg-[#009933] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl' onClick={() => setIsActive(true)}>
+                    Activos
+                  </button>
+                  </div>
+                { 
+                  isActive ? (
+                  Procesos.length > 0 ? (
+                  Procesos.map((tarjeta) => (
+                    <TarjetaProcesos 
+                    chat_id={tarjeta.chat_id}
+                    type={tarjeta.type}
+                    last_message={tarjeta.last_message}
+                    navigate={navigate}
+                    data={tarjeta.info}
+                    user_rol='admin' />
+                  ) )) : (
+                    <p>Sin procesos</p>
+                  )
+                  ) : (
+                    <p>Procesos completados</p>
+                  )
+                }
+                </>
+              )
+            }
+
+            {
+              isChat && (
+                <>
+
+                  <h2 className='font-bold text-4xl'>Chats</h2>
+                { 
+                  ChatsData.length > 0 ? (
+                  ChatsData.map((tarjeta) => { 
+                      const info = tarjeta.info['Escuela'] || tarjeta.info['Donador'];
+                      return (
+                        <TarjetaChats
+                          user_id={tarjeta.user_id}
+                          chat_id={tarjeta.chat_id}
+                          info={info}
+                          last_message={tarjeta.last_message}
+                          navigate={navigate}
+                          rol={tarjeta.rol}
+                        />
+                      );
+                    })
+                  ) : (
+                    <p>Sin chats</p>
+                  )
+                }
+                </>
               )
             }
           </section>

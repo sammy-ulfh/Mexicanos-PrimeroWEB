@@ -1,5 +1,6 @@
 import '@fontsource/montserrat';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import Initial from '../Layouts/Initial';
 import MiniPerfil from '../../GeneralComponents/MiniPerfil';
 import SearchBar from '../../GeneralComponents/SearchBar';
@@ -73,14 +74,17 @@ const user_info = [ {
 function PortalMatching() {
 
     const navigate = useNavigate();
+    const [search, setSearch] = useState('');
 
     return (
       <>
         <div className="min-h-screen min-w-screen z-0 font-montserrat flex flex-col justify-between" style={{ backgroundColor: '#FBFBE6' }}>
           <Initial>
-            <section id="about" className="flex flex-col items-center justify-center w-[100%] h-full">
-              <SearchBar/>
-              <div className="border border-black bg-white w-[90%] min-h-[50vh] mt-[3vh] mb-[5vh] rounded-3xl flex flex-row justify-center flex-wrap items-start justify-center max_width"> 
+            <section id="about" className="relative flex flex-col items-center justify-center w-[100%] h-full">
+              <div className='flex fixed justify-center items-center relative w-full'>
+                <SearchBar search={search} setSearch={setSearch} />
+              </div>
+              <div className="relative top-15 border border-black bg-white w-[90%] min-h-[50vh] mt-[3vh] mb-[7vh] rounded-3xl flex flex-row justify-center flex-wrap items-start justify-center"> 
                 {user_info.length > 0 &&(
                     user_info.map((tarjeta) => (
                       <MiniPerfil 
