@@ -19,7 +19,7 @@ function Perfil() {
       return (
       <>
         <Initial>
-          <section className="w-[80%] mt-[2%] p-[1%] rounded-3xl border border-gray-500 bg-white flex flex-col justify-start items-center">
+          <section className="w-[80%] p-[1%] rounded-3xl border border-gray-500 bg-white flex flex-col justify-start items-center">
             <div className='w-full h-[20vh] text-black font-bold font-montserrat flex flex-col justify-center items-center'>
               <h1 className='text-6xl'>Perfil</h1>
             </div>

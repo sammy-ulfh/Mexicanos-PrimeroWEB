@@ -1,7 +1,24 @@
 import '@fontsource/montserrat';
 import Initial from '../Layouts/Initial.jsx';
-import SubirArchivo from '../../GeneralComponents/SubirArchivo.jsx';
+import DescargarArchivo from '../../GeneralComponents/DescargarArchivo.jsx';
 
+const InfoDonante = {
+  user_id: 1,
+  isInstitution: 'true',
+  institution: { 
+    nombre: 'Tec de Monterrey',
+    correo: 'everardo.romeroarenas@gdl.edu',
+    rfc: 'KEBDJKEB37483BLEBLNJL',
+    rep_sol: 'https://drive.google.com/uc?export=download&id=1Ew89pkodxOrjPzdTSDyQlKwRsh7fDhqO'
+  },
+  responsable: {
+    nombre: 'Pedro Paramo',
+    correo: 'pedro.paramo@everardoromero.edu',
+    rfc: 'WOEJNFN398439OKNSD',
+    ine: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fphantom-marca-mx.unidadeditorial.es%2Fab596b11fa77a7a10504f144525039e1%2Fresize%2F1320%2Ff%2Fjpg%2Fmx%2Fassets%2Fmultimedia%2Fimagenes%2F2024%2F01%2F14%2F17052646795495.jpg&f=1&nofb=1&ipt=6205335caf93b0a7c62ac6e744e6e9f8b72abbd84c1bc55ecca8fb10b69419e7',
+    edad: 25
+  }
+}
 
 function CuentaDonador() {
 
@@ -10,65 +27,66 @@ function CuentaDonador() {
       <>
         <div className="min-h-screen min-w-screen z-0 font-montserrat flex flex-col justify-between" style={{ backgroundColor: '#FBFBE6' }}>
           <Initial>
-          <section id="about" className="flex flex-col items-center justify-center w-[100%] xl:w-[100%] h-full mt-[5vh] mb-[5vh] xl:ml-[10px] center">
-            <div className="border border-black bg-white w-[80%] rounded-3xl flex flex-col items-center max_width">
-            <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-bold mt-[20px] mt-[100px] mb-[40px] w-[80%] flex justify-center">
+            <section id="about" className="flex flex-col items-center justify-center w-[100%] xl:w-[100%] h-full mb-[5vh] xl:ml-[10px] center">
+              <div className="border border-black bg-white w-[80%] rounded-3xl flex flex-col items-center max_width">
+              <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-bold mt-[20px] mt-[100px] mb-[40px] w-[80%] flex justify-center">
                 Mis donaciones
-            </h2>
+              </h2>
                 
                 <article className='font-montserrat text-xl mt-[20px] w-[60%] flex items-center flex-col justify-center'>
-                    <p className='flex font-bold self-start w-[100%]'>¿Se registrará a una institución?</p>
-                    <select className="mt-2 pl-[10px] w-[100%] h-[5.5vh] border border-black rounded-xl bg-white text-black">
-                        <option value="">Selecciona una opción</option>
-                        <option value= "true">Si</option>
-                        <option value="false">No</option>
-                    </select>                    
+                    <p className='flex font-bold self-start w-[100%]'>¿Es una institución?</p>
+                    <input type='text' value={InfoDonante.isInstitution == 'true' ? 'Si' : 'No'} className="pointer-events-none mt-2 pl-[10px] w-[100%] h-[5.5vh] border border-black rounded-xl bg-white text-black" />                
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Nombre del responsable</p>
-                    <input className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input type='text' value={InfoDonante.responsable.nombre} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Correo del responsable</p>
-                    <input className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input type='text' value={InfoDonante.responsable.correo} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>RFC</p>
-                    <input className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input type='text' value={InfoDonante.responsable.rfc} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Edad del responsable</p>
-                    <input className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input type='text' value={InfoDonante.responsable.edad} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
                 
                 <p className='font-montserrat flex flex-start w-[60%] mt-[40px] '>INE/IFE</p>
-                <SubirArchivo></SubirArchivo>
+                <DescargarArchivo path={InfoDonante.responsable.ine} />
+                
+                { InfoDonante.isInstitution == 'true' && (
+                  <>
+                    <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-bold mt-[20px] mt-[100px] mb-[40px] w-[80%] flex justify-center">
+                        Información de la insitución
+                    </h2>
 
-                <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-bold mt-[20px] mt-[100px] mb-[40px] w-[80%] flex justify-center">
-                    De ser una insitución
-                </h2>
+                    <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
+                        <p className='flex self-start w-[100%] '>Nombre de la institución</p>
+                        <input type='text' value={InfoDonante.institution.nombre} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    </article>
 
-                <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
-                    <p className='flex self-start w-[100%] '>Nombre de la institución</p>
-                    <input className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
-                </article>
+                    <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
+                        <p className='flex self-start w-[100%] '>RFC de la institución</p>
+                        <input type='text' value={InfoDonante.institution.rfc} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    </article>
 
-                <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
-                    <p className='flex self-start w-[100%] '>RFC de la institución</p>
-                    <input className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
-                </article>
+                    <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
+                        <p className='flex self-start w-[100%] '>Correo de la institución</p>
+                        <input type='text' value={InfoDonante.institution.correo}  className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    </article>
 
-                <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
-                    <p className='flex self-start w-[100%] '>Correo de la institución</p>
-                    <input className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
-                </article>
-
-                <p className='font-montserrat flex flex-start w-[60%] mt-[40px] '>Reporte que avale la solicitud de registro por parte de la institución con usted como responsable (firmado)</p>
-                <SubirArchivo></SubirArchivo>
+                    <p className='font-montserrat flex flex-start w-[60%] mt-[40px] '>Reporte que avale la solicitud de registro por parte de la institución con el responsable</p>
+                    <DescargarArchivo path={InfoDonante.institution.rep_sol} />
+                  </>
+                )
+                }
 
                 <div className='flex justify-center items-center w-[100%]'>
                   <button className='flex justify-center items-center w-[30%] h-[10vh] mt-[50px] mb-[20px] rounded-4xl text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold border-4 border-solid hover:scale-105 transition duration-300 mr-[2vw]' style={{ backgroundColor: '#009933' }}>
