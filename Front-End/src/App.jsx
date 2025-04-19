@@ -31,6 +31,7 @@ import ClientProfile from '/src/client/Pages/Profile';
 import CuentaDonador from '/src/admin/Pages/CuentaDonador';
 import CuentaEscuela from '/src/admin/Pages/CuentaEscuela';
 
+import ScrollToTop from '/src/GeneralComponents/ScrollToTop';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
@@ -38,6 +39,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
     // Clients
         <Route path='/' element={<Principal />} />
