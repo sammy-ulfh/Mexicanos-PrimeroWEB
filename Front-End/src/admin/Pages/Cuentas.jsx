@@ -1,7 +1,7 @@
 import '@fontsource/montserrat';
 import Initial from '../Layouts/Initial.jsx';
 import { React, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const InfoDonator = [
     {
@@ -29,14 +29,14 @@ const InfoSchool = [
     }
   ]
 
-const Tarjeta = ({ user_id, name, image, navigate, data, dir }) => (
+const Tarjeta = ({ user_id, name, image, navigate, data, dir, type }) => (
   <article className='p-[2%] w-[80%] font-bold font-montserrat flex justify-center items-center text-black font-montserrat border rounded-3xl m-[1%]'>
     <div className='w-[30%] h-[10vh] flex justify-center items-center'>
       <img src={image} alt={name} className='h-full w-[30%] rounded-full object-cover scale-150' />
     </div>
     <div className='flex flex-col w-[70%] h-full justify-center items-center'>
       <h2 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>{name}</h2>  
-      <button className='border rounded-3xl text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl w-[50%] md:w-[40%] lg:w-[40%] xl:w-[40%] h-[5vh] mt-[1%] bg-[#009933] hover:scale-105 transition duration-300' onClick={() => navigate(dir, { state: data })}>
+      <button className='border rounded-3xl text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl w-[50%] md:w-[40%] lg:w-[40%] xl:w-[40%] h-[5vh] mt-[1%] bg-[#009933] hover:scale-105 transition duration-300' onClick={() => navigate(dir, { state: { data: data, type: type } })}>
         Ver información
       </button>
     </div>
@@ -46,6 +46,9 @@ const Tarjeta = ({ user_id, name, image, navigate, data, dir }) => (
 function Cuentas() {
  
     const navigate = useNavigate();
+    const locate = useLocation();
+    const type = locate.state?.type;
+
     const [isSchool, setIsSchool] = useState(false);
     const [isDonator, setIsDonator] = useState(true);
 
@@ -82,6 +85,7 @@ function Cuentas() {
                         navigate={navigate}
                         data={tarjeta}
                         dir="/admin/cuentas/donadores"
+                        type={type}
                       />
                     ))
                   ) : (
@@ -107,6 +111,7 @@ function Cuentas() {
                         navigate={navigate}
                         data={tarjeta}
                         dir="/admin/cuentas/escuelas"
+                        type={type}
                       />
                     ))
                   ) : (
