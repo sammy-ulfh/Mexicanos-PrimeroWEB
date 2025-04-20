@@ -3,6 +3,12 @@ const Usuario = require('../models/userModel.js');
 const crearUsuario = async (req, res) => {
   const { type, email, password } = req.body;
 
+  console.log(req.body);
+
+  if (!type || !email || !password){
+    res.status(400).json({ mensaje: 'Faltan datos' });
+  }
+
   try{
     const resultado = await Usuario.crearUsuario(type, email, password);
     res.status(201).json({ mensaje: 'Usuario creado', id: resultado.insertId });
