@@ -1,12 +1,31 @@
 import '@fontsource/montserrat';
 import React, { useState } from 'react';
 
-const SubirArchivo = ({ children }) => {
+const SubirArchivo = ({ children, onUpload }) => {
   const [fileName, setFileName] = useState("");
 
-  const handleFileChange = (event) => {
-    if (event.target.files.length > 0) {
-      setFileName(event.target.files[0].name);
+  const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    setFileName(file.name);
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await fetch('http://localhost:3000/user/subirArchivo', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data?.url && onUpload) {
+        onUpload(data.url);
+      }
+    } catch (err) {
+      console.error("Error al subir el archivo:", err);
     }
   };
 

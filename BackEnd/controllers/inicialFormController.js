@@ -1,13 +1,10 @@
 const FormEscuela = require('../models/inicialFormEscuelaModel.js');
 const FormDonador = require('../models/inicialFormDonadorModel.js');
-const Type = require('../models/typeModel.js');
 
 const formularioContestado = async (req, res) => {
-  const { id_usuario } = req.body;
+  const { id_usuario, type } = req.body;
 
-  try{
-    const type = await Type.typeUser(id_usuario);
-    
+  try{    
     
     if (type == 2 ) {
       const statEscuela = await FormEscuela.statusEscuelaInicial(id_usuario);
