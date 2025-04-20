@@ -82,7 +82,7 @@ function FormularioDonador() {
                 </article>
                 
                 <p className='font-montserrat flex flex-start w-[60%] mt-[40px] '>INE/IFE</p>
-                <SubirArchivo onUpload={(url) => setFormData({ ...formData, ine: url })} />
+                <SubirArchivo name="ine" onFileSelect={handleFileSelect}/>
 
                 <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-bold mt-[20px] mt-[100px] mb-[40px] w-[80%] flex justify-center">
                     De ser una insitución
@@ -104,7 +104,7 @@ function FormularioDonador() {
                 </article>
 
                 <p className='font-montserrat flex flex-start w-[60%] mt-[40px] '>Reporte que avale la solicitud de registro por parte de la institución con usted como responsable (firmado)</p>
-                <SubirArchivo onUpload={(url) => setFormData({ ...formData, reporte: url })} />
+                <SubirArchivo name="reporte" onFileSelect={handleFileSelect} />
 
                 <button onClick={() => submit(formData).catch(console.error)}  className='flex justify-center items-center w-[50%] h-[8vh] py-[3%] mt-[50px] mb-[20px] rounded-full border-3 border-solid text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-bold hover:scale-105 transition durantion-300' style={{ backgroundColor: '#009933' }}>
                     Enviar información

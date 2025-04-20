@@ -89,7 +89,7 @@ function FormularioEscuela() {
                 </article>
                 
                 <p className='font-montserrat flex flex-start w-[60%] mt-[40px] '>Reporte que avale la solicitud de registro por parte del director con usted como responsable (firmado)</p>
-                <SubirArchivo onUpload={(url) => setFormData({ ...formData, report: url })} />
+                <SubirArchivo name="reporte" onFileSelect={handleFileSelect}/>
 
 
                 <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-bold mt-[20px] mt-[100px] mb-[40px] w-[80%] flex justify-center">
