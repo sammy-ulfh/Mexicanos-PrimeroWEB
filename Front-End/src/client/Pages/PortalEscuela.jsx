@@ -16,7 +16,7 @@ function PortalEscuela() {
                   ¡Configura tu perfil público!
                 </h1>
                 <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl w-[95%]">
-                  La configuración del prefil público es importante, ya que será lo primero que visualizaran los donantes.
+                  La configuración del prefil público es importante, ya que será lo primero que se visualizará.
                 </span>
                 <span className='text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl w-[95%] mt-[5vh]'>
                   ¡Tu perfil público es importante!
