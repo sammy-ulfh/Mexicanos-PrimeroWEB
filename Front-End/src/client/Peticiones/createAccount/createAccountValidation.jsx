@@ -1,3 +1,5 @@
+import createAccount from './createAccount.jsx';
+
 function createAccountValidation(email, password, confirmPassword, type) {
 
   let estatus = [];
@@ -9,6 +11,7 @@ function createAccountValidation(email, password, confirmPassword, type) {
 
   if (isEqual && isSlower && isSlowerEmail && isCorrectType){
       estatus.push('correct');
+      estatus.push(createAccount(type, email, password));
     }
   else if ( !isEqual ){
     estatus.push('different');
