@@ -1,22 +1,30 @@
 import '@fontsource/montserrat';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-window.image = '';
-
-function getType(){
-  let params = new URLSearchParams(window.location.search);
-  let type = params.get('type');
+function useImageFromType(type){
+  const [image, setImage] = useState('');
   
-  if(type == 'donador'){
-    image = '/src/client/assets/pages/login/donantes-login.jpg';
+  useEffect(() => {
+  
+  if(type == 3){
+    setImage('/src/client/assets/pages/login/donantes-login.jpg');
   }
-  else if(type == 'escuela'){
-    image = '/src/client/assets/pages/login/escuela-alumnos.jpg';
+  else if(type == 2){
+    setImage('/src/client/assets/pages/login/escuela-alumnos.jpg');
   }
+  }, [type]);
+
+  return image;
 }
 
 function Login() {
-  getType();
+  const navigate = useNavigate();
+  const locate = useLocation();
+  const type = locate.state?.type;
+
+  const image = useImageFromType(type);
+  
   return (
     <>
       <div className="h-[100%] w-[100%] z-0 font-montserrat bg-white">
@@ -29,8 +37,8 @@ function Login() {
             <section className='flex flex-col items-center'>
               <img src='/src/client/assets/logos/MiEscuelaPrimeroCuadrado.png' alt='Logo' className='w-[25%]'/>
               <h1>Inicio de sesión</h1>
-              <p className='font-montserrat font-bold text-base lg:text-lg xl:text-xl'>¿No tienes cuenta? <a href='/new/account' className='text-blue-600'>
-                ¡Crea tu cuenta!</a>
+              <p className='font-montserrat font-bold text-base lg:text-lg xl:text-xl'>¿No tienes cuenta? <button className='text-blue-600' onClick={() => navigate('/new/account', { state: { type: type } })}> 
+                ¡Crea tu cuenta!</button>
               </p>
 
               <article className='font-montserrat font-bold text-xl mt-[40px] w-[100%] flex flex-col items-center'>

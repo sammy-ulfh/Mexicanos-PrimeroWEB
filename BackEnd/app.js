@@ -7,6 +7,6 @@ const userRoutes = require('./routes/userRoutes.js');
 app.use(cors());
 app.use(express.json());
 
-app.use('/api', userRoutes);
+app.use('/user', userRoutes);
 
 module.exports = app;

@@ -1,7 +1,10 @@
 import '@fontsource/montserrat';
 import Initial from '../Layouts/Initial.jsx';
+import { useNavigate } from 'react-router-dom';
 
 function Principal() {
+
+    const navigate = useNavigate();
 
     return (
       <>
@@ -32,18 +35,18 @@ function Principal() {
                 </div>
     
                 <div className="w-[100%] xl:w-[50vw] flex flex-wrap justify-center xl:justify-between items-center">
-                  <a href='/login?type=donador' className='w-[100%] xl:w-[425px] hover:scale-105 transition-transform duration-300 relative width_image'>
+                  <button className='w-[100%] xl:w-[425px] hover:scale-105 transition-transform duration-300 relative width_image' onClick={() => navigate('/login', { state: { type: 3 } })}>
                       <span className='absolute top-1/2 left-1/2 w-[60%] h-[30%] bg-white/50 flex items-center justify-center -translate-x-1/2 -translate-y-1/2 rounded-3xl text-3xl sm:text-4xl mb:text-4xl lg:text-4xl xl:text-3xl'>
                           Soy donador
                       </span>
                       <img src="src/client/assets/pages/principal/people.jpg" alt="donador" />
-                  </a>
-                  <a href='/login?type=escuela' className='w-[100%] xl:w-[425px] hover:scale-105 transition-transform duration-300 relative width_image'>
+                  </button>
+                  <button className='w-[100%] xl:w-[425px] hover:scale-105 transition-transform duration-300 relative width_image' onClick={() => navigate('/login', { state: { type: 2 } })}>
                       <span className="absolute top-1/2 left-1/2 w-[60%] h-[30%] bg-white/50 flex items-center justify-center -translate-x-1/2 -translate-y-1/2 rounded-3xl text-3xl sm:text-4xl mb:text-4xl lg:text-4xl xl:text-3xl">
                           Soy una escuela
                       </span>
                       <img src="src/client/assets/pages/principal/escuela.jpg" alt="escuela" />
-                  </a>
+                  </button>
                 </div>
               </div>
             </section>
