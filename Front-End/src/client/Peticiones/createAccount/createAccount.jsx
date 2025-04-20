@@ -1,7 +1,4 @@
 const createAccount = async ( type, email, password ) => {
-  console.log(type)
-  console.log(email)
-  console.log(password)
 
   const result = await fetch('http://localhost:3000/user/new/account', {
     method: 'PUT',
@@ -13,7 +10,7 @@ const createAccount = async ( type, email, password ) => {
     })
   });
 
-  return result;
+  return result.status;
 };
 
 export default createAccount

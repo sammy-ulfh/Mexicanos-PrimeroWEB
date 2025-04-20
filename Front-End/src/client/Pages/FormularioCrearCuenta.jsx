@@ -4,13 +4,17 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import createAccount from '/src/client/Peticiones/createAccount/createAccount';
 import createAccountValidation from '/src/client/Peticiones/createAccount/createAccountValidation';
+import ErrorMessage from '/src/GeneralComponents/ErrorMessage';
 
 import hidePasswordIcon from '/src/GeneralAssets/hide-password.png';
 import showPasswordIcon from '/src/GeneralAssets/show-password.png';
 
-const MessageError = ({ message }) => (
-  <div className='mt-[3vh] w-[60%] min-h-[10vh] flex justify-center items-center bg-red-400 rounded-xl font-bold font-montserrat text-2xl'>
+const MessageComplete = ({ message, buttonMessage, route, navigate, type }) => (
+  <div className='mt-[3vh] w-[60%] min-h-[10vh] flex flex-col p-[2vh] justify-center items-center bg-green-400 rounded-xl font-bold font-montserrat text-2xl'>
     {message}
+    <button className='w-[50%] h-[30%] hover:scale-105 transition duration-300 border rounded-4xl mt-[1vh] p-[1vh] bg-gray-200' onClick={() => navigate(route, {state: { type: type }})}>
+      {buttonMessage}
+    </button>
   </div>
 );
 
@@ -25,6 +29,8 @@ function FormularioCrearCuenta() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+
+    console.log(estatus);
 
     return (
       <>
@@ -73,33 +79,43 @@ function FormularioCrearCuenta() {
                   </article>
   
                   {estatus.length == 1 && estatus[0] == 'empty' &&(
-                    <MessageError 
+                    <ErrorMessage
                       message="Todos los campos son obligatorios."
                     />
                   )
                   }
 
                   {estatus.length == 1 && estatus[0] == 'different' &&(
-                    <MessageError 
+                    <ErrorMessage
                       message="Las contraseñas introducidas no coinciden."
                     />
                   )
                   }
 
                   {estatus.length == 1 && estatus[0] == 'password too long' &&(
-                    <MessageError 
+                    <ErrorMessage 
                       message="La contraseña es demasiado grande, debe ser menor a 50 caracteres."
                     />
                   )
                   }
 
                   {estatus.length == 1 && estatus[0] == 'email too long' &&(
-                    <MessageError 
+                    <ErrorMessage
                       message="Correo demasiado largo, introduce un correo electrónico correcto."
                     />
                   )
                   }
 
+                  {estatus.length == 2 && estatus[0] == 'correct' &&(
+                    <MessageComplete 
+                      message="Cuenta registrada correctamente, puede iniciar sesión."
+                      buttonMessage="ir al Login"
+                      route='/login'
+                      navigate={navigate}
+                      type={type}
+                    />
+                  )
+                  }
 
                   <button className='flex justify-center items-center w-[40%] xl:w-[20vw] 2xl:w-[20vw] h-[6vh] xl:h-[10vh] 2xl:h-[10vh] mt-[50px] mb-[20px] rounded-full border-3 border-solid text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl font-bold hover:scale-105 transition duration-300' style={{ backgroundColor: '#009933' }} onClick={() => setEstatus(createAccountValidation(email, password, confirmPassword, type))}>
                       Crear cuenta
