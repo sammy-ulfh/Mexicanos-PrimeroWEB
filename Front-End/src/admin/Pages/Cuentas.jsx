@@ -4,19 +4,7 @@ import { React, useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import infoEscuelas from '../Peticiones/infoCuentas/infoEsuelas.jsx';
-
-const InfoDonator = [
-    {
-      user_id: 1,
-      image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fd2studios.net%2Fwp-content%2Fuploads%2Fblog%2F2015%2F04%2F6-Uses-for-a-Professional-Personal-Portrait-Photograph.jpg&f=1&nofb=1&ipt=b435886188f5ff09e69617267e30c9dc711e1f66928f676efe0137461590eddc',
-      name: 'Marcos Castañeda García'
-    },
-    {
-      user_id: 1,
-      image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fd2studios.net%2Fwp-content%2Fuploads%2Fblog%2F2015%2F04%2F6-Uses-for-a-Professional-Personal-Portrait-Photograph.jpg&f=1&nofb=1&ipt=b435886188f5ff09e69617267e30c9dc711e1f66928f676efe0137461590eddc',
-      name: 'Marcos Castañeda García'
-    }
-  ]
+import infoDonantes from '../Peticiones/infoCuentas/infoDonantes.jsx';
 
 const Tarjeta = ({ user_id, name, navigate, data, dir, type }) => (
   <article className='p-[2%] w-[80%] font-bold font-montserrat flex justify-center items-center text-black font-montserrat border rounded-3xl m-[1%]'>
@@ -40,13 +28,17 @@ function Cuentas() {
 
 
     const [infoSchool, setInfoSchool] = useState([]);
+    const [infoDonator, setInfoDonator] = useState([]);
 
     useEffect(() => {
-      const fetchEscuelas = async () => {
-        const data = await infoEscuelas();
-        setInfoSchool(data);
+      const fetchInfo = async () => {
+        const data_school = await infoEscuelas();
+        setInfoSchool(data_school);
+
+        const data_donator = await infoDonantes();
+        setInfoDonator(data_donator);
       };
-      fetchEscuelas();
+      fetchInfo();
     }, []);
 
     return (
@@ -73,8 +65,8 @@ function Cuentas() {
 
                   <h2 className='font-bold text-4xl'>Donadores</h2>
                 { 
-                  InfoDonator.length > 0 ? (
-                    InfoDonator.map((tarjeta) => (
+                  infoDonator.length > 0 ? (
+                    infoDonator.map((tarjeta) => (
                       <Tarjeta
                         user_id={tarjeta.id_usuario}
                         name={tarjeta.nombre_responsable}
