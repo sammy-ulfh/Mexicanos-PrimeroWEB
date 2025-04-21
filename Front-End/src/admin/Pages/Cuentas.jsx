@@ -1,7 +1,9 @@
 import '@fontsource/montserrat';
 import Initial from '../Layouts/Initial.jsx';
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+
+import infoEscuelas from '../Peticiones/infoCuentas/infoEsuelas.jsx';
 
 const InfoDonator = [
     {
@@ -16,25 +18,9 @@ const InfoDonator = [
     }
   ]
 
-const InfoSchool = [
-    {
-      user_id: 1,
-      image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsquizserverpp-5042.kxcdn.com%2F__data%2Fassets%2Fimage%2F0034%2F74869%2Fyoung-lady-smiling-outside.jpg&f=1&nofb=1&ipt=094dc640a92ac2e49f32da552a2d4f39920fa43344d9750fa90c83ce1ebfe98e',
-      name: 'Marcos Castañeda García'
-    },
-    {
-      user_id: 1,
-      image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsquizserverpp-5042.kxcdn.com%2F__data%2Fassets%2Fimage%2F0034%2F74869%2Fyoung-lady-smiling-outside.jpg&f=1&nofb=1&ipt=094dc640a92ac2e49f32da552a2d4f39920fa43344d9750fa90c83ce1ebfe98e',
-      name: 'Marcos Castañeda García'
-    }
-  ]
-
-const Tarjeta = ({ user_id, name, image, navigate, data, dir, type }) => (
+const Tarjeta = ({ user_id, name, navigate, data, dir, type }) => (
   <article className='p-[2%] w-[80%] font-bold font-montserrat flex justify-center items-center text-black font-montserrat border rounded-3xl m-[1%]'>
-    <div className='w-[30%] h-[10vh] flex justify-center items-center'>
-      <img src={image} alt={name} className='h-full w-[30%] rounded-full object-cover scale-150' />
-    </div>
-    <div className='flex flex-col w-[70%] h-full justify-center items-center'>
+    <div className='flex flex-col w-[90%] h-full justify-center items-center'>
       <h2 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>{name}</h2>  
       <button className='border rounded-3xl text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl w-[50%] md:w-[40%] lg:w-[40%] xl:w-[40%] h-[5vh] mt-[1%] bg-[#009933] hover:scale-105 transition duration-300' onClick={() => navigate(dir, { state: { data: data, type: type } })}>
         Ver información
@@ -51,6 +37,17 @@ function Cuentas() {
 
     const [isSchool, setIsSchool] = useState(false);
     const [isDonator, setIsDonator] = useState(true);
+
+
+    const [infoSchool, setInfoSchool] = useState([]);
+
+    useEffect(() => {
+      const fetchEscuelas = async () => {
+        const data = await infoEscuelas();
+        setInfoSchool(data);
+      };
+      fetchEscuelas();
+    }, []);
 
     return (
       <>
@@ -79,9 +76,8 @@ function Cuentas() {
                   InfoDonator.length > 0 ? (
                     InfoDonator.map((tarjeta) => (
                       <Tarjeta
-                        user_id={tarjeta.user_id}
-                        name={tarjeta.name}
-                        image={tarjeta.image}
+                        user_id={tarjeta.id_usuario}
+                        name={tarjeta.nombre_responsable}
                         navigate={navigate}
                         data={tarjeta}
                         dir="/admin/cuentas/donadores"
@@ -102,12 +98,11 @@ function Cuentas() {
 
                   <h2 className='font-bold text-4xl'>Escuelas</h2>
                 { 
-                  InfoSchool.length > 0 ? (
-                    InfoSchool.map((tarjeta) => (
+                  infoSchool.length > 0 ? (
+                    infoSchool.map((tarjeta) => (
                       <Tarjeta
-                        user_id={tarjeta.user_id}
-                        name={tarjeta.name}
-                        image={tarjeta.image}
+                        user_id={tarjeta.id_usuario}
+                        name={tarjeta.nombre_responsable}
                         navigate={navigate}
                         data={tarjeta}
                         dir="/admin/cuentas/escuelas"
