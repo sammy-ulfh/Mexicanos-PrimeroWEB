@@ -6,6 +6,7 @@ const userRoutes = require('./routes/userRoutes.js');
 const infoRoutes = require('./routes/infoSolicitudesCuentasRoutes.js');
 const newInfoSchoolRoutes = require('./routes/newInfoSchoolRoutes.js');
 const changeRoutes = require('./routes/changeStatusRoutes.js');
+const newInfoSchoolRoutes = require('./routes/newInfoSchoolRoutes.js');
 
 app.use(cors());
 app.use(express.json());
@@ -16,6 +17,7 @@ app.use('/get', infoRoutes);
 app.use('/new', newInfoSchoolRoutes);
 
 app.use('/change', changeRoutes);
+app.use('/new', newInfoSchoolRoutes);
 
 
 module.exports = app;
