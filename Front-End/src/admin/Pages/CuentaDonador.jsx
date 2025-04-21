@@ -1,27 +1,13 @@
 import '@fontsource/montserrat';
 import Initial from '../Layouts/Initial.jsx';
 import DescargarArchivo from '../../GeneralComponents/DescargarArchivo.jsx';
-
-const InfoDonante = {
-  user_id: 1,
-  isInstitution: 'true',
-  institution: { 
-    nombre: 'Tec de Monterrey',
-    correo: 'everardo.romeroarenas@gdl.edu',
-    rfc: 'KEBDJKEB37483BLEBLNJL',
-    rep_sol: 'https://drive.google.com/uc?export=download&id=1Ew89pkodxOrjPzdTSDyQlKwRsh7fDhqO'
-  },
-  responsable: {
-    nombre: 'Pedro Paramo',
-    correo: 'pedro.paramo@everardoromero.edu',
-    rfc: 'WOEJNFN398439OKNSD',
-    ine: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fphantom-marca-mx.unidadeditorial.es%2Fab596b11fa77a7a10504f144525039e1%2Fresize%2F1320%2Ff%2Fjpg%2Fmx%2Fassets%2Fmultimedia%2Fimagenes%2F2024%2F01%2F14%2F17052646795495.jpg&f=1&nofb=1&ipt=6205335caf93b0a7c62ac6e744e6e9f8b72abbd84c1bc55ecca8fb10b69419e7',
-    edad: 25
-  }
-}
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function CuentaDonador() {
-
+    
+    const locate = useLocation();
+    const InfoDonante = locate.state?.data;
+    const type = locate.state?.type;
 
     return (
       <>
@@ -35,33 +21,33 @@ function CuentaDonador() {
                 
                 <article className='font-montserrat text-xl mt-[20px] w-[60%] flex items-center flex-col justify-center'>
                     <p className='flex font-bold self-start w-[100%]'>¿Es una institución?</p>
-                    <input type='text' value={InfoDonante.isInstitution == 'true' ? 'Si' : 'No'} className="pointer-events-none mt-2 pl-[10px] w-[100%] h-[5.5vh] border border-black rounded-xl bg-white text-black" />                
+                    <input type='text' value={InfoDonante.inst == 1 ? 'Si' : 'No'} className="pointer-events-none mt-2 pl-[10px] w-[100%] h-[5.5vh] border border-black rounded-xl bg-white text-black" />                
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Nombre del responsable</p>
-                    <input type='text' value={InfoDonante.responsable.nombre} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input type='text' value={InfoDonante.nombre_responsable} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Correo del responsable</p>
-                    <input type='text' value={InfoDonante.responsable.correo} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input type='text' value={InfoDonante.correo_responsable} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>RFC</p>
-                    <input type='text' value={InfoDonante.responsable.rfc} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input type='text' value={InfoDonante.rfc_responsable} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Edad del responsable</p>
-                    <input type='text' value={InfoDonante.responsable.edad} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input type='text' value={InfoDonante.edad_responsable} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
                 
                 <p className='font-montserrat flex flex-start w-[60%] mt-[40px] '>INE/IFE</p>
-                <DescargarArchivo path={InfoDonante.responsable.ine} />
+                <DescargarArchivo path={InfoDonante.ine} />
                 
-                { InfoDonante.isInstitution == 'true' && (
+                { InfoDonante.inst == 1 && (
                   <>
                     <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-bold mt-[20px] mt-[100px] mb-[40px] w-[80%] flex justify-center">
                         Información de la insitución
@@ -69,21 +55,21 @@ function CuentaDonador() {
 
                     <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                         <p className='flex self-start w-[100%] '>Nombre de la institución</p>
-                        <input type='text' value={InfoDonante.institution.nombre} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                        <input type='text' value={InfoDonante.nombre_identificacion} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                     </article>
 
                     <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                         <p className='flex self-start w-[100%] '>RFC de la institución</p>
-                        <input type='text' value={InfoDonante.institution.rfc} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                        <input type='text' value={InfoDonante.rfc} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                     </article>
 
                     <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                         <p className='flex self-start w-[100%] '>Correo de la institución</p>
-                        <input type='text' value={InfoDonante.institution.correo}  className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                        <input type='text' value={InfoDonante.correo_institucion}  className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                     </article>
 
                     <p className='font-montserrat flex flex-start w-[60%] mt-[40px] '>Reporte que avale la solicitud de registro por parte de la institución con el responsable</p>
-                    <DescargarArchivo path={InfoDonante.institution.rep_sol} />
+                    <DescargarArchivo path={InfoDonante.reporte} />
                   </>
                 )
                 }
