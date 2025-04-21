@@ -40,6 +40,13 @@ function FormularioDonador() {
     });
     };
 
+    const handleFileSelect = (name, file) => {
+        const objectUrl = URL.createObjectURL(file);
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: objectUrl,
+        }));
+      };   
 
 
     return (

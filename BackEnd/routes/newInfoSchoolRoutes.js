@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { formularioContestado } = require('../controllers/inicialFormController.js');
+const { completarForm } = require('../controllers/newInfoController.js');
 
-router.post('/new/info', formularioContestado);
+router.post('/new/info', completarForm);
 
 module.exports = router;

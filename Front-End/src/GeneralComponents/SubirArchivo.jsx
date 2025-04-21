@@ -2,18 +2,19 @@ import '@fontsource/montserrat';
 import React, { useState } from 'react';
 
 const SubirArchivo = ({ name, onFileSelect }) => {
+  const [fileName, setFileName] = useState('');
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file && onFileSelect) {
+      setFileName(file.name);
       onFileSelect(name, file);
     }
   };
 
   return (
     <>
-     
-     <p className='font-montserrat font-bold mt-[10px] text-xl flex flex-start w-[auto] '>Subir Archivo</p>
+      <p className='font-montserrat font-bold mt-[10px] text-xl flex flex-start w-[auto] '>Subir Archivo</p>
       <main className="flex flex-col items-center justify-center w-full py-1">
         <div className="flex flex-col items-center justify-center w-[60%] p-6 border-2 border-dashed border-gray-300 rounded-lg">
           <label htmlFor="file-upload" className="cursor-pointer flex flex-col items-center">
@@ -25,8 +26,6 @@ const SubirArchivo = ({ name, onFileSelect }) => {
             <input id="file-upload" type="file" className="hidden" onChange={handleFileChange} />
           </label>
         </div>
-        
-        {children}
       </main>
     </>
   );

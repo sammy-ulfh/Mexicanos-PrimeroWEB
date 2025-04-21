@@ -39,10 +39,12 @@ function FormularioEscuela() {
     });
     };
 
-    
-            
-
-
+    const handleFileSelect = (name, file) => {
+        const fileURL = URL.createObjectURL(file);
+        setFormData({...formData, [name]: fileURL});
+      };
+      
+       
     return (
       <>
         <div className="min-h-screen min-w-screen z-0 font-montserrat flex flex-col justify-between" style={{ backgroundColor: '#FBFBE6' }}>

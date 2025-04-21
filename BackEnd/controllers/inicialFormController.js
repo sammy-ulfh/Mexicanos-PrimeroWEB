@@ -9,7 +9,7 @@ const formularioContestado = async (req, res) => {
       const statEscuela = await FormEscuela.statusEscuelaInicial(id_usuario);
 
       if (!statEscuela) {
-        res.status(200).json({ status: 0 }); // 0 = no existe, se redirigía a 'new/account/school'
+        res.status(200).json({ status: 0 }); 
       } else {
         res.status(200).json({ status: statEscuela });
       }
@@ -18,7 +18,7 @@ const formularioContestado = async (req, res) => {
       const statDonador = await FormDonador.statusDonadorInicial(id_usuario);
 
       if (!statDonador) {
-        res.status(200).json({ status: 0 }); // 0 = no existe, se redirigía a 'new/account/donator'
+        res.status(200).json({ status: 0 }); 
       } else {
         res.status(200).json({ status: statDonador });
       }
