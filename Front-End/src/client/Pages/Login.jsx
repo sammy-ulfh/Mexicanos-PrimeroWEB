@@ -48,13 +48,13 @@ function Login() {
               </article>
               <article className='font-montserrat font-bold text-xl mt-[10px] w-[100%] flex flex-col items-center'>
                 <p className='flex flex-start w-[60%]'>Contraseña</p>
-                <input placeholder='********' className='mt-[5px] w-[60%] xl:w-[30vw] h-[5.5vh] border border-black rounded-xl pl-[20px]' />
+                <input type='password' placeholder='********' className='mt-[5px] w-[60%] xl:w-[30vw] h-[5.5vh] border border-black rounded-xl pl-[20px]' />
                 <a href='/new/account' className='text-blue-600 text-base lg:text-lg xl:text-xl flex flex-start w-[60%]'>
                   <p>¿Olvidaste tu contraseña?</p>
                 </a>
               </article>
 
-              <button className='flex justify-center items-start w-[40%] xl:w-[20vw] h-full py-[3%] mt-[50px] rounded-full text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold' style={{ backgroundColor: '#009933' }}>
+              <button className='flex justify-center items-start w-[40%] xl:w-[20vw] h-full py-[3%] mt-[50px] rounded-full text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold' style={{ backgroundColor: '#009933' }} onClick={() => navigate('/new/account/school', { state: { type: type, id: 2 } })}>
                 Ingresar
               </button>
             </section>

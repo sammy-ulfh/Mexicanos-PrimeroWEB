@@ -2,12 +2,18 @@ import '@fontsource/montserrat';
 import Initial from '../Layouts/Initial.jsx';
 import SubirArchivo from '../../GeneralComponents/SubirArchivo.jsx';
 import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import submit from '/src/client/Peticiones/PeticionesInicialForm/newInfoSubmit.jsx';
 
 function FormularioEscuela() {
 
-    const userId = localStorage.getItem("id_usuario");
-    const Type = localStorage.getItem("tipo");
+    //const userId = localStorage.getItem("id_usuario");
+    //const Type = localStorage.getItem("tipo");
+
+    const locate = useLocation();
+    const Type = locate.state?.type;
+    const userId = locate.state?.id;
+    const navigate = useNavigate(); 
 
     const [formData, setFormData] = useState({
         correo_institucional: '',
