@@ -5,7 +5,9 @@
 
 ## Cambios
 
-- Layout de administradores - Listo
-- Apoyos - Base lista
-- Chats y Chat -  Base lista
-- Config perfil - Base lista
+- Crear cuentas - escuelas
+- Enviar informacion - escuelas
+
+- Ver solicitudes de cuentas - administradores
+- aceptar / rechazar cuentas - administradores
+
