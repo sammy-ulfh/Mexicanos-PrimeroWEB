@@ -44,17 +44,17 @@ function Login() {
 
               <article className='font-montserrat font-bold text-xl mt-[40px] w-[100%] flex flex-col items-center'>
                 <p className='flex flex-start w-[60%]'>Correo electrónico</p>
-                <input placeholder='example@gmail.com' className='mt-[5px] w-[60%] xl:w-[30vw] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                <input id="username" placeholder='example@gmail.com' className='mt-[5px] w-[60%] xl:w-[30vw] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
               </article>
               <article className='font-montserrat font-bold text-xl mt-[10px] w-[100%] flex flex-col items-center'>
                 <p className='flex flex-start w-[60%]'>Contraseña</p>
-                <input placeholder='********' className='mt-[5px] w-[60%] xl:w-[30vw] h-[5.5vh] border border-black rounded-xl pl-[20px]' />
+                <input id="password" placeholder='********' className='mt-[5px] w-[60%] xl:w-[30vw] h-[5.5vh] border border-black rounded-xl pl-[20px]' />
                 <a href='/new/account' className='text-blue-600 text-base lg:text-lg xl:text-xl flex flex-start w-[60%]'>
                   <p>¿Olvidaste tu contraseña?</p>
                 </a>
               </article>
 
-              <button className='flex justify-center items-start w-[40%] xl:w-[20vw] h-full py-[3%] mt-[50px] rounded-full text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold' style={{ backgroundColor: '#009933' }}>
+              <button id='login' className='flex justify-center items-start w-[40%] xl:w-[20vw] h-full py-[3%] mt-[50px] rounded-full text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold' style={{ backgroundColor: '#009933' }}>
                 Ingresar
               </button>
             </section>
@@ -64,5 +64,38 @@ function Login() {
     </>
   )
 }
+
+document.getElementById('login').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+
+  try {
+      console.log("aqui2");
+      const response = await fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+      });
+      const data = await response.json();
+
+      if (response.ok && data.token) {
+     
+     //localStorage.setItem('jwtToken', data.token);
+     document.cookie = `jwtToken=${data.token};`;
+     alert('Fine');
+   } else if (data.message) {
+     alert(`Error al iniciar sesión: ${data.mensaje}`);
+   } else {
+     alert('tro tipo de error');
+   }
+
+      console.log(data);
+  } catch (error) {
+    console.error('El sistema ha colapsado por culpa de ...', error);
+  }
+});
 
 export default Login

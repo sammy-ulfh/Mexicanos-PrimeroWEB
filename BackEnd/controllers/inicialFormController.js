@@ -2,7 +2,8 @@ const FormEscuela = require('../models/inicialFormEscuelaModel.js');
 const FormDonador = require('../models/inicialFormDonadorModel.js');
 
 const formularioContestado = async (req, res) => {
-  const { id_usuario, type } = req.query;
+  const { id_usuario, tipo } = req.body;
+  const type = parseInt(tipo, 10);
 
   try {
     if (type == 2) {
