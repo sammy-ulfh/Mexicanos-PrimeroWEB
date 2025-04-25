@@ -2,6 +2,7 @@ import '@fontsource/montserrat';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ErrorMessage from '/src/GeneralComponents/ErrorMessage';
+import LoginToken from '/src/client/Peticiones/login/LoginToken';
 
 function useImageFromType(type){
   const [image, setImage] = useState('');
@@ -24,6 +25,9 @@ function Login() {
   const locate = useLocation();
   const type = locate.state?.type;
 
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
   const image = useImageFromType(type);
   
   return (
@@ -44,21 +48,19 @@ function Login() {
 
               <article className='font-montserrat font-bold text-xl mt-[40px] w-[100%] flex flex-col items-center'>
                 <p className='flex flex-start w-[60%]'>Correo electrónico</p>
-                <input id="username" placeholder='example@gmail.com' className='mt-[5px] w-[60%] xl:w-[30vw] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                <input id="username" placeholder='example@gmail.com' className='mt-[5px] w-[60%] xl:w-[30vw] h-[5.5vh] border border-black rounded-xl pl-[20px]' onChange={(e) => setUsername(e.target?.value)}/>
               </article>
               <article className='font-montserrat font-bold text-xl mt-[10px] w-[100%] flex flex-col items-center'>
                 <p className='flex flex-start w-[60%]'>Contraseña</p>
 
-                <input id="password" placeholder='********' className='mt-[5px] w-[60%] xl:w-[30vw] h-[5.5vh] border border-black rounded-xl pl-[20px]' />
-
-                <input type='password' placeholder='********' className='mt-[5px] w-[60%] xl:w-[30vw] h-[5.5vh] border border-black rounded-xl pl-[20px]' />
+                <input type='password' placeholder='********' className='mt-[5px] w-[60%] xl:w-[30vw] h-[5.5vh] border border-black rounded-xl pl-[20px]' onChange={(e) => setPassword(e.target?.value)} />
 
                 <a href='/new/account' className='text-blue-600 text-base lg:text-lg xl:text-xl flex flex-start w-[60%]'>
                   <p>¿Olvidaste tu contraseña?</p>
                 </a>
               </article>
 
-              <button id='login' className='flex justify-center items-start w-[40%] xl:w-[20vw] h-full py-[3%] mt-[50px] rounded-full text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold' style={{ backgroundColor: '#009933' }} onClick={() => navigate('/new/account/school', { state: { type: type, id: 2 } })}>
+              <button id='login' className='flex justify-center items-center w-[40%] xl:w-[20vw] h-full py-[3%] mt-[50px] rounded-full text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold hover:scale-105 transition duration-300' style={{ backgroundColor: '#009933' }} onClick={() => LoginToken(username, password, navigate)}>
                 Ingresar
               </button>
             </section>
@@ -68,38 +70,5 @@ function Login() {
     </>
   )
 }
-
-document.getElementById('login').addEventListener('submit', async (event) => {
-  event.preventDefault();
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
-
-  try {
-      console.log("aqui2");
-      const response = await fetch('/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, password }),
-      });
-      const data = await response.json();
-
-      if (response.ok && data.token) {
-     
-     //localStorage.setItem('jwtToken', data.token);
-     document.cookie = `jwtToken=${data.token};`;
-     alert('Fine');
-   } else if (data.message) {
-     alert(`Error al iniciar sesión: ${data.mensaje}`);
-   } else {
-     alert('tro tipo de error');
-   }
-
-      console.log(data);
-  } catch (error) {
-    console.error('El sistema ha colapsado por culpa de ...', error);
-  }
-});
 
 export default Login
