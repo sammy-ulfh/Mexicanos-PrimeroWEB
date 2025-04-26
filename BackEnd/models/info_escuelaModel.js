@@ -1,9 +1,9 @@
 const db = require('../config/db');
 
-const newInfoSchool = async (correo_escuela, id_usuario, nombre_escuela, dir_matutino, dir_vespertino, direccion, necesidades, reporte, nombre, correo, edad) => {
+const newInfoSchool = async (correo_escuela, id_usuario, nombre_escuela, dir_matutino, dir_vespertino, direccion, reporte, nombre, correo, edad) => {
   const [result] = await db.execute(
-    'INSERT INTO info_escuela(correo_escuela, id_usuario, nombre_escuela, dir_matutino, dir_vespertino, direccion, necesidades, reporte, nombre, correo, edad, status, razon_rechazo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, null)',
-    [correo_escuela, id_usuario, nombre_escuela, dir_matutino, dir_vespertino, direccion, necesidades, reporte, nombre, correo, edad]
+    'INSERT INTO info_escuela(correo_escuela, id_usuario, nombre_escuela, dir_matutino, dir_vespertino, direccion, reporte, nombre, correo, edad, status, razon_rechazo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, null)',
+    [correo_escuela, id_usuario, nombre_escuela, dir_matutino, dir_vespertino, direccion, reporte, nombre, correo, edad]
   );
   return result;
 };
@@ -31,9 +31,18 @@ const statusEscuelaInicial = async (id_usuario) => {
   return result.length > 0 ? result[0].status : null;
 };
 
+const newNecesidades = async (necesidades) => {
+  const [result] = await db.execute(
+    'INSERT INTO info_escuela(necesidades) VALUES(?)',
+    [necesidades]
+  );
+  return result;
+};
+
 module.exports = {
   newInfoSchool,
   changeStatusEscuela,
   getSolicitudesEscuelas,
-  statusEscuelaInicial
+  statusEscuelaInicial,
+  newNecesidades
 };
