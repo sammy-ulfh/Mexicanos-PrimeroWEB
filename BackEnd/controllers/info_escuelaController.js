@@ -10,7 +10,7 @@ const completarForm = async (req, res) => {
         await Escuela.newInfoSchool(correo_escuela, id_usuario, nombre_escuela, dir_matutino, dir_vespertino, direccion, necesidades, reporte, nombre, correo, edad);
       } 
       else if (type == 3) {
-        const { rfc, correo, edad, ine, id_usuario, tipo, inst, nombre_institucion, correo_institucion, rfc_institucion, nombre_institucion, reporte } = req.body;
+        const { rfc, correo, edad, ine, id_usuario, tipo, inst, nombre_institucion, correo_institucion, rfc_institucion, reporte } = req.body;
         await Donator.newInfoDonador(rfc, correo, edad, ine, id_usuario, tipo, inst, nombre_institucion, correo_institucion, rfc_institucion, nombre_institucion, reporte);
       }
   
@@ -77,9 +77,22 @@ const formularioContestado = async (req, res) => {
   }
 };
 
+const completarNecesidades = async (req, res) => {
+  try {
+    const { necesidades } = req.body;
+    await Escuela.newNecesidades(necesidades);
+    res.status(201).json({ mensaje: 'Información almacenada'});
+
+  } catch (error) {
+    console.error('Error al guardar la información:', error);
+    res.status(500).json({ mensaje: 'Error al guardar la información', error });
+  }
+};
+
 module.exports = {
   completarForm,
   InfoEscuela,
   statusEscuela,
-  formularioContestado
+  formularioContestado,
+  completarNecesidades
 };

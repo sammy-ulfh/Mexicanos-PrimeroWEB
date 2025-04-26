@@ -1,6 +1,6 @@
 const submit = async (formData) => {
     try {
-      const response = await fetch('http://localhost:3000/new/new/info', {
+      const response = await fetch('http://localhost:3000/school/new/info', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

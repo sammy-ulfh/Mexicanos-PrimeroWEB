@@ -16,18 +16,19 @@ function FormularioEscuela() {
     const navigate = useNavigate(); 
 
     const [formData, setFormData] = useState({
-        correo_institucional: '',
+        //correo_escuela, id_usuario, nombre_escuela, dir_matutino, dir_vespertino, direccion, necesidades, reporte, nombre, correo, edad,
+        correo_escuela: '',
         id_usuario: userId,
-        type: Type, // deberías llenarlo según tu lógica de sesión
-        turn: '',
-        name_school: '',
-        dir_mat: '',
-        dir_ves: '',
-        direction: '',
+        turn: 0,
+        nombre_escuela: '',
+        dir_matutino: '',
+        dir_vespertino: '',
+        direccion: '',
+        necesidades: '',
         report: '', // si es un archivo se maneja diferente
-        name_resp: '',
-        email_resp: '',
-        edad_resp: ''
+        nombre: '',
+        correo: '',
+        edad: ''
     });
 
     const handleChange = (e) => {
@@ -73,27 +74,27 @@ function FormularioEscuela() {
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col justify-center'>
                     <p className='flex self-start w-[100%] '>Nombre de la escuela</p>
-                    <input name= "name_school" onChange={handleChange} value={formData.name_school} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input name= "nombre_escuela" onChange={handleChange} value={formData.name_school} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col justify-center'>
                     <p className='flex self-start w-[100%] '>Correo Institucional</p>
-                    <input name= "correo_institucional" onChange={handleChange} value={formData.correo_institucional} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input name= "correo_escuela" onChange={handleChange} value={formData.correo_institucional} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Nombre del director en turno Matutino</p>
-                    <input name= "dir_mat" onChange={handleChange} value={formData.dir_mat} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input name= "dir_matutino" onChange={handleChange} value={formData.dir_mat} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Nombre del director en turno Vespertino</p>
-                    <input name= "dir_ves" onChange={handleChange} value={formData.dir_ves} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input name= "dir_vespertino" onChange={handleChange} value={formData.dir_ves} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Dirección de la escuela</p>
-                    <input name= "direction" onChange={handleChange} value={formData.direction} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input name= "direccion" onChange={handleChange} value={formData.direction} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
                 
                 <p className='font-montserrat flex flex-start w-[60%] mt-[40px] '>Reporte que avale la solicitud de registro por parte del director con usted como responsable (firmado)</p>
@@ -106,18 +107,19 @@ function FormularioEscuela() {
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Nombre del responsable</p>
-                    <input name= "name_resp" onChange={handleChange} value={formData.name_resp} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input name= "nombre" onChange={handleChange} value={formData.name_resp} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Correo del responsable</p>
-                    <input name= "email_resp" onChange={handleChange} value={formData.email_resp} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input name= "correo" onChange={handleChange} value={formData.email_resp} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Edad del responsable</p>
-                    <input name= "edad_resp" onChange={handleChange} value={formData.edad_resp} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input name= "edad" onChange={handleChange} value={formData.edad_resp} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
+                
 
                 <button onClick={() => submit(formData).catch(console.error)} className='flex justify-center items-center w-[50%] h-[8vh] py-[3%] mt-[50px] mb-[20px] rounded-full border-3 border-solid text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold hover:scale-105 transition durantion-300' style={{ backgroundColor: '#009933' }}>
                     Enviar información
