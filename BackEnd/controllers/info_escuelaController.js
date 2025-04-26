@@ -10,8 +10,8 @@ const completarForm = async (req, res) => {
         await Escuela.newInfoSchool(correo_escuela, id_usuario, nombre_escuela, dir_matutino, dir_vespertino, direccion, necesidades, reporte, nombre, correo, edad);
       } 
       else if (type == 3) {
-        const { rfc_resp, correo_responsable, tipo, inst, nombre_responsable, correo_institucion, rfc, edad_responsable, nombre_institucion} = req.body;
-        await Donator.newInfoDonador(rfc_resp, correo_responsable, id_usuario, tipo, inst, nombre_responsable, correo_institucion, rfc, edad_responsable, nombre_institucion);
+        const { rfc, correo, edad, ine, id_usuario, tipo, inst, nombre_institucion, correo_institucion, rfc_institucion, nombre_institucion, reporte } = req.body;
+        await Donator.newInfoDonador(rfc, correo, edad, ine, id_usuario, tipo, inst, nombre_institucion, correo_institucion, rfc_institucion, nombre_institucion, reporte);
       }
   
       res.status(201).json({ mensaje: 'Información almacenada', redirigir: 'portal/wait' });
