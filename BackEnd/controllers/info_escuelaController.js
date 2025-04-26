@@ -1,19 +1,11 @@
 const Escuela = require('../models/info_escuelaModel.js');
-const Donator = require('./info_donadorController.js');
 
 const completarForm = async (req, res) => {
     try {
-      const { id_usuario, type } = req.body;
   
-      if (type == 2) {
         const { correo_escuela, id_usuario, nombre_escuela, dir_matutino, dir_vespertino, direccion, necesidades, reporte, nombre, correo, edad } = req.body;
         await Escuela.newInfoSchool(correo_escuela, id_usuario, nombre_escuela, dir_matutino, dir_vespertino, direccion, necesidades, reporte, nombre, correo, edad);
-      } 
-      else if (type == 3) {
-        const { rfc, correo, edad, ine, id_usuario, tipo, inst, nombre_institucion, correo_institucion, rfc_institucion, reporte } = req.body;
-        await Donator.newInfoDonador(rfc, correo, edad, ine, id_usuario, tipo, inst, nombre_institucion, correo_institucion, rfc_institucion, nombre_institucion, reporte);
-      }
-  
+
       res.status(201).json({ mensaje: 'Información almacenada', redirigir: 'portal/wait' });
   
     } catch (error) {
