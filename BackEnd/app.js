@@ -2,21 +2,16 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
-const userRoutes = require('./routes/userRoutes.js');
-const infoRoutes = require('./routes/infoSolicitudesCuentasRoutes.js');
-const changeRoutes = require('./routes/changeStatusRoutes.js');
-const newInfoSchoolRoutes = require('./routes/newInfoSchoolRoutes.js');
-const loginRoutes = require('./routes/userLogin.js');
+const userRoutes = require('./routes/usuariosRoutes.js');
+const schoolRoutes = require('./routes/info_escuelaRoutes.js');
+const donatorRoutes = require('./routes/info_donadorRoutes.js');
 
 app.use(cors());
 app.use(express.json());
 
 app.use('/user', userRoutes);
-app.use('/get', infoRoutes);
-
-app.use('/change', changeRoutes);
-app.use('/new', newInfoSchoolRoutes);
-app.use('/login', loginRoutes);
+app.use('/school', schoolRoutes);
+app.use('/donator', donatorRoutes);
 
 
 module.exports = app;
