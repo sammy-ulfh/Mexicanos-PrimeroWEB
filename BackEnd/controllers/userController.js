@@ -23,7 +23,7 @@ const loginUser =  async (req, res) => {
       res.status(404).json({ mensaje: 'Correo o contraseña incorrecto.' });
     }
   }catch(err){
-    res.status(500).json({ mensaje: 'Error al generar el token.', err });
+    res.status(500).json({ mensaje: 'Error al iniciar sesión.', err });
   }
 }
 
