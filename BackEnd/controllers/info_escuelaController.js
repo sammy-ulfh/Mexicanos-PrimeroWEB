@@ -2,27 +2,30 @@ const subirArchivo  = require("../models/archivosModel.js");
 const multer = require("multer");//npm install express multer @aws-sdk/client-s3
 const Escuela = require('../models/info_escuelaModel.js');
 const upload = multer({ dest: "uploads/" }); 
+const path = require('path');
 
 const subirMiddleware = upload.single("archivo");
 
 const completarForm = async (req, res) => {
     try {
   
-        const { correo_escuela, id_usuario, nombre_escuela, dir_matutino, dir_vespertino, direccion, necesidades, reporte, nombre, correo, edad } = req.body;
-
+        const { correo_escuela, id_usuario, turno, nombre_escuela, dir_matutino, dir_vespertino, direccion, necesidades, nombre, correo, edad } = req.body;
+          console.log(req.body);
         let urlReporte = '';
         if (req.file) {
             const archivoLocalPath = req.file.path;
             const nombreArchivo = req.file.originalname;
+            console.log("Subiendo archivo:", archivoLocalPath, nombreArchivo);
             urlReporte = await subirArchivo.subirArchivo(archivoLocalPath, nombreArchivo);
         }
-        await Escuela.newInfoSchool(correo_escuela, id_usuario, nombre_escuela, dir_matutino, dir_vespertino, direccion, necesidades, reporte, urlReporte, nombre, correo, edad);
+        await Escuela.newInfoSchool(correo_escuela, id_usuario, turno, nombre_escuela, dir_matutino, dir_vespertino, direccion, necesidades,  urlReporte, nombre, correo, edad);
 
       res.status(201).json({ mensaje: 'Información almacenada', redirigir: 'portal/wait' });
   
     } catch (error) {
-      console.error('Error al guardar la información:', error);
-      res.status(500).json({ mensaje: 'Error al guardar la información', error });
+      console.error('Error al guardar la información:', error.message);
+      console.error(error.stack);
+      res.status(500).json({ mensaje: 'Error al guardar la información', error: error.message });
     }
   };
 

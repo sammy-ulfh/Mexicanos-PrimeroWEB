@@ -6,7 +6,7 @@ const submit = async (formData) => {
       const value = formData[key];
 
       if (key === 'reporte' && typeof value === 'object' && value instanceof File) {
-        formDataToSend.append('archivo', value); // debe coincidir con multer.single("archivo")
+        formDataToSend.append('reporte', value); 
       } else {
         formDataToSend.append(key, value);
       }
@@ -14,7 +14,7 @@ const submit = async (formData) => {
 
     const response = await fetch('http://localhost:3000/school/new/info', {
       method: 'POST',
-      body: formDataToSend // no usamos headers, fetch lo hace automáticamente
+      body: formDataToSend 
     });
 
     const data = await response.json();

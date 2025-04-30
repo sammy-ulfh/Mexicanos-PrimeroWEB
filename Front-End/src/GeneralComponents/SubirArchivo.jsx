@@ -23,7 +23,7 @@ const SubirArchivo = ({ name, onFileSelect }) => {
             </svg>
             <span className="text-gray-600">{fileName || "Arrastra tu archivo aquí o"}</span>
             <span className="text-blue-500 underline">Selecciona un archivo</span>
-            <input id={`file-upload-${name}`} type="file" className="hidden" onChange={handleFileChange} name={name}/>            
+            <input id={`file-upload-${name}`} type="reporte" className="hidden" onChange={handleFileChange} name={name}/>            
           </label>
         </div>
       </main>

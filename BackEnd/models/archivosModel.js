@@ -1,6 +1,7 @@
 const db = require('../config/db');
 const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");// npm install @aws-sdk/client-s3
 const fs = require("fs");
+const path = require("path");
 
 const s3 = new S3Client({
   region: "mx-central-1",
@@ -60,7 +61,7 @@ const subirArchivo = async (archivoLocalPath, nombreArchivo) => {
     Bucket: bucket,
     Key: key,
     Body: body,
-    ContentType: 'application/pdf'
+    ContentType: obtenerContentType(nombreArchivo),
   });
 
   await s3.send(comando);
