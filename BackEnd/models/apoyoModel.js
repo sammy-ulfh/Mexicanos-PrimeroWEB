@@ -34,7 +34,7 @@ const cambiarStatus = async (id_apoyo, status, razon_rechazo) => {
 
 const getApoyos = async () => {
     const [result] = await db.execute(
-      'SELECT * FROM apoyo WHERE status = 1 ORDER BY fecha_inicio DESC'
+      'SELECT * FROM apoyo WHERE status = 1 ORDER BY fecha_inicio ASC;'
     );
     return result;
   };
@@ -43,6 +43,7 @@ module.exports = {
     newApoyo,
     newApoyoEscuela,
     newApoyoDonador,
-    cambiarStatus
+    cambiarStatus,
+    getApoyos
 };
   

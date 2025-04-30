@@ -1,25 +1,33 @@
 const submit = async (formData) => {
-    try {
-      const response = await fetch('http://localhost:3000/school/new/info', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-  
-      const data = await response.json();
-  
-      if (response.ok) {
-        alert(data.mensaje);
-        window.location.href = `/${data.redirigir}`;
+  try {
+    const formDataToSend = new FormData();
+
+    for (const key in formData) {
+      const value = formData[key];
+
+      if (key === 'reporte' && typeof value === 'object' && value instanceof File) {
+        formDataToSend.append('archivo', value); // debe coincidir con multer.single("archivo")
       } else {
-        alert('Error al enviar el formulario');
+        formDataToSend.append(key, value);
       }
-    } catch (error) {
-      console.error('Error en submit:', error);
     }
-  };
-  
-  export default submit;
-  
+
+    const response = await fetch('http://localhost:3000/school/new/info', {
+      method: 'POST',
+      body: formDataToSend // no usamos headers, fetch lo hace automáticamente
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert(data.mensaje);
+      window.location.href = `/${data.redirigir}`;
+    } else {
+      alert('Error al enviar el formulario');
+    }
+  } catch (error) {
+    console.error('Error en submit:', error);
+  }
+};
+
+export default submit;

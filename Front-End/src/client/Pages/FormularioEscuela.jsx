@@ -25,7 +25,7 @@ function FormularioEscuela() {
         dir_vespertino: '',
         direccion: '',
         necesidades: '',
-        report: '', // si es un archivo se maneja diferente
+        archivo: '', // si es un archivo se maneja diferente
         nombre: '',
         correo: '',
         edad: ''
@@ -47,8 +47,7 @@ function FormularioEscuela() {
     };
 
     const handleFileSelect = (name, file) => {
-        const fileURL = URL.createObjectURL(file);
-        setFormData({...formData, [name]: fileURL});
+        setFormData({...formData, [name]: file});
       };
       
        
@@ -98,7 +97,7 @@ function FormularioEscuela() {
                 </article>
                 
                 <p className='font-montserrat flex flex-start w-[60%] mt-[40px] '>Reporte que avale la solicitud de registro por parte del director con usted como responsable (firmado)</p>
-                <SubirArchivo name="reporte" onFileSelect={handleFileSelect}/>
+                <SubirArchivo name="archivo" onFileSelect={handleFileSelect}/>
 
 
                 <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-bold mt-[20px] mt-[100px] mb-[40px] w-[80%] flex justify-center">

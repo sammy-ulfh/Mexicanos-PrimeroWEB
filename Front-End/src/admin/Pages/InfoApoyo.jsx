@@ -10,6 +10,7 @@ function InfoApoyo(){
   const loca = useLocation();
   const data = loca.state;
   console.log(data);
+  
 
   return(
     <>

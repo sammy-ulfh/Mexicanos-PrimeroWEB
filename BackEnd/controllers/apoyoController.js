@@ -42,15 +42,31 @@ const cambiarStatus = async (req, res) => {
     try {
         const { status, razon_rechazo, id_apoyo } = req.body;
         await Apoyo.cambiarStatus(id_apoyo, status, razon_rechazo);
-        res.status(201).json({ mensaje: 'Información almacenada'});
+        if(status==3){
+            res.status(201).json({ mensaje: 'Información almacenada', redirigir: 'portal/wait' });
+        }
+        else if(status==2){
+            res.status(201).json({ mensaje: 'información almacenada', redirigir:'/admin/apoyos'});
+        }
     } catch (error) {
         console.error('Error al guardar la información:', error);
         res.status(500).json({ mensaje: 'Error al guardar la información', error });
     }
 }
 
+const getApoyos = async (req, res) => {
+    try {
+        const result = await Apoyo.getApoyos();
+        res.status(200).json({ mensaje: 'Solicitudes extraidas correctamente', response: result});
+    } catch (error) {
+        console.error('Error al obtener los apoyos:', error);
+        res.status(500).json({ mensaje: 'Error al obtener los apoyos', error });
+    }
+}
+
 module.exports = {
     newApoyo,
     newApoyoDescripcion,
-    cambiarStatus
+    cambiarStatus,
+    getApoyos
 };

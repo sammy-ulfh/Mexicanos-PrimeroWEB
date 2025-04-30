@@ -8,4 +8,6 @@ router.patch('/descripcion', apoyoController.newApoyoDescripcion);
 
 router.patch('/status', apoyoController.cambiarStatus);
 
+router.get('/info', apoyoController.getApoyos);
+
 module.exports = router;

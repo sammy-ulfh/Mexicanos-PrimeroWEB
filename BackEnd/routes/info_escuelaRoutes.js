@@ -10,4 +10,6 @@ router.post('/new/info', escuelaController.completarForm);
 
 router.patch('/status/escuela', escuelaController.statusEscuela);
 
+router.patch('/reporte',escuelaController.subirArchivoMiddleware, escuelaController.subirArchivoController);
+
 module.exports = router;

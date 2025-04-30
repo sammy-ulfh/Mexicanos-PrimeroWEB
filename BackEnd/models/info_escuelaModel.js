@@ -39,10 +39,19 @@ const newNecesidades = async (necesidades) => {
   return result;
 };
 
+const subirReporteEscuela = async (id_usuario, path) => {
+  const [result] = await db.execute(
+    'UPDATE info_escuela SET reporte = ? WHERE id_usuario = ?;',
+    [path, id_usuario]
+  );
+  return result;
+};
+
 module.exports = {
   newInfoSchool,
   changeStatusEscuela,
   getSolicitudesEscuelas,
   statusEscuelaInicial,
-  newNecesidades
+  newNecesidades,
+  subirReporteEscuela
 };

@@ -1,10 +1,22 @@
+import  subirArchivo  from "../models/archivosModel.js";
+import multer from "multer";//npm install express multer @aws-sdk/client-s3
 const Escuela = require('../models/info_escuelaModel.js');
+const upload = multer({ dest: "uploads/" }); 
+
+const subirMiddleware = upload.single("archivo");
 
 const completarForm = async (req, res) => {
     try {
   
         const { correo_escuela, id_usuario, nombre_escuela, dir_matutino, dir_vespertino, direccion, necesidades, reporte, nombre, correo, edad } = req.body;
-        await Escuela.newInfoSchool(correo_escuela, id_usuario, nombre_escuela, dir_matutino, dir_vespertino, direccion, necesidades, reporte, nombre, correo, edad);
+
+        let urlReporte = '';
+        if (req.file) {
+            const archivoLocalPath = req.file.path;
+            const nombreArchivo = req.file.originalname;
+            urlReporte = await subirArchivo.subirArchivo(archivoLocalPath, nombreArchivo);
+        }
+        await Escuela.newInfoSchool(correo_escuela, id_usuario, nombre_escuela, dir_matutino, dir_vespertino, direccion, necesidades, reporte, urlReporte, nombre, correo, edad);
 
       res.status(201).json({ mensaje: 'Información almacenada', redirigir: 'portal/wait' });
   
@@ -81,10 +93,12 @@ const completarNecesidades = async (req, res) => {
   }
 };
 
+
 module.exports = {
   completarForm,
   InfoEscuela,
   statusEscuela,
   formularioContestado,
-  completarNecesidades
+  completarNecesidades,
+  subirMiddleware
 };
