@@ -74,6 +74,20 @@ function ClientChat() {
       descripcion:'',
     });
 
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+
+    let parsedValue = value;
+
+    setFormData({
+        ...formData,
+        [name]: parsedValue
+    });
+    };
+
+    const handleFileSelect = (name, file) => {
+      setFormData({...formData, [name]: file});
+    };
 
     useEffect(() => {
       if (Object.keys(Info[0].users_info.names).length > 2){
@@ -142,19 +156,12 @@ function ClientChat() {
               <section className='w-[95%] h-[80%] flex flex-col justify-start items-center p-[2%]'>
                 <div className='w-full h-[15%] flex flex-col justify-center items-center mb-[3%]'>
                   <h3 className='font-bold text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-3xl w-[100%] h-[30%] mb-[2%] pl-[1%] '>Titulo de la solicitud</h3>
-                <input placeholder='* Ingrese un titulo...' className='bg-white w-[100%] min-h-[70%] border rounded-3xl pl-[2%]' />
+                <input name="tipo_apoyo" onChange={handleChange} value={formData.tipo_apoyo} placeholder='* Ingrese un titulo...' className='bg-white w-[100%] min-h-[70%] border rounded-3xl pl-[2%]' />
                 </div>
                 <div className='w-full h-[15%] flex flex-col justify-center items-center mb-[3%]'>
-                  <h3 className='font-bold text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-3xl w-[100%] h-[30%] mb-[2%] pl-[1%] '>Tipo de archivo</h3>
-                  <input placeholder='* Tipo: imagen/documento' className='pointer-events-none bg-white w-[100%] min-h-[70%] border rounded-3xl pl-[2%]' />
+                  <h3 className='font-bold text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-3xl w-[100%] h-[30%] mb-[2%] pl-[1%] '>Resumen</h3>
+                  <textarea name= "descripcion" onChange={handleChange} value={formData.descripcion} rows="6" placeholder='Resumen...' className='bg-white w-[100%] min-h-[60%] max-h-[60%] resize-none border rounded-3xl p-[2%]' />
                 </div>
-                <div className='w-full h-[15%] flex flex-col justify-center items-center mb-[3%]'>
-                  <h3 className='font-bold text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-3xl w-[100%] h-[30%] mb-[2%] pl-[1%] '>Tipo de archivo</h3>
-                  <button className='bg-white w-[50%] min-h-[70%] border rounded-3xl hover:scale-105 trnsition duration-300'>Subir archivo de ejemplo</button>
-                </div>
-                
-
-
                 <div className='w-[100%] h-[30%] flex justify-center items-end'>
                   <button className='w-[50%] sm:w-45%] md:w-[40%] lg:w-[35%] xl:w-[30%] 2xl:w-[30%] h-[100%] bg-[#009933] rounded-full border hover:scale-110 transition duration-300 font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl'>
                     Notificar
