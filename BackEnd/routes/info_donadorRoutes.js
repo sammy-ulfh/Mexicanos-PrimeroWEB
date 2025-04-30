@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const donadorController = require('../controllers/info_donadorController.js');
+const { verifyToken } = require('../middlewares/verifyToken');
 
-router.get('/info/donantes', donadorController.InfoDonante);
+router.get('/info/donantes', verifyToken, donadorController.InfoDonante);
 
-router.patch('/status/donante', donadorController.statusDonante);
+router.patch('/status/donante', verifyToken, donadorController.statusDonante);
 
-router.post('/new/info', donadorController.completarForm);
+router.post('/new/info', verifyToken, donadorController.completarForm);
 
 
 module.exports = router;

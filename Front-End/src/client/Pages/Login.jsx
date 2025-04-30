@@ -2,7 +2,7 @@ import '@fontsource/montserrat';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ErrorMessage from '/src/GeneralComponents/ErrorMessage';
-import LoginToken from '/src/client/Peticiones/login/LoginToken';
+import loginToken from '/src/client/Peticiones/login/LoginToken';
 
 function useImageFromType(type){
   const [image, setImage] = useState('');
@@ -27,6 +27,7 @@ function Login() {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const image = useImageFromType(type);
   
@@ -60,7 +61,14 @@ function Login() {
                 </a>
               </article>
 
-              <button id='login' className='flex justify-center items-center w-[40%] xl:w-[20vw] h-full py-[3%] mt-[50px] rounded-full text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold hover:scale-105 transition duration-300' style={{ backgroundColor: '#009933' }} onClick={() => LoginToken(username, password, navigate)}>
+              {errorMessage && (
+                    <ErrorMessage
+                      message={errorMessage}
+                    />
+                  )
+                }
+
+              <button id='login' className='flex justify-center items-center w-[40%] xl:w-[20vw] h-full py-[3%] mt-[50px] rounded-full text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold hover:scale-105 transition duration-300' style={{ backgroundColor: '#009933' }} onClick={() => setErrorMessage(loginToken(username, password, navigate))}>
                 Ingresar
               </button>
             </section>
