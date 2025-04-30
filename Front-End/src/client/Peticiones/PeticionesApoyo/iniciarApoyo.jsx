@@ -14,7 +14,6 @@ const crearApoyo = async (formData) => {
   
       if (response.ok) {
         alert(data.mensaje);
-        window.location.href = `/${data.redirigir}`;
       } else {
         alert('Error al enviar el formulario');
       }

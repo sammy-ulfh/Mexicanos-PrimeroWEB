@@ -1,33 +1,25 @@
 const db = require('../config/db');
 
-const newApoyo = async (id_escuela, id_donador, id_admin) => {
+const newApoyoEscuela = async (id_escuela, tipo_apoyo_escuela, descripcion_escuela, id_apoyo) => {
     const [result] = await db.execute(
-      'INSERT INTO apoyo(id_escuela, id_donador, id_admin, activo, status) VALUES(?, ?, ?, FALSE, 1);',
-      [id_escuela, id_donador, id_admin]
+      'UPDATE apoyo SET tipo_apoyo_escuela = ?, descripcion_escuela = ?, id_escuela = ? WHERE id_apoyo = ?;',
+      [tipo_apoyo_escuela, descripcion_escuela, id_escuela, id_apoyo]
     );
     return result;
   };
 
-const newApoyoEscuela = async (id_apoyo, tipo_apoyo_escuela, descripcion_escuela) => {
-    const [result] = await db.execute(
-      'UPDATE apoyo SET tipo_apoyo_escuela = ?, descripcion_escuela = ? WHERE id_apoyo = ?;',
-      [tipo_apoyo_escuela, descripcion_escuela, id_apoyo]
-    );
-    return result;
-  };
-
-const newApoyoDonador = async (id_apoyo, tipo_apoyo_donador, descripcion_donador) => {
+const newApoyoDonador = async (id_donador, tipo_apoyo_donador, descripcion_donador, id_apoyo) => {
     const [result] = await db.execute(
       'UPDATE apoyo SET tipo_apoyo_donador = ?, descripcion_donador = ? WHERE id_apoyo = ?;',
-      [tipo_apoyo_donador, descripcion_donador, id_apoyo]
+      [tipo_apoyo_donador, descripcion_donador, id_donador, id_apoyo]
     );
     return result;
   };
 
-const cambiarStatus = async (id_apoyo, status, razon_rechazo) => {
+const cambiarStatus = async (id_apoyo, id_usuario, status, razon_rechazo) => {
     const [result] = await db.execute(
-      'UPDATE apoyo SET status = ?, razon_rechazo = ? WHERE id_apoyo = ?;',
-      [status, razon_rechazo, id_apoyo]
+      'UPDATE apoyo SET id_usuario= ?, status = ?, razon_rechazo = ? WHERE id_apoyo = ?;',
+      [id_usuario, status, razon_rechazo, id_apoyo]
     );
     return result;
   };
@@ -39,11 +31,20 @@ const getApoyos = async () => {
     return result;
   };
 
+const infoApoyo = async (id_apoyo) => {
+    const [result] = await db.execute(
+      'SELECT * FROM apoyo WHERE id_apoyo = ?',
+      [id_apoyo]
+    );
+    return result.length > 0 ? result[0] : null;
+  };
+
+
 module.exports = {
-    newApoyo,
     newApoyoEscuela,
     newApoyoDonador,
     cambiarStatus,
-    getApoyos
+    getApoyos,
+    infoApoyo
 };
   
