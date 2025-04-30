@@ -26,7 +26,7 @@ function FormularioEscuela() {
         archivo: '', // si es un archivo se maneja diferente
         nombre: '',
         correo: '',
-        edad: ''
+        edad: 0,
     });
 
     const handleChange = (e) => {
@@ -35,6 +35,9 @@ function FormularioEscuela() {
     let parsedValue = value;
 
     if (name === 'turn') {
+        parsedValue = parseInt(value);
+    }
+    else if (name === 'edad') {
         parsedValue = parseInt(value);
     }
 

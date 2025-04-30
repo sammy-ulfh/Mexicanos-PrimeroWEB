@@ -68,6 +68,13 @@ function ClientChat() {
     const loca = useLocation();
     const chat_id = loca.state;
 
+    const [formData, setFormData] = useState({
+      id: chat_id,
+      tipo_apoyo: '',
+      descripcion:'',
+    });
+
+
     useEffect(() => {
       if (Object.keys(Info[0].users_info.names).length > 2){
         setIsProcess(true);
