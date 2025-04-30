@@ -1,12 +1,10 @@
 import '@fontsource/montserrat';
 import Initial from '../Layouts/Initial.jsx';
-import tokenValidation from '../Peticiones/Validations/tokenValidation';
 import { useNavigate } from 'react-router-dom';
 
 function PortalEspera() {
 
   const navigate = useNavigate();
-  tokenValidation(navigate);
 
     return (
       <>

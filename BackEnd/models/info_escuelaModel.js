@@ -1,9 +1,9 @@
 const db = require('../config/db');
 
-const newInfoSchool = async (correo_escuela, id_usuario, turno, nombre_escuela, dir_matutino, dir_vespertino, direccion, reporte, nombre, correo, edad) => {
+const newInfoSchool = async (correo_escuela, id_usuario, turno, nombre_escuela, dir_matutino, dir_vespertino, direccion, urlReporte, nombre, correo, edad) => {
   const [result] = await db.execute(
     'INSERT INTO info_escuela(correo_escuela, id_usuario, turno, nombre_escuela, dir_matutino, dir_vespertino, direccion, reporte, nombre, correo, edad, status, razon_rechazo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, null)',
-    [correo_escuela, id_usuario, turno, nombre_escuela, dir_matutino, dir_vespertino, direccion, reporte, nombre, correo, edad]
+    [correo_escuela, id_usuario, turno, nombre_escuela, dir_matutino, dir_vespertino, direccion, urlReporte, nombre, correo, edad]
   );
   return result;
 };

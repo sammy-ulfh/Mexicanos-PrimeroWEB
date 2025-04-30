@@ -1,3 +1,5 @@
+import fetchAuth from '/src/utils/fetchAuth';
+
 const verificarFormulario = async () => {
     const id_usuario = localStorage.getItem('id_usuario');
     const type = localStorage.getItem('tipo');
@@ -8,7 +10,7 @@ const verificarFormulario = async () => {
     }
   
     try {
-      const response = await fetch(`http://localhost:3000/user/user/info?id_usuario=${id_usuario}&type=${type}`);
+      const response = await fetchAuth(`http://localhost:3000/user/user/info?id_usuario=${id_usuario}&type=${type}`);
       
       if (!response.ok) throw new Error("Algo salió mal");
   

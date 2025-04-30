@@ -18,13 +18,11 @@ function FormularioEscuela() {
     const [formData, setFormData] = useState({
         //correo_escuela, id_usuario, nombre_escuela, dir_matutino, dir_vespertino, direccion, necesidades, reporte, nombre, correo, edad,
         correo_escuela: '',
-        id_usuario: userId,
         turn: 0,
         nombre_escuela: '',
         dir_matutino: '',
         dir_vespertino: '',
         direccion: '',
-        necesidades: '',
         archivo: '', // si es un archivo se maneja diferente
         nombre: '',
         correo: '',
