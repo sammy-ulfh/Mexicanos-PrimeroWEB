@@ -14,6 +14,8 @@ function verifyToken(req, res, next) {
         }
 
         req.payload = payload;
+        req.id = req.payload.id_usuario;
+        req.type = req.payload.tipo;
         next();
     })
 

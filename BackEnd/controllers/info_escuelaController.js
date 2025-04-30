@@ -7,7 +7,6 @@ const path = require('path');
 const subirMiddleware = upload.single("archivo");
 
 const completarForm = async (req, res) => {
-    //console.log(req.payload.id_usuario);
     try {
         const { correo_escuela, turn, nombre_escuela, dir_matutino, dir_vespertino, direccion, nombre, correo, edad } = req.body;
         let urlReporte = '';
@@ -95,6 +94,20 @@ const completarNecesidades = async (req, res) => {
   }
 };
 
+const extraerStatus = async (req, res) => {
+  try {
+    /*if (req.type === 3){
+
+    }*/
+
+    const response = await Escuela.statusEscuelaInicial(req.id);
+    res.status(201).json({ mensaje: 'Status', status: response});
+
+  } catch (error) {
+    console.error('Error al guardar la extraer status', error);
+    res.status(500).json({ mensaje: 'Error al extraer status', error });
+  }
+};
 
 module.exports = {
   completarForm,
@@ -103,4 +116,5 @@ module.exports = {
   formularioContestado,
   completarNecesidades,
   subirMiddleware,
+  extraerStatus
 };

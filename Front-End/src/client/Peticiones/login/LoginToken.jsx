@@ -1,3 +1,5 @@
+import Validation from '../Validations/initialStatusValidation';
+
 const loginToken = async ( username, password, navigate ) => {
     try {
         const response = await fetch('http://localhost:3000/user/login', {
@@ -15,7 +17,7 @@ const loginToken = async ( username, password, navigate ) => {
         if (response?.ok && data?.token) {
     
        document.cookie = `jwtToken=${data.token};`;
-       navigate('/portal/wait');
+       Validation(navigate);
      } else if (data?.mensaje) {
        return data.mensaje;
      } else {
