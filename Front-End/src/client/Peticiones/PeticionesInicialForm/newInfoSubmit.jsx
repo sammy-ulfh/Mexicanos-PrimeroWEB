@@ -14,7 +14,8 @@ const submit = async (formData) => {
 
     const response = await fetch('http://localhost:3000/school/new/info', {
       method: 'POST',
-      body: formDataToSend 
+      body: formDataToSend,
+      credentials: 'include'
     });
 
     const data = await response.json();

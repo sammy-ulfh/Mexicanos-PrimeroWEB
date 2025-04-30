@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
 
 function verifyToken(req, res, next) {
-    const token = req.cookies.token;
+    const token = req.cookies.jwtToken;
+    console.log(token);
 
     if(!token){
         res.status(401).json({ mensaje: 'Token no valido.' });

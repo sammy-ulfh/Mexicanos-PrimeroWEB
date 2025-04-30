@@ -1,6 +1,8 @@
+import fetchAuth from '/src/utils/fetchAuth';
+
 const crearApoyo = async (formData) => {
     try {
-      const response = await fetch('http://localhost:3000/apoyo/new', {
+      const response = await fetchAuth('http://localhost:3000/apoyo/new', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
