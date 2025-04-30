@@ -3,8 +3,8 @@ const Perfil = require('../models/perfilModel.js');
 const completarPerfil = async (req, res) => {
     try {
   
-        const { id_usuario, img_institucion, correo_institucion, resumen_institucion } = req.body;
-        await Perfil.newInfo(id_usuario, img_institucion, correo_institucion, resumen_institucion );
+        const { id_usuario, img_institucion, correo_institucion, resumen_institucion, necesidades } = req.body;
+        await Perfil.newInfo(id_usuario, img_institucion, correo_institucion, resumen_institucion, necesidades);
 
       res.status(201).json({ mensaje: 'Información almacenada', redirigir: 'portal/wait' });
   
