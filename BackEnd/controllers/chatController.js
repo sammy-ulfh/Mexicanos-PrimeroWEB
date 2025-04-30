@@ -3,8 +3,7 @@ const Chat = require('../models/chatModel.js');
 
 const crearChat = async (req, res) => {
     try {
-        const { nombre_chat, descripcion } = req.body;
-        const resultado = await Chat.crearChat(nombre_chat, descripcion);
+        const resultado = await Chat.crearChat();
         res.status(201).json({ mensaje: 'Chat creado exitosamente', id_chat: resultado.insertId });
     } catch (error) {
         console.error('Error al crear el chat:', error);
@@ -24,7 +23,7 @@ const obtenerChats = async (req, res) => {
 
 const obtenerChatPorId = async (req, res) => {
     try {
-        const { id_chat } = req.params;
+        const { id_chat } = req.headers;
         const resultado = await Chat.obtenerChatPorId(id_chat);
         if (resultado) {
             res.status(200).json({ mensaje: 'Chat encontrado', chat: resultado });
