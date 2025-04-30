@@ -1,5 +1,5 @@
-import  subirArchivo  from "../models/archivosModel.js";
-import multer from "multer";//npm install express multer @aws-sdk/client-s3
+const subirArchivo =  require("../models/archivosModel.js");
+const multer = require("multer");//npm install express multer @aws-sdk/client-s3
 
 const upload = multer({ dest: "uploads/" }); 
 

@@ -1,5 +1,5 @@
-import  subirArchivo  from "../models/archivosModel.js";
-import multer from "multer";//npm install express multer @aws-sdk/client-s3
+const subirArchivo  = require("../models/archivosModel.js");
+const multer = require("multer");//npm install express multer @aws-sdk/client-s3
 const Escuela = require('../models/info_escuelaModel.js');
 const upload = multer({ dest: "uploads/" }); 
 
@@ -100,5 +100,5 @@ module.exports = {
   statusEscuela,
   formularioContestado,
   completarNecesidades,
-  subirMiddleware
+  subirMiddleware,
 };

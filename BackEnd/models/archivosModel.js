@@ -60,7 +60,7 @@ const subirArchivo = async (archivoLocalPath, nombreArchivo) => {
     Bucket: bucket,
     Key: key,
     Body: body,
-    ContentType: obtenerContentType(nombreArchivo)
+    ContentType: 'application/pdf'
   });
 
   await s3.send(comando);
