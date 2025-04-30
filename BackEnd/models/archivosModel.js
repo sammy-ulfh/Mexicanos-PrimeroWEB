@@ -78,3 +78,20 @@ module.exports = {
   subirUrlPDF,
   subirArchivo
 };
+
+function obtenerContentType(nombreArchivo) {
+  const ext = path.extname(nombreArchivo).toLowerCase();
+  switch (ext) {
+    case ".jpg":
+    case ".jpeg":
+      return "image/jpeg";
+    case ".png":
+      return "image/png";
+    case ".gif":
+      return "image/gif";
+    case ".pdf":
+      return "application/pdf";
+    default:
+      return "application/octet-stream"; // valor genérico
+  }
+}
