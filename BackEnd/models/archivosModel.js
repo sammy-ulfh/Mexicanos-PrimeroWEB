@@ -52,6 +52,7 @@ const subirImgInstitucion = async (id_usuario, path) => {
   return result;
 };
 */
+
 const subirArchivo = async (archivoLocalPath, nombreArchivo) => {
   const bucket = "mexicanosprimero";
   const key = `documentos/${nombreArchivo}`;

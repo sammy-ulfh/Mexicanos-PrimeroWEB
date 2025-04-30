@@ -2,25 +2,23 @@ import '@fontsource/montserrat';
 import Initial from '../Layouts/Initial.jsx';
 import SubirArchivo from '../../GeneralComponents/SubirArchivo.jsx';
 import { useState } from 'react';
-import submit from '/src/client/Peticiones/PeticionesInicialForm/newInfoSubmit.jsx';
+import submit from '/src/client/Peticiones/PeticionesInicialForm/newInfoSubmitDonador.jsx';
 
 
 function FormularioDonador() {
      const userId = localStorage.getItem("id_usuario");
-     const Type = localStorage.getItem("tipo");
     
     const [formData, setFormData] = useState({
-        rfc_resp: '',
-        correo_responsable: '', 
+        rfc: '',
         id_usuario: userId,
-        type: Type, 
-        inst: '', 
-        nombre_responsable: '', 
-        correo_institucion: '', 
-        rfc: '', 
-        edad_responsable: '', 
+        nombre: '', 
+        correo: '', 
+        edad: '', 
+        ine: '',  
+        inst: 0, 
         nombre_institucion: '', 
-        ine: '', 
+        correo_institucion: '', 
+        rfc_institucion: '', 
         reporte: ''
     });
 
@@ -41,11 +39,7 @@ function FormularioDonador() {
     };
 
     const handleFileSelect = (name, file) => {
-        const objectUrl = URL.createObjectURL(file);
-        setFormData((prevData) => ({
-          ...prevData,
-          [name]: objectUrl,
-        }));
+        setFormData({...formData, [name]: file});
       };   
 
 
@@ -63,29 +57,29 @@ function FormularioDonador() {
                     <p className='flex font-bold self-start w-[100%]'>¿Se registrará a una institución?</p>
                     <select name="inst" onChange={handleChange} value={formData.inst} className="mt-2 pl-[10px] w-[100%] h-[5.5vh] border border-black rounded-xl bg-white text-black">
                         <option value="">Selecciona una opción</option>
-                        <option value= "true">Si</option>
-                        <option value="false">No</option>
+                        <option value= "1">Si</option>
+                        <option value="0">No</option>
                     </select>                    
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Nombre del responsable</p>
-                    <input name="nombre_responsable" onChange={handleChange} value={formData.nombre_responsable} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input name="nombre" onChange={handleChange} value={formData.nombre} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Correo del responsable</p>
-                    <input name="correo_responsable" onChange={handleChange} value={formData.correo_responsable} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input name="correo" onChange={handleChange} value={formData.correo} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>RFC</p>
-                    <input name="rfc_resp" onChange={handleChange} value={formData.rfc_resp} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input name="rfc" onChange={handleChange} value={formData.rfc} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Edad del responsable</p>
-                    <input name="edad_responsable" onChange={handleChange} value={formData.edad_responsable} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input name="edad" onChange={handleChange} value={formData.edad} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
                 
                 <p className='font-montserrat flex flex-start w-[60%] mt-[40px] '>INE/IFE</p>
@@ -102,7 +96,7 @@ function FormularioDonador() {
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>RFC de la institución</p>
-                    <input name="rfc" onChange={handleChange} value={formData.rfc} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input name="rfc_institucion" onChange={handleChange} value={formData.rfc_institucion} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>

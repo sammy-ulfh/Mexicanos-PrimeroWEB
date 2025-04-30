@@ -1,4 +1,10 @@
 const Donantes = require('../models/info_donadorModel.js');
+const subirArchivo  = require("../models/archivosModel.js");
+const multer = require("multer");//npm install express multer @aws-sdk/client-s3
+const upload = multer({ dest: "uploads/" });
+const path = require('path');
+
+const subirMiddleware = upload.fields([{name: "ine", maxCount: 1}, {name: "reporte", maxCount: 1}]); // Cambia 'archivo' por el nombre del campo en tu formulario
 
 const statusDonante = async (req, res) => {
   const { id, type, id_donante, status, razon_rechazo } = req.body;
@@ -29,19 +35,31 @@ const completarForm = async (req, res) => {
     try {
 
       console.log(req.body);
-      const { id_usuario, rfc, correo, edad,  nombre, ine, inst, correo_institucion, rfc_institucion, nombre_institucion, reporte } = req.body;
-      await Donantes.newInfoDonador(id_usuario, rfc, correo, edad,  nombre, ine, inst, correo_institucion, rfc_institucion, nombre_institucion, reporte);
+      const { id_usuario, rfc, correo, edad,  nombre, inst, correo_institucion, rfc_institucion, nombre_institucion } = req.body;
+      let urlReporte = '';
+      let urlINE = '';
+      if (req.files?.ine?.[0]) {
+          const archivo = req.files.ine[0];
+          urlINE = await subirArchivo.subirArchivo(archivo.path, archivo.originalname);
+      }
+      if (req.files?.reporte?.[0]) {
+        const archivo = req.files.reporte[0];
+        urlReporte = await subirArchivo.subirArchivo(archivo.path, archivo.originalname);
+      }
+      await Donantes.newInfoDonador(rfc, id_usuario, nombre, correo, edad, urlINE, inst, nombre_institucion, correo_institucion, rfc_institucion, urlReporte);
 
       res.status(201).json({ mensaje: 'Información almacenada', redirigir: 'portal/wait' });
   
     } catch (error) {
-      console.error('Error al guardar la información:', error);
-      res.status(500).json({ mensaje: 'Error al guardar la información', error });
+      console.error('Error al guardar la información:', error.message);
+      console.error(error.stack);
+      res.status(500).json({ mensaje: 'Error al guardar la información', error: error.message });
     }
   };
 
 module.exports = {
   InfoDonante,
   statusDonante,
-  completarForm
+  completarForm,
+  subirMiddleware
 };

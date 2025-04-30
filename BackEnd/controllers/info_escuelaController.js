@@ -10,12 +10,10 @@ const completarForm = async (req, res) => {
     try {
   
         const { correo_escuela, id_usuario, turno, nombre_escuela, dir_matutino, dir_vespertino, direccion, necesidades, nombre, correo, edad } = req.body;
-          console.log(req.body);
         let urlReporte = '';
         if (req.file) {
             const archivoLocalPath = req.file.path;
             const nombreArchivo = req.file.originalname;
-            console.log("Subiendo archivo:", archivoLocalPath, nombreArchivo);
             urlReporte = await subirArchivo.subirArchivo(archivoLocalPath, nombreArchivo);
         }
         await Escuela.newInfoSchool(correo_escuela, id_usuario, turno, nombre_escuela, dir_matutino, dir_vespertino, direccion, necesidades,  urlReporte, nombre, correo, edad);
