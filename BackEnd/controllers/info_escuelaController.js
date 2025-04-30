@@ -9,16 +9,15 @@ const subirMiddleware = upload.single("archivo");
 const completarForm = async (req, res) => {
     //console.log(req.payload.id_usuario);
     try {
-        const { correo_escuela, turno, nombre_escuela, dir_matutino, dir_vespertino, direccion, nombre, correo, edad } = req.body;
-        //console.log(req.body);
+        const { correo_escuela, turn, nombre_escuela, dir_matutino, dir_vespertino, direccion, nombre, correo, edad } = req.body;
         let urlReporte = '';
         if (req.file) {
             const archivoLocalPath = req.file.path;
             const nombreArchivo = req.file.originalname;
             urlReporte = await subirArchivo.subirArchivo(archivoLocalPath, nombreArchivo);
         }
-        console.log(correo_escuela, 2, turno, nombre_escuela, dir_matutino, dir_vespertino, direccion, urlReporte, nombre, correo, edad);
-        await Escuela.newInfoSchool(correo_escuela, 2, turno, nombre_escuela, dir_matutino, dir_vespertino, direccion, urlReporte, nombre, correo, edad);
+        console.log(correo_escuela, req.payload.id_usuario, turn, nombre_escuela, dir_matutino, dir_vespertino, direccion, urlReporte, nombre, correo, edad);
+        await Escuela.newInfoSchool(correo_escuela, req.payload.id_usuario, turn, nombre_escuela, dir_matutino, dir_vespertino, direccion, urlReporte, nombre, correo, edad);
 
       res.status(201).json({ mensaje: 'Información almacenada', redirigir: 'portal/wait' });
   

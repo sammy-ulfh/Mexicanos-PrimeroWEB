@@ -5,9 +5,9 @@ const { verifyToken } = require('../middlewares/verifyToken');
 
 router.get('/user/info', verifyToken, escuelaController.formularioContestado);
 
-router.get('/info/escuelas', verifyToken,escuelaController.InfoEscuela);
+router.get('/info/escuelas', verifyToken, escuelaController.InfoEscuela);
 
-router.post('/new/info',  escuelaController.subirMiddleware, escuelaController.completarForm);
+router.post('/new/info',  verifyToken,  escuelaController.subirMiddleware, escuelaController.completarForm);
 
 router.patch('/status/escuela', verifyToken, escuelaController.statusEscuela);
 

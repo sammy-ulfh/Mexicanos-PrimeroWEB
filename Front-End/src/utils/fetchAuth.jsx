@@ -16,7 +16,7 @@ export default async function fetchAuth(url, opciones = {}) {
       }
   
       // Devuelve los datos en formato JSON
-      return await res.json();
+      return await res;
     } catch (err) {
       console.error('Error al hacer fetch:', err);
       throw err;

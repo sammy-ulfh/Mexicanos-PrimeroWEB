@@ -34,13 +34,6 @@ function FormularioEscuela() {
 
     let parsedValue = value;
 
-    if (name === 'turn') {
-        parsedValue = parseInt(value);
-    }
-    else if (name === 'edad') {
-        parsedValue = parseInt(value);
-    }
-
     setFormData({
         ...formData,
         [name]: parsedValue
@@ -66,9 +59,9 @@ function FormularioEscuela() {
                     <p className='flex font-bold self-start w-[100%]'>Turno:</p>
                     <select name="turn" onChange={handleChange} value={formData.turn} className="mt-2 pl-[10px] w-full h-[5.5vh] border border-black rounded-xl bg-white text-black">
                         <option value="">Selecciona una opción</option>
-                        <option value= "1">Matutino</option>
-                        <option value="2">Vespertino</option>
-                        <option value="3">Ambos</option>
+                        <option value={`${1}`}>Matutino</option>
+                        <option value={`${2}`}>Vespertino</option>
+                        <option value={`${3}`}>Ambos</option>
                     </select>                    
                 </article>
 

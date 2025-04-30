@@ -16,13 +16,12 @@ const submit = async (formData) => {
 
     const response = await fetchAuth('http://localhost:3000/school/new/info', {
       method: 'POST',
-      body: formDataToSend,
-      credentials: 'include'
+      body: formDataToSend
     });
 
     const data = await response.json();
 
-    if (response.ok) {
+    if (response.ok == true) {
       alert(data.mensaje);
       window.location.href = `/${data.redirigir}`;
     } else {
