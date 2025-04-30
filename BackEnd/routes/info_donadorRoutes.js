@@ -7,7 +7,7 @@ router.get('/info/donantes', verifyToken, donadorController.InfoDonante);
 
 router.patch('/status/donante', verifyToken, donadorController.statusDonante);
 
-router.post('/new/info', donadorController.subirMiddleware, donadorController.completarForm);
+router.post('/new/info', verifyToken, donadorController.subirMiddleware, donadorController.completarForm);
 
 
 module.exports = router;
