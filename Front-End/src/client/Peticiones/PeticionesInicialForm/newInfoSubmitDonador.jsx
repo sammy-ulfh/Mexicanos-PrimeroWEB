@@ -1,3 +1,5 @@
+import fetchAuth from '/src/utils/fetchAuth';
+
 const submit = async (formData) => {
     try {
       const formDataToSend = new FormData();
@@ -8,20 +10,21 @@ const submit = async (formData) => {
         } 
       }
 
-        if(data.ine){
+        if(formData.ine){
             formDataToSend.append('ine', formData.ine); 
         }
 
-        if(data.reporte){
+        if(formData.reporte){
             formDataToSend.append('reporte', formData.reporte);
         }
   
-      const response = await fetch('http://localhost:3000/donator/new/info', {
+      const response = await fetchAuth('http://localhost:3000/donator/new/info', {
         method: 'POST',
         body: formDataToSend 
       });
   
       const data = await response.json();
+      console.log(data);
   
       if (response.ok) {
         alert(data.mensaje);
