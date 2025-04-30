@@ -2,13 +2,6 @@ const db = require('../config/db');
 const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");// npm install @aws-sdk/client-s3
 const fs = require("fs");
 
-const s3 = new S3Client({
-  region: "mx-central-1",
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-  }
-});
 
 const subirUrlPDF = async (id_chat, id_sender, titulo, path) => {
   const [result] = await db.execute(
