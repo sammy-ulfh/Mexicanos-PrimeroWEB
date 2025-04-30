@@ -6,14 +6,12 @@ import submit from '/src/client/Peticiones/PeticionesInicialForm/newInfoSubmitDo
 
 
 function FormularioDonador() {
-     const userId = localStorage.getItem("id_usuario");
     
     const [formData, setFormData] = useState({
         rfc: '',
-        id_usuario: userId,
         nombre: '', 
         correo: '', 
-        edad: '', 
+        edad: 0, 
         ine: '',  
         inst: 0, 
         nombre_institucion: '', 
@@ -27,10 +25,6 @@ function FormularioDonador() {
         const { name, value } = e.target;
 
     let parsedValue = value;
-
-    if (name === 'inst') {
-        parsedValue = value === "true"; // "true" → true, "false" → false
-    }
 
     setFormData({
         ...formData,

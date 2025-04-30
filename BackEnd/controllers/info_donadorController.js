@@ -35,7 +35,7 @@ const completarForm = async (req, res) => {
     try {
 
       console.log(req.body);
-      const { id_usuario, rfc, correo, edad,  nombre, inst, correo_institucion, rfc_institucion, nombre_institucion } = req.body;
+      const {rfc, correo, edad,  nombre, inst, correo_institucion, rfc_institucion, nombre_institucion } = req.body;
       let urlReporte = '';
       let urlINE = '';
       if (req.files?.ine?.[0]) {
@@ -46,7 +46,7 @@ const completarForm = async (req, res) => {
         const archivo = req.files.reporte[0];
         urlReporte = await subirArchivo.subirArchivo(archivo.path, archivo.originalname);
       }
-      await Donantes.newInfoDonador(rfc, id_usuario, nombre, correo, edad, urlINE, inst, nombre_institucion, correo_institucion, rfc_institucion, urlReporte);
+      await Donantes.newInfoDonador(rfc, req.payload.id_usuario, nombre, correo, edad, urlINE, inst, nombre_institucion, correo_institucion, rfc_institucion, urlReporte);
 
       res.status(201).json({ mensaje: 'Información almacenada', redirigir: 'portal/wait' });
   
