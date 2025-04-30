@@ -18,3 +18,5 @@ const TarjetaApoyos = ({ type, json }) => {
     </article>
   );
 };
+
+export default TarjetaApoyos
