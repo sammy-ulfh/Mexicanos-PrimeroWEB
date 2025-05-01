@@ -33,7 +33,7 @@ const statusDonadorInicial = async (id_usuario) => {
 
 const getRazonRechazo = async (id) => {
   const [result] = await db.execute(
-    'SELECT razon_rechazo FROM info_donandor WHERE status = 3 AND id_usuario = ?',
+    'SELECT razon_rechazo FROM info_donador WHERE status = 3 AND id_usuario = ?',
     [id]
   );
   return result;
