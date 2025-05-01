@@ -2,7 +2,7 @@ const db = require('../config/db');
 
 const newApoyoEscuela = async (id_escuela, tipo_apoyo_escuela, descripcion_escuela, id_apoyo) => {
     const [result] = await db.execute(
-      'UPDATE apoyo SET tipo_apoyo_escuela = ?, descripcion_escuela = ?, id_escuela = ? WHERE id_apoyo = ?;',
+      'UPDATE apoyo SET  id_escuela = ?, tipo_apoyo_escuela = ?, descripcion_escuela = ? WHERE id_apoyo = ?;',
       [tipo_apoyo_escuela, descripcion_escuela, id_escuela, id_apoyo]
     );
     return result;
@@ -26,25 +26,23 @@ const cambiarStatus = async (id_apoyo, id_usuario, status, razon_rechazo) => {
 
 const getApoyos = async () => {
     const [result] = await db.execute(
-      'SELECT * FROM apoyo WHERE status = 1 ORDER BY fecha_inicio ASC;'
+      'SELECT id_apoyo, tipo_apoyo_escuela, tipo_apoyo_donador, descripcion_escuela, descripcion_donador FROM apoyo WHERE status = 1 ORDER BY fecha_inicio ASC;'
     );
     return result;
   };
 
-const infoApoyo = async (id_apoyo) => {
+const newApoyo = async () => {
     const [result] = await db.execute(
-      'SELECT * FROM apoyo WHERE id_apoyo = ?',
-      [id_apoyo]
+      'INSERT INTO apoyo (status) VALUES(1);',
     );
-    return result.length > 0 ? result[0] : null;
+    return result;
   };
-
 
 module.exports = {
     newApoyoEscuela,
     newApoyoDonador,
     cambiarStatus,
     getApoyos,
-    infoApoyo
+    newApoyo
 };
   

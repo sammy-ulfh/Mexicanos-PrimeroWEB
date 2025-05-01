@@ -21,12 +21,8 @@ function InfoApoyo(){
               <h1 className='text-4xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-6xl'>{data.Escuela.type}</h1>
             </div>
 
-          {
-            <TarjetaApoyos id={'Escuela'} json={data.Escuela} />
-          }
-          {
-            <TarjetaApoyos id={'Donador'} json={data.Donador} />
-          }
+            {data?.tipo_apoyo_escuela && <TarjetaApoyos type={2} json={data} />}
+            {data?.tipo_apoyo_donador && <TarjetaApoyos type={3} json={data} />}
               
           </section>
         </Initial>
