@@ -8,9 +8,6 @@ import cambioStatus from '../Peticiones/Apoyos/cambioStatus.jsx';
 
 function InfoSolicitudApoyo(){
 
-
-  
-
   const loca = useLocation();
   const data = loca.state;
   console.log(data);
@@ -28,6 +25,7 @@ function InfoSolicitudApoyo(){
   const [isRejected, setIsRejected] = useState(false);
 
   const [formData, setFormData] = useState({
+    id_apoyo: data.id_apoyo,
     status: 1,
     razon_rechazo: ''
   });

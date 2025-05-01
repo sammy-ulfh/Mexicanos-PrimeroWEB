@@ -13,7 +13,11 @@ const perfilRoutes = require('./routes/perfilRoutes.js');
 const chatRoutes = require('./routes/chatRoutes.js');
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173', // frontend Vite
+  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+  credentials: true // solo si usas cookies o autenticación por sesión
+}));
 app.use(express.json());
 app.use(cookieParser());
 

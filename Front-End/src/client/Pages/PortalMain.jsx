@@ -1,10 +1,6 @@
 import '@fontsource/montserrat';
 import Initial from '../Layouts/Initial.jsx';
-<<<<<<< HEAD
-import rediregir from '/src/client/Peticiones/PeticionesPerfil/rediregir.jsx';
-=======
 import { useNavigate } from 'react-router-dom';
->>>>>>> 12a69bf21a2c9b1541b9c898970935bf5ac5a876
 
 
 function PortalMain() {

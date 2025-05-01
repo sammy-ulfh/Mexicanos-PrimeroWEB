@@ -1,6 +1,7 @@
 import fetchAuth from '/src/utils/fetchAuth';
 
 const cambioStatus = async (formData) => {
+    console.log('formData:', formData);
     try {
       const response = await fetchAuth('http://localhost:3000/apoyo/status', {
         method: 'PATCH',

@@ -1,4 +1,5 @@
 const TarjetaApoyos = ({ type, json }) => {
+  console.log(json);
   const tipo = type === 2 ? json.tipo_apoyo_escuela : json.tipo_apoyo_donador;
   const descripcion = type === 2 ? json.descripcion_escuela : json.descripcion_donador;
 
