@@ -10,6 +10,7 @@ function CuentaEscuela() {
 
     const locate = useLocation();
     const InfoEscuela = locate.state?.data;
+    console.log(InfoEscuela);
     const type = locate.state?.type;
     const id = 1;
 
@@ -40,7 +41,7 @@ function CuentaEscuela() {
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col justify-center'>
                     <p className='flex self-start w-[100%] '>Correo Institucional</p>
-                    <input type='text' value={InfoEscuela.correo_institucional} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input type='text' value={InfoEscuela.correo_escuela} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 { InfoEscuela.dir_matutino &&(
@@ -71,17 +72,17 @@ function CuentaEscuela() {
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Nombre del responsable</p>
-                    <input type='text' value={InfoEscuela.nombre_responsable} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input type='text' value={InfoEscuela.nombre} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Correo del responsable</p>
-                    <input type='text' value={InfoEscuela.correo_responsable} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input type='text' value={InfoEscuela.correo} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Edad del responsable</p>
-                    <input type='text' value={InfoEscuela.edad_responsable} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input type='text' value={InfoEscuela.edad} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
             {isRejected && (

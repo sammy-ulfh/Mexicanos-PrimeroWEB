@@ -1,3 +1,5 @@
+import fetchAuth from '/src/utils/fetchAuth';
+
 const changeStatus = async ( id, type, id_escuela = null, status, razon_rechazo, id_donante = null ) => {
   
   let resultado = false;
@@ -6,18 +8,28 @@ const changeStatus = async ( id, type, id_escuela = null, status, razon_rechazo,
     razon_rechazo = null 
   }
 
-  const result = await fetch(`http://localhost:3000/change/status/${id_escuela != null ? 'escuela' : 'donante'}`, {
+  if (id_escuela){ 
+  const result = await fetchAuth('http://localhost:3000/school/status/', {
     method: 'PATCH',
     headers: { 'Content-Type' : 'application/json' },
     body: JSON.stringify({
-      id: id,
-      type: type,
       id_escuela: id_escuela,
-      id_donante: id_donante,
       status: status,
       razon_rechazo: razon_rechazo
     })
   });
+
+}else{
+  const result = await fetchAuth('http://localhost:3000/donator/status/', {
+    method: 'PATCH',
+    headers: { 'Content-Type' : 'application/json' },
+    body: JSON.stringify({
+      id_donador: id_donador,
+      status: status,
+      razon_rechazo: razon_rechazo
+    })
+  });
+}
 
   const JSONresult = await result.json();
 

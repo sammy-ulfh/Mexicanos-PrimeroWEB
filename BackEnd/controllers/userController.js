@@ -30,8 +30,6 @@ const loginUser =  async (req, res) => {
 const crearUsuario = async (req, res) => {
   const {type, email, password } = req.body;
 
-  console.log(req.body);
-
   if (!type || !email || !password){
     res.status(400).json({ mensaje: 'Faltan datos' });
   }

@@ -6,18 +6,15 @@ const Validation = async (navigate) => {
         const data = await response.json();
         console.log(data.status);
 
-        if (data.status === 0){
-            navigate('/portal/school');
-        }else if (data.status === 2){
+        if (data.status == null){
             navigate('/portal');
+        }else if (data.status === 2){
+            navigate('/portal/school');
         }else if (data.status === 3){
             navigate('/portal/rejected');
         }
         else if (data.status === 1){
             navigate('/portal/wait');
-        }
-        else{
-            navigate('/portal/school');
         }
     }catch (error) {
         console.error('Error en la validación:', error);

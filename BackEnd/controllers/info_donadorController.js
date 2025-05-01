@@ -7,11 +7,10 @@ const path = require('path');
 const subirMiddleware = upload.fields([{name: "ine", maxCount: 1}, {name: "reporte", maxCount: 1}]); // Cambia 'archivo' por el nombre del campo en tu formulario
 
 const statusDonante = async (req, res) => {
-  const { id, type, id_donante, status, razon_rechazo } = req.body;
-  console.log(req.body);
+  const { id, status, razon_rechazo } = req.body;
 
   try{
-    const resultado = await Donantes.changeStatusDonante(status, id_donante, razon_rechazo);
+    const resultado = await Donantes.changeStatusDonante(status, id, razon_rechazo);
     res.status(201).json({ mensaje: 'Status modificado correctamente', id: id, type: type});
   }catch (error){
     console.error('Error al modificar los datos:', error);

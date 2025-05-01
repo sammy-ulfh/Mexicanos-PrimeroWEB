@@ -1,6 +1,7 @@
 const subirArchivo  = require("../models/archivosModel.js");
 const multer = require("multer");//npm install express multer @aws-sdk/client-s3
 const Escuela = require('../models/info_escuelaModel.js');
+const Donante = require('../models/info_donadorModel.js');
 const upload = multer({ dest: "uploads/" }); 
 const path = require('path');
 
@@ -31,7 +32,7 @@ const completarForm = async (req, res) => {
   
     try{
       const resultado = await Escuela.getSolicitudesEscuelas();
-      console.log(resultado);
+
       res.status(201).json({ mensaje: 'Solicitudes extraidas correctamente', response: resultado});
     }catch (error){
       console.error('Error al extraer los datos:', error);
@@ -41,15 +42,14 @@ const completarForm = async (req, res) => {
   
 
 const statusEscuela = async (req, res) => {
-  const { id_escuela, status, razon_rechazo } = req.body;
-  console.log(req.body);
+  const { id, status, razon_rechazo } = req.body; // id de escuela o donante
 
   try{
-    const resultado = await Escuela.changeStatusEscuela(status, id_escuela, razon_rechazo);
-    res.status(201).json({ mensaje: 'Status modificado correctamente', id: id, type: type});
-  }catch (error){
-    console.error('Error al modificar los datos:', error);
-    res.status(500).json({ mensaje: 'Error al modificar los datos', error });
+      const resultado = await Escuela.changeStatusEscuela(status, id, razon_rechazo);
+      res.status(201).json({ mensaje: 'Status modificado correctamente', id: id, type: type});
+    }catch (error){
+      console.error('Error al modificar los datos:', error);
+      res.status(500).json({ mensaje: 'Error al modificar los datos', error });
   }
 };
 
@@ -96,13 +96,12 @@ const completarNecesidades = async (req, res) => {
 
 const extraerStatus = async (req, res) => {
   try {
-    /*if (req.type === 3){
-
-    }*/
-
-    const response = await Escuela.statusEscuelaInicial(req.id);
-    res.status(201).json({ mensaje: 'Status', status: response});
-
+    if (req.type === 3){
+      const response = await Donante.statusDonadorInicial(req.id);
+    }else {
+      const response = await Escuela.statusEscuelaInicial(req.id);
+      res.status(201).json({ mensaje: 'Status', status: response});
+    }
   } catch (error) {
     console.error('Error al guardar la extraer status', error);
     res.status(500).json({ mensaje: 'Error al extraer status', error });
