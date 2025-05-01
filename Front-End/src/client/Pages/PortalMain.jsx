@@ -2,7 +2,7 @@ import '@fontsource/montserrat';
 import Initial from '../Layouts/Initial.jsx';
 
 
-function PortalEscuela() {
+function PortalMain() {
 
 
     return (
@@ -37,7 +37,7 @@ function PortalEscuela() {
     )
   }
  
-  export default PortalEscuela
+  export default PortalMain
  
 
 

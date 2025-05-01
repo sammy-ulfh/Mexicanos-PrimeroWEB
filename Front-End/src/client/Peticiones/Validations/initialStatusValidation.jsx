@@ -9,7 +9,7 @@ const Validation = async (navigate) => {
         if (data.status == null){
             navigate('/portal');
         }else if (data.status === 2){
-            navigate('/portal/school');
+            navigate('/portal/main');
         }else if (data.status === 3){
             navigate('/portal/rejected');
         }

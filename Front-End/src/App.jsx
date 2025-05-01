@@ -17,7 +17,7 @@ import FormularioCrearCuenta from '/src/client/Pages/FormularioCrearCuenta';
 import FormularioEscuela from './client/Pages/FormularioEscuela';
 import FormularioDonador from './client/Pages/FormularioDonador';
 import PortalEspera from '/src/client/Pages/PortalEspera';
-import PortalEscuela from '/src/client/Pages/PortalEscuela';
+import PortalMain from '/src/client/Pages/PortalMain';
 import PortalRechazo from '/src/client/Pages/PortalRechazo';
 import ConfigurarPerfil from '/src/client/Pages/ConfigurarPerfil';
 import ConfigurarPerfilEscuela from '/src/client/Pages/ConfigurarPerfilEscuela';
@@ -49,7 +49,7 @@ function App() {
         <Route path='/new/account/school' element={<FormularioEscuela/>} />
         <Route path='/new/account/donator' element={<FormularioDonador/>} />
         <Route path='/portal/wait' element={<PortalEspera />} />
-        <Route path='/portal/school' element={<PortalEscuela />} />
+        <Route path='/portal/main' element={<PortalMain />} />
         <Route path='/portal/rejected' element={<PortalRechazo />} />
         <Route path='/configuration/profile' element={<ConfigurarPerfil />} />
         <Route path='/configuration/profile/school' element={<ConfigurarPerfilEscuela />} />
