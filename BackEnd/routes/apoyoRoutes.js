@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const apoyoController = require('../controllers/apoyoController.js');
 
-router.patch('/new', apoyoController.newApoyo);
+router.post('/new', apoyoController.newApoyo);
 
 router.patch('/status', apoyoController.cambiarStatus);
 

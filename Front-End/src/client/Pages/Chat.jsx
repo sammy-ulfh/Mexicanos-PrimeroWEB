@@ -3,7 +3,7 @@ import MainLayout from '../Layouts/MainLayout.jsx';
 import { React, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import TarjetaMensajes from '/src/GeneralComponents/TarjetaMensajes';
-import newApoyo from '../Peticiones/PeticionesApoyo/iniciarApoyo.jsx';
+import crearApoyo from '../Peticiones/PeticionesApoyo/iniciarApoyo.jsx';
 
 
 const Info = [
@@ -164,7 +164,7 @@ function ClientChat() {
                   <textarea name= "descripcion" onChange={handleChange} value={formData.descripcion} rows="6" placeholder='Resumen...' className='bg-white w-[100%] min-h-[60%] max-h-[60%] resize-none border rounded-3xl p-[2%]' />
                 </div>
                 <div className='w-[100%] h-[30%] flex justify-center items-end'>
-                  <button onClick={() => newApoyo(formData).catch(console.error)} className='w-[50%] sm:w-45%] md:w-[40%] lg:w-[35%] xl:w-[30%] 2xl:w-[30%] h-[100%] bg-[#009933] rounded-full border hover:scale-110 transition duration-300 font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl'>
+                  <button onClick={() => crearApoyo(formData).catch(console.error)} className='w-[50%] sm:w-45%] md:w-[40%] lg:w-[35%] xl:w-[30%] 2xl:w-[30%] h-[100%] bg-[#009933] rounded-full border hover:scale-110 transition duration-300 font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl'>
                     Notificar
                   </button>
                 </div>
