@@ -23,7 +23,11 @@ function useImageFromType(type){
 function Login() {
   const navigate = useNavigate();
   const locate = useLocation();
-  const type = locate.state?.type;
+  let type = Number(localStorage.getItem('type'));
+
+  if (!type){
+    type = locate.state?.type;
+  }
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

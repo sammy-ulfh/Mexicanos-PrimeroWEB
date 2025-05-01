@@ -17,6 +17,9 @@ const loginToken = async ( username, password, navigate ) => {
         if (response?.ok && data?.token) {
     
        document.cookie = `jwtToken=${data.token};`;
+  
+       localStorage.setItem('id', data?.id);
+       localStorage.setItem('type', data?.type);
        Validation(navigate);
      } else if (data?.mensaje) {
        return data.mensaje;

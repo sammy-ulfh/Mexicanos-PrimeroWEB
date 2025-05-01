@@ -2,9 +2,11 @@ import fetchAuth from '/src/utils/fetchAuth';
 
 const Validation = async (navigate) => {
     try{
-        const response = await fetchAuth('http://localhost:3000/school/status');
+
+        const response = await fetchAuth('http://localhost:3000/school/get/status');
         const data = await response.json();
-        console.log(data.status);
+
+        console.log(data);
 
         if (data.status == null){
             navigate('/portal');

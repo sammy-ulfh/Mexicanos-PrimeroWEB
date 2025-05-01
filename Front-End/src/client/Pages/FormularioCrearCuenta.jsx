@@ -20,8 +20,15 @@ const MessageComplete = ({ message, buttonMessage, route, navigate, type }) => (
 
 function FormularioCrearCuenta() {
     const navigate = useNavigate();
-    const locate = useLocation();
-    const type = locate.state?.type;
+
+    const [tipoCuenta, setTipoCuenta] = useState("");
+    const type = Number(tipoCuenta);
+
+
+    const handleChange = (event) => {
+      setTipoCuenta(event.target.value);
+    };
+  
     const [estatus, setEstatus] = useState([]);
 
     const [isHidden, setIsHidden] = useState(true);
@@ -38,7 +45,20 @@ function FormularioCrearCuenta() {
           <Initial>
             <section id="about" className="flex flex-wrap items-center justify-center w-[100%] h-full mt-[5vh] mb-[5vh] xl:ml-[10px] center">
               <div className="border border-black bg-white w-[80%] rounded-3xl flex flex-col items-center max_width">
-                  <article className='font-montserrat font-bold text-xl mt-[8vh] w-[60%] flex flex-col justify-center items-center'>
+
+                <article className='font-montserrat text-xl mt-[8vh] w-[60%] flex items-center flex-col justify-center'>
+                      <p className='flex font-bold self-start w-[100%]'>Tipo de cuenta:</p>
+                      <select name="type"
+                      value={tipoCuenta}
+                      onChange={handleChange}
+                      className="pl-[10px] w-full h-[5.5vh] border border-black rounded-xl bg-white text-black">
+                          <option value="0">Selecciona una opción</option>
+                          <option value="2">Escuela</option>
+                          <option value="3">Donante</option>
+                      </select>                    
+                </article>
+
+                  <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex flex-col justify-center items-center'>
                       <p className='flex self-start w-[100%] '>Correo electrónico</p>
                       <input type='text' placeholder='example@gmail.com' className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]' onChange={(e) => setEmail(e.target?.value)} />
                   </article>

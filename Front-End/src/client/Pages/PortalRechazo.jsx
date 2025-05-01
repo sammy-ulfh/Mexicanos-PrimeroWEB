@@ -1,9 +1,15 @@
 import '@fontsource/montserrat';
 import Initial from '../Layouts/Initial.jsx';
-
+import getRejected from '../Peticiones/razonRechazo/getRejected';
+import { useEffect, useState } from 'react';
 
 function PortalRechazo() {
 
+  const [data, setData] = useState('');
+
+  useEffect(() => {
+    getRejected().then((res) =>setData(res));   
+}, [])
 
     return (
       <>
@@ -19,11 +25,8 @@ function PortalRechazo() {
                   Razón de rechazo:
                 </span>
 
-               { /*Codigo de inserción de error*/
-                /*Ejemplo*/
-               }
                 <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl w-[95%] mt-[3vh]">
-                El INE no se ve correctamente, envíe toda su información nuevamente con el INE correctamente.
+                {data}
                 </span>
 
                 <button className='flex justify-center items-center w-[40%] h-[10vh] mt-[50px] rounded-full border-3 border-solid text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold hover:scale-105 transition duration-300' style={{ backgroundColor: '#009933' }}>

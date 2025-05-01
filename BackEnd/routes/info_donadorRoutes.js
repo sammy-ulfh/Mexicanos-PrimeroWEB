@@ -5,7 +5,11 @@ const { verifyToken } = require('../middlewares/verifyToken');
 
 router.get('/info/donantes', verifyToken, donadorController.InfoDonante);
 
-router.patch('/status', verifyToken, donadorController.statusDonante);
+router.get('/info/donante', verifyToken, donadorController.InfoDonante);
+
+router.patch('/change/status', verifyToken, donadorController.changeStatus);
+
+router.patch('/get/status', verifyToken, donadorController.extraerStatus);
 
 router.post('/new/info', verifyToken, donadorController.subirMiddleware, donadorController.completarForm);
 

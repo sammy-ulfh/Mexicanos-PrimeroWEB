@@ -32,16 +32,26 @@ const completarForm = async (req, res) => {
   
     try{
       const resultado = await Escuela.getSolicitudesEscuelas();
-
       res.status(201).json({ mensaje: 'Solicitudes extraidas correctamente', response: resultado});
     }catch (error){
       console.error('Error al extraer los datos:', error);
       res.status(500).json({ mensaje: 'Error al extraer las solicitudes', error });
     }
   };
+
+  const razonRechazo = async (req, res) => {
+  
+    try{
+      const resultado = await Escuela.getRazonRechazo(req.payload.id_usuario);
+      res.status(201).json({ mensaje: 'Razon extraida correctamente', response: resultado});
+    }catch (error){
+      console.error('Error al extraer la razon de rechazo:', error);
+      res.status(500).json({ mensaje: 'Error al extraer la razon de rechazo:', error });
+    }
+  };
   
 
-const statusEscuela = async (req, res) => {
+const changeStatus = async (req, res) => {
   const { id, status, razon_rechazo } = req.body; // id de escuela o donante
 
   try{
@@ -98,6 +108,7 @@ const extraerStatus = async (req, res) => {
   try {
     if (req.type === 3){
       const response = await Donante.statusDonadorInicial(req.id);
+      res.status(201).json({ mensaje: 'Status', status: response});
     }else {
       const response = await Escuela.statusEscuelaInicial(req.id);
       res.status(201).json({ mensaje: 'Status', status: response});
@@ -111,9 +122,10 @@ const extraerStatus = async (req, res) => {
 module.exports = {
   completarForm,
   InfoEscuela,
-  statusEscuela,
+  changeStatus,
   formularioContestado,
   completarNecesidades,
   subirMiddleware,
-  extraerStatus
+  extraerStatus,
+  razonRechazo
 };

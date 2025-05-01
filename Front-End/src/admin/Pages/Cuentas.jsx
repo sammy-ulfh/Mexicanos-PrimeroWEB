@@ -69,7 +69,7 @@ function Cuentas() {
                     infoDonator.map((tarjeta) => (
                       <Tarjeta
                         user_id={tarjeta.id_usuario}
-                        name={tarjeta.nombre_responsable}
+                        name={tarjeta.nombre}
                         navigate={navigate}
                         data={tarjeta}
                         dir="/admin/cuentas/donadores"
@@ -94,7 +94,7 @@ function Cuentas() {
                     infoSchool.map((tarjeta) => (
                       <Tarjeta
                         user_id={tarjeta.id_usuario}
-                        name={tarjeta.nombre_responsable}
+                        name={tarjeta.nombre}
                         navigate={navigate}
                         data={tarjeta}
                         dir="/admin/cuentas/escuelas"
