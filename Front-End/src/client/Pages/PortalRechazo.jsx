@@ -2,13 +2,16 @@ import '@fontsource/montserrat';
 import Initial from '../Layouts/Initial.jsx';
 import getRejected from '../Peticiones/razonRechazo/getRejected';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function PortalRechazo() {
 
   const [data, setData] = useState('');
+  const type = localStorage.getItem('type');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    getRejected().then((res) =>setData(res));   //peticion de la razon de rechazo
+    getRejected(type).then((res) =>setData(res));   //peticion de la razon de rechazo
 }, [])
 
     return (
@@ -29,7 +32,8 @@ function PortalRechazo() {
                 {data}
                 </span>
 
-                <button className='flex justify-center items-center w-[40%] h-[10vh] mt-[50px] rounded-full border-3 border-solid text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold hover:scale-105 transition duration-300' style={{ backgroundColor: '#009933' }}>
+                <button className='flex justify-center items-center w-[40%] h-[10vh] mt-[50px] rounded-full border-3 border-solid text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold hover:scale-105 transition duration-300' style={{ backgroundColor: '#009933' }}
+                onClick={type == 2 ? () => navigate('/new/account/school') : () => navigate('/new/account/donator')}>
                 Subir información
                 </button>
 

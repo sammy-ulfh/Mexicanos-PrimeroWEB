@@ -11,6 +11,8 @@ router.patch('/change/status', verifyToken, donadorController.changeStatus);
 
 router.patch('/get/status', verifyToken, donadorController.extraerStatus);
 
+router.get('/get/rejected', verifyToken, donadorController.razonRechazo);
+
 router.post('/new/info', verifyToken, donadorController.subirMiddleware, donadorController.completarForm);
 
 
