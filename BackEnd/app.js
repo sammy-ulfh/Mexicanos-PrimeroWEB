@@ -3,6 +3,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const app = express();
 
+// Importar rutas
 const userRoutes = require('./routes/usuariosRoutes.js');
 const schoolRoutes = require('./routes/info_escuelaRoutes.js');
 const donatorRoutes = require('./routes/info_donadorRoutes.js');
@@ -11,10 +12,12 @@ const archivosRoutes = require('./routes/archivosRoutes.js');
 const perfilRoutes = require('./routes/perfilRoutes.js');
 const chatRoutes = require('./routes/chatRoutes.js');
 
+// Middlewares
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
+// Rutas principales
 app.use('/user', userRoutes);
 app.use('/school', schoolRoutes);
 app.use('/donator', donatorRoutes);
@@ -23,5 +26,9 @@ app.use('/apoyo', apoyoRoutes);
 app.use('/archivos', archivosRoutes);
 app.use('/chat', chatRoutes);
 
+// Ruta de prueba directa (para aislar errores)
+app.get('/prueba/:id', (req, res) => {
+  res.json({ mensaje: `Ruta de prueba recibida con ID: ${req.params.id}` });
+});
 
 module.exports = app;

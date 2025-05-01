@@ -23,7 +23,7 @@ const obtenerChats = async (req, res) => {
 
 const obtenerChatPorId = async (req, res) => {
     try {
-        const { id_chat } = req.headers;
+        const { id_chat } = req.params;
         const resultado = await Chat.obtenerChatPorId(id_chat);
         if (resultado) {
             res.status(200).json({ mensaje: 'Chat encontrado', chat: resultado });
