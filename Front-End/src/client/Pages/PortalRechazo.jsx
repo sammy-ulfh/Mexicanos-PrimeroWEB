@@ -8,7 +8,7 @@ function PortalRechazo() {
   const [data, setData] = useState('');
 
   useEffect(() => {
-    getRejected().then((res) =>setData(res));   
+    getRejected().then((res) =>setData(res));   //peticion de la razon de rechazo
 }, [])
 
     return (
