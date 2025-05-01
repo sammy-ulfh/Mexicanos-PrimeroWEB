@@ -27,13 +27,13 @@ const newApoyo = async (req, res) => {
 
 const cambiarStatus = async (req, res) => {
     try {
-        const { status, razon_rechazo, id_apoyo } = req.body;
+        const { id_apoyo, id_usuario, status, razon_rechazo  } = req.body;
         if(status==3){
             await Apoyo.cambiarStatus(id_apoyo, null, status, razon_rechazo);
             res.status(201).json({ mensaje: 'Información almacenada', redirigir: '/admin/apoyos' });
         }
         else if(status==2){
-            await Apoyo.cambiarStatus(id_apoyo, req.payload.id_usuario, status, razon_rechazo);
+            await Apoyo.cambiarStatus(id_apoyo, id_usuario, status, razon_rechazo);
             res.status(201).json({ mensaje: 'información almacenada', redirigir:'/admin/apoyos'});
         }
     } catch (error) {
