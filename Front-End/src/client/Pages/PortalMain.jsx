@@ -1,6 +1,6 @@
 import '@fontsource/montserrat';
 import Initial from '../Layouts/Initial.jsx';
-import rediregir from '/src/client/Peticiones/PeticionesInicialForm/rediregir.jsx';
+import rediregir from '/src/client/Peticiones/PeticionesPerfil/rediregir.jsx';
 
 
 function PortalMain() {
