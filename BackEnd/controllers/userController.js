@@ -14,12 +14,11 @@ const loginUser =  async (req, res) => {
 
     if (verifyUser.length > 0){
       const payload = verifyUser[0];
-      
+
       const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '1h' });
 
-      res.json({ token });
-    }
-    else{
+      res.status(201).json({ token, id: payload.id_usuario, type: payload.tipo });
+    }else{
       res.status(404).json({ mensaje: 'Correo o contraseña incorrecto.' });
     }
   }catch(err){
@@ -43,20 +42,7 @@ const crearUsuario = async (req, res) => {
   }
 };
 
-const mandarPerfil = async (req, res) => {
-  if(req.payload.tipo == 2){
-    res.status(200).json({mensaje: 'Redirigiendo', redirigir: '/configuration/profile/school'});
-  }
-  else if(req.payload.tipo == 3){
-    res.status(200).json({mensaje: 'Redirigiendo', redirigir: '/configuration/profile/donator'});
-  }
-  else{
-    res.status(400).json({mensaje: 'Error al redirigir'});
-  }
-};
-
 module.exports = {
   crearUsuario,
   loginUser,
-  mandarPerfil
 };

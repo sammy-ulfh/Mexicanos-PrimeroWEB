@@ -8,23 +8,23 @@ const changeStatus = async ( id, type, id_escuela = null, status, razon_rechazo,
     razon_rechazo = null 
   }
 
-  if (id_escuela){ 
-  const result = await fetchAuth('http://localhost:3000/school/status/', {
+  if (id_escuela != null){ 
+    const result = await fetchAuth('http://localhost:3000/school/change/status', {
     method: 'PATCH',
     headers: { 'Content-Type' : 'application/json' },
     body: JSON.stringify({
-      id_escuela: id_escuela,
+      id: id_escuela,
       status: status,
       razon_rechazo: razon_rechazo
     })
   });
 
 }else{
-  const result = await fetchAuth('http://localhost:3000/donator/status/', {
+  const result = await fetchAuth('http://localhost:3000/donator/change/status', {
     method: 'PATCH',
     headers: { 'Content-Type' : 'application/json' },
     body: JSON.stringify({
-      id_donador: id_donador,
+      id: id_donante,
       status: status,
       razon_rechazo: razon_rechazo
     })

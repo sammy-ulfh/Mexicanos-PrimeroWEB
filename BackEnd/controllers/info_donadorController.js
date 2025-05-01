@@ -6,7 +6,7 @@ const path = require('path');
 
 const subirMiddleware = upload.fields([{name: "ine", maxCount: 1}, {name: "reporte", maxCount: 1}]); // Cambia 'archivo' por el nombre del campo en tu formulario
 
-const statusDonante = async (req, res) => {
+const changeStatus = async (req, res) => {
   const { id, status, razon_rechazo } = req.body;
 
   try{
@@ -22,7 +22,6 @@ const InfoDonante = async (req, res) => {
 
   try{
     const resultado = await Donantes.getSolicitudesDonantes();
-    console.log(resultado);
     res.status(201).json({ mensaje: 'Solicitudes extraidas correctamente', response: resultado});
   }catch (error){
     console.error('Error al extraer los datos:', error);
@@ -57,9 +56,21 @@ const completarForm = async (req, res) => {
     }
   };
 
+const extraerStatus = async (req, res) => {
+  try {
+      const response = await Donante.statusDonadorInicial(req.id);
+      res.status(201).json({ mensaje: 'Status', status: response});
+
+  } catch (error) {
+    console.error('Error al guardar la extraer status', error);
+    res.status(500).json({ mensaje: 'Error al extraer status', error });
+  }
+};
+
 module.exports = {
   InfoDonante,
-  statusDonante,
+  changeStatus,
   completarForm,
-  subirMiddleware
+  subirMiddleware,
+  extraerStatus
 };

@@ -1,7 +1,7 @@
 import '@fontsource/montserrat';
 import MainLayout from '../Layouts/MainLayout';
 import MostrarOpcion from '../../GeneralComponents/MostrarOpcion';
-
+import InstitutionValidation from '../Peticiones/infoCuentas/institutionValidation';
 
 function ConfigurarPerfilDonador() {
 
@@ -46,7 +46,8 @@ function ConfigurarPerfilDonador() {
                     <p className='flex self-start font-bold  w-[auto] '>Resumen público</p>
                     <input className='mt-[5px] w-[100%] h-[30vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
-
+            {InstitutionValidation() == true &&( 
+                <>
                 <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-bold mt-[20px] mt-[100px] mb-[40px] w-[80%] flex justify-center">
                     Institución
                 </h2>
@@ -76,7 +77,9 @@ function ConfigurarPerfilDonador() {
                     <p className='flex self-start font-bold  w-[auto] '>Resumen público de la Institución</p>
                     <input className='mt-[5px] w-[100%] h-[30vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
-
+                </>
+            )
+                }
                 <button className='flex justify-center items-center w-[40%] h-[10vh] mt-[50px] mb-[20px] rounded-4xl text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold border-4 border-solid hover:scale-105 transition duration-300' style={{ backgroundColor: '#009933' }}>
                     Guardar
                 </button>

@@ -1,10 +1,15 @@
 import '@fontsource/montserrat';
 import Initial from '../Layouts/Initial.jsx';
+<<<<<<< HEAD
 import rediregir from '/src/client/Peticiones/PeticionesPerfil/rediregir.jsx';
+=======
+import { useNavigate } from 'react-router-dom';
+>>>>>>> 12a69bf21a2c9b1541b9c898970935bf5ac5a876
 
 
 function PortalMain() {
 
+    const navigate = useNavigate();
 
     return (
       <>
@@ -22,7 +27,8 @@ function PortalMain() {
                 <span className='text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl w-[95%] mt-[5vh]'>
                   ¡Tu perfil público es importante!
                 </span>
-                <button className='flex justify-center items-center w-[60%] xl:w-[40%] 2xl:w-[40%] h-[10vh] mt-[50px] rounded-full border-3 border-solid text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold hover:scale-105 transition duration-300' style={{ backgroundColor: '#009933' }} onClick={() => rediregir()}>
+                <button className='flex justify-center items-center w-[60%] xl:w-[40%] 2xl:w-[40%] h-[10vh] mt-[50px] rounded-full border-3 border-solid text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold hover:scale-105 transition duration-300' style={{ backgroundColor: '#009933' }}
+                onClick={() => navigate('/configuration/profile')}>
                     Configurar perfil
                 </button>
 

@@ -18,6 +18,8 @@ function CuentaDonador() {
 
     const navigate = useNavigate();
 
+    console.log(InfoDonante);
+
     return (
       <>
         <div className="min-h-screen min-w-screen z-0 font-montserrat flex flex-col justify-between" style={{ backgroundColor: '#FBFBE6' }}>
@@ -35,22 +37,22 @@ function CuentaDonador() {
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Nombre del responsable</p>
-                    <input type='text' value={InfoDonante.nombre_responsable} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input type='text' value={InfoDonante.nombre} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Correo del responsable</p>
-                    <input type='text' value={InfoDonante.correo_responsable} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input type='text' value={InfoDonante.correo} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>RFC</p>
-                    <input type='text' value={InfoDonante.rfc_responsable} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input type='text' value={InfoDonante.rfc} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Edad del responsable</p>
-                    <input type='text' value={InfoDonante.edad_responsable} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input type='text' value={InfoDonante.edad} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
                 
                 <p className='font-montserrat flex flex-start w-[60%] mt-[40px] '>INE/IFE</p>
@@ -64,12 +66,12 @@ function CuentaDonador() {
 
                     <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                         <p className='flex self-start w-[100%] '>Nombre de la institución</p>
-                        <input type='text' value={InfoDonante.nombre_identificacion} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                        <input type='text' value={InfoDonante.nombre_institucion} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                     </article>
 
                     <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                         <p className='flex self-start w-[100%] '>RFC de la institución</p>
-                        <input type='text' value={InfoDonante.rfc} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                        <input type='text' value={InfoDonante.rfc_institucion} className='pointer-events-none mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                     </article>
 
                     <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>

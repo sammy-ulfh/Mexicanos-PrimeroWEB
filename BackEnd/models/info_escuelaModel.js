@@ -23,6 +23,14 @@ const getSolicitudesEscuelas = async () => {
   return result;
 };
 
+const getRazonRechazo = async (id) => {
+  const [result] = await db.execute(
+    'SELECT razon_rechazo FROM info_escuela WHERE status = 3 AND id_usuario = ?',
+    [id]
+  );
+  return result;
+};
+
 const statusEscuelaInicial = async (id_usuario) => {
   const [result] = await db.execute(
     'SELECT status FROM info_escuela WHERE id_usuario = ?',
@@ -53,5 +61,6 @@ module.exports = {
   getSolicitudesEscuelas,
   statusEscuelaInicial,
   newNecesidades,
-  subirReporteEscuela
+  subirReporteEscuela,
+  getRazonRechazo
 };
