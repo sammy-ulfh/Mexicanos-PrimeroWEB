@@ -44,5 +44,6 @@ const crearUsuario = async (req, res) => {
 
 module.exports = {
   crearUsuario,
-  loginUser
+  loginUser,
+  mandarPerfil
 };
