@@ -11,7 +11,7 @@ const changeStatus = async (req, res) => {
 
   try{
     const resultado = await Donantes.changeStatusDonante(status, id, razon_rechazo);
-    res.status(201).json({ mensaje: 'Status modificado correctamente', id: id, type: type});
+    res.status(201).json({ mensaje: 'Status modificado correctamente', id: id});
   }catch (error){
     console.error('Error al modificar los datos:', error);
     res.status(500).json({ mensaje: 'Error al modificar los datos', error });
@@ -67,10 +67,22 @@ const extraerStatus = async (req, res) => {
   }
 };
 
+const razonRechazo = async (req, res) => {
+  
+    try{
+      const resultado = await Donante.getRazonRechazo(req.payload.id_usuario);
+      res.status(201).json({ mensaje: 'Razon extraida correctamente', response: resultado});
+    }catch (error){
+      console.error('Error al extraer la razon de rechazo:', error);
+      res.status(500).json({ mensaje: 'Error al extraer la razon de rechazo:', error });
+    }
+  };
+
 module.exports = {
   InfoDonante,
   changeStatus,
   completarForm,
   subirMiddleware,
-  extraerStatus
+  extraerStatus,
+  razonRechazo
 };
