@@ -2,6 +2,7 @@ import '@fontsource/montserrat';
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import cerrarSesion from '../../GeneralComponents/cerrarSesion';
 
 const Initial = ({ children }) => {
 
@@ -55,7 +56,7 @@ const Initial = ({ children }) => {
                       </button>
                     </li>
                     <li className='w-[80%] h-[7%] m-[1%]'>
-                      <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' onClick={() => navigate('/admin')}>
+                      <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' onClick={() => cerrarSesion(navigate)}>
                         Cerrar sesión
                       </button>
                     </li>
@@ -99,7 +100,7 @@ const Initial = ({ children }) => {
                   </button>
                 </li>
                 <li className='w-[13%] h-[70%] m-[0.5%]'>
-                  <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' onClick={() => navigate('/admin')}>
+                  <button className='hover:scale-110 transition duration-300 border border-black rounded-3xl bg-[#009933] flex justify-center items-center font-bold font-montserrat w-full h-full' onClick={() => cerrarSesion(navigate)}>
                     Cerrar sesión
                   </button>
                 </li>

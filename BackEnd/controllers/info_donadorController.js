@@ -58,7 +58,7 @@ const completarForm = async (req, res) => {
 
 const extraerStatus = async (req, res) => {
   try {
-      const response = await Donante.statusDonadorInicial(req.id);
+      const response = await Donantes.statusDonadorInicial(req.id);
       res.status(201).json({ mensaje: 'Status', status: response});
 
   } catch (error) {
@@ -70,7 +70,7 @@ const extraerStatus = async (req, res) => {
 const razonRechazo = async (req, res) => {
   
     try{
-      const resultado = await Donante.getRazonRechazo(req.payload.id_usuario);
+      const resultado = await Donantes.getRazonRechazo(req.payload.id_usuario);
       res.status(201).json({ mensaje: 'Razon extraida correctamente', response: resultado});
     }catch (error){
       console.error('Error al extraer la razon de rechazo:', error);
