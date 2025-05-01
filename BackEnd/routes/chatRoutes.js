@@ -10,7 +10,7 @@ router.post('/crear', chatController.crearChat);
 router.get('/todos', chatController.obtenerChats);
 
 // Obtener un chat por su ID
-router.get('/individual', chatController.obtenerChatPorId);
+router.get('/:id_chat', chatController.obtenerChatPorId);
 
 // Eliminar un chat por su ID
 router.delete('/eliminar/:id_chat', chatController.eliminarChat);
