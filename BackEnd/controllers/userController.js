@@ -43,7 +43,20 @@ const crearUsuario = async (req, res) => {
   }
 };
 
+const mandarPerfil = async (req, res) => {
+  if(req.payload.tipo == 2){
+    res.status(200).json({mensaje: 'Redirigiendo', redirigir: '/configuration/profile/school'});
+  }
+  else if(req.payload.tipo == 3){
+    res.status(200).json({mensaje: 'Redirigiendo', redirigir: '/configuration/profile/donator'});
+  }
+  else{
+    res.status(400).json({mensaje: 'Error al redirigir'});
+  }
+};
+
 module.exports = {
   crearUsuario,
-  loginUser
+  loginUser,
+  mandarPerfil
 };

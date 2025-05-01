@@ -98,6 +98,7 @@ const extraerStatus = async (req, res) => {
   try {
     if (req.type === 3){
       const response = await Donante.statusDonadorInicial(req.id);
+      res.status(201).json({ mensaje: 'Status', status: response});
     }else {
       const response = await Escuela.statusEscuelaInicial(req.id);
       res.status(201).json({ mensaje: 'Status', status: response});
