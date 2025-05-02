@@ -28,10 +28,32 @@ const eliminarParticipante = async (id_chat, id_usuario) => {
 };
 
 // Obtener todos los chats
-const obtenerChats = async (id) => {
+const getChats = async (id) => {
   const [result] = await db.execute(
-    'SELECT * FROM chat_participantes WHERE id_usuario = ?',
-    [id]
+    `SELECT 
+  cp.id_chat,
+  cp.id_escuela,
+  ie.nombre AS nombre_escuela,
+  cp.id_donante,
+  id.nombre AS nombre_donante,
+  cp.id_admin,
+  u.correo AS nombre_admin  -- o puedes usar otro campo si admin tiene su propio detalle
+FROM chat_participantes cp
+LEFT JOIN info_escuela ie ON cp.id_escuela = ie.id_usuario
+LEFT JOIN info_donador id ON cp.id_donante = id.id_usuario
+LEFT JOIN usuarios u ON cp.id_admin = u.id_usuario
+WHERE (
+    cp.id_escuela = ? OR 
+    cp.id_donante = ? OR 
+    cp.id_admin = ?
+)
+AND (
+    (cp.id_escuela IS NOT NULL) +
+    (cp.id_donante IS NOT NULL) +
+    (cp.id_admin IS NOT NULL)
+) = 2;
+`,
+    [id, id, id]
   );
   return result;
 };
@@ -40,5 +62,5 @@ module.exports = {
     agregarParticipante,
     obtenerParticipantesPorChat,
     eliminarParticipante,
-    obtenerChats
+    getChats
 };

@@ -5,7 +5,9 @@ const cerrarSesion = (navigate) => {
     localStorage.removeItem('type');
     localStorage.removeItem('id');
 
-    if (type === 1){
+    console.log(type);
+
+    if (type == 1){
         navigate('/admin');
     }else{
         navigate('/login');
