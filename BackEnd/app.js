@@ -32,6 +32,7 @@ app.use('/archivos', archivosRoutes);
 app.use('/chat', chatRoutes);
 app.use('/chat_participantes', chatParticipantesRoutes);
 app.use('/mensajes', mensajesRoutes);
+app.use('/api', mensajesRoutes);
 
 // Ruta de prueba directa (para aislar errores)
 app.get('/prueba/:id', (req, res) => {
