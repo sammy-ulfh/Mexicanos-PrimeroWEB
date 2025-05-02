@@ -72,10 +72,49 @@ const getChats = async (id) => {
   return result;
 };
 
+const getProcesosActivos = async (id) => {
+  const [result] = await db.execute(
+    `SELECT 
+  a.*, 
+  m.id_mensaje, 
+  m.contenido AS ultimo_mensaje, 
+  m.fecha_envio, 
+  u.nombre AS nombre_emisor
+FROM (
+    SELECT a.*
+    FROM apoyo a
+    JOIN chat_participantes cp ON a.id_chat = cp.id_chat
+    WHERE (
+        cp.id_escuela = ? OR 
+        cp.id_donante = ? OR 
+        cp.id_admin = ?
+    )
+    AND (
+        (cp.id_escuela IS NOT NULL) +
+        (cp.id_donante IS NOT NULL) +
+        (cp.id_admin IS NOT NULL)
+    ) = 3
+) AS a
+LEFT JOIN (
+    SELECT m1.*
+    FROM mensajes m1
+    WHERE m1.fecha_envio = (
+        SELECT MAX(m2.fecha_envio)
+        FROM mensajes m2
+        WHERE m2.id_chat = m1.id_chat
+    )
+) AS m ON a.id_chat = m.id_chat
+LEFT JOIN usuarios u ON m.id_sender = u.id_usuario;`,
+    [id, id, id]
+  );
+  
+  return result;
+};
 
 module.exports = {
     agregarParticipante,
     obtenerParticipantesPorChat,
     eliminarParticipante,
-    getChats
+    getChats,
+    getProcesosActivos
 };

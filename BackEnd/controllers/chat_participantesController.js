@@ -45,9 +45,22 @@ const obtenerChats = async (req, res) => {
     }
 };
 
+const obtenerProcesosActivos = async (req, res) => {
+    try {
+        const id = 1;
+        console.log(id);
+        const resultado = await ChatParticipantes.getProcesosActivos(id);
+        res.status(200).json({ mensaje: 'Procesos activos obtenidos exitosamente', chats: resultado });
+    } catch (error) {
+        console.error('Error al obtener los procesos activos:', error);
+        res.status(500).json({ mensaje: 'Error al obtener procesos activos', error });
+    }
+};
+
 module.exports = {
     agregarParticipante,
     obtenerParticipantesPorChat,
     eliminarParticipante,
-    obtenerChats
+    obtenerChats,
+    obtenerProcesosActivos
 };

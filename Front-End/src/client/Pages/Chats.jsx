@@ -5,121 +5,28 @@ import { useNavigate } from 'react-router-dom';
 import TarjetaProcesos from '../../GeneralComponents/TarjetaProcesos';
 import TarjetaChats from '../../GeneralComponents/TarjetaChats';
 import getChats from '../Peticiones/chats/getChats';
-
-const Procesos = [
-  {
-      chat_id: 1,
-      info: {
-        'Escuela': {
-        id: 1,
-        name: 'Everardo Romero Arenas #1',
-        type: 'Donación de libros',
-        resumen: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
-        },
-        'Donador': {
-        id: 2,
-        name: 'Everardo Romero Arenas #1',
-        type: 'Donación de libros',
-        resumen: 'El proceso de donación que se realizará, será para aportar libros que ayuden a que los niños tengan material para aprender cosas extras o leer temas de interés.'
-        }
-      },
-      type: 'Donación de libros',
-      last_message: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
-  },
-  {
-      chat_id: 1,
-      info: {
-        'Escuela': {
-        id: 1,
-        name: 'Everardo Romero Arenas #1',
-        type: 'Donación de libros',
-        resumen: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
-        },
-        'Donador': {
-        id: 2,
-        name: 'Everardo Romero Arenas #1',
-        type: 'Donación de libros',
-        resumen: 'El proceso de donación que se realizará, será para aportar libros que ayuden a que los niños tengan material para aprender cosas extras o leer temas de interés.'
-        }
-      },
-      type: 'Donación de libros',
-      last_message: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
-  },
-  {
-      chat_id: 1,
-      info: {
-        'Escuela': {
-        id: 1,
-        name: 'Everardo Romero Arenas #1',
-        type: 'Donación de libros',
-        resumen: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
-        },
-        'Donador': {
-        id: 2,
-        name: 'Everardo Romero Arenas #1',
-        type: 'Donación de libros',
-        resumen: 'El proceso de donación que se realizará, será para aportar libros que ayuden a que los niños tengan material para aprender cosas extras o leer temas de interés.'
-        }
-      },
-      type: 'Donación de libros',
-      last_message: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
-  },
-  {
-      chat_id: 1,
-      info: {
-        'Escuela': {
-        id: 1,
-        name: 'Everardo Romero Arenas #1',
-        type: 'Donación de libros',
-        resumen: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
-        },
-        'Donador': {
-        id: 2,
-        name: 'Everardo Romero Arenas #1',
-        type: 'Donación de libros',
-        resumen: 'El proceso de donación que se realizará, será para aportar libros que ayuden a que los niños tengan material para aprender cosas extras o leer temas de interés.'
-        }
-      },
-      type: 'Donación de libros',
-      last_message: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
-  },
-  {
-      chat_id: 1,
-      info: {
-        'Escuela': {
-        id: 1,
-        name: 'Everardo Romero Arenas #1',
-        type: 'Donación de libros',
-        resumen: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
-        },
-        'Donador': {
-        id: 2,
-        name: 'Everardo Romero Arenas #1',
-        type: 'Donación de libros',
-        resumen: 'El proceso de donación que se realizará, será para aportar libros que ayuden a que los niños tengan material para aprender cosas extras o leer temas de interés.'
-        }
-      },
-      type: 'Donación de libros',
-      last_message: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
-  }
-    ]
+import getProcesosActivos from '../Peticiones/procesos/getProcesosActivos';
 
 function ClientChats() {
 
     const [isProcess, setIsProcess] = useState(true);
     const [Chats, setChats] = useState([]);
+    const [Procesos, setProcesos] = useState([]);
 
     const navigate = useNavigate();
 
     const id = Number(localStorage.getItem('id'));
     const type = Number(localStorage.getItem('type'));
-    console.log(Chats);
+    console.log(Procesos);
 
     useEffect(() => {
       async function fetchChats() {
         try {
           const data = await getChats();
           setChats(data);
+
+          const data1 = await getProcesosActivos();
+          setProcesos(data1);
         } catch (error) {
           console.error("Error loading chats", error);
         } finally {
