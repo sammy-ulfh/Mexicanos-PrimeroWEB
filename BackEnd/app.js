@@ -15,11 +15,7 @@ const chatParticipantesRoutes = require('./routes/chat_participantesRoutes.js');
 const mensajesRoutes = require('./routes/mensajesRoutes.js');
 
 // Middlewares
-app.use(cors({
-  origin: 'http://localhost:5173', // frontend Vite
-  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-  credentials: true // solo si usas cookies o autenticación por sesión
-}));
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
