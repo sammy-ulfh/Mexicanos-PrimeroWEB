@@ -2,7 +2,7 @@ import '@fontsource/montserrat';
 import MainLayout from '../Layouts/MainLayout.jsx';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import TarjetaMensajes from '../GeneralComponents/TarjetaMensajes.jsx';
+import TarjetaMensajes from '/src/GeneralComponents/TarjetaMensajes.jsx';
 import { getMessages, saveMessage } from '../services/chatService.js';
 
 function ClientChat() {
