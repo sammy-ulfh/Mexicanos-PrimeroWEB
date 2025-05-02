@@ -2,25 +2,25 @@ const db = require('../config/db');
 
 const newInfoDonador = async (rfc, id_usuario, correo, edad, ine, inst, nombre_institucion, correo_institucion, rfc_institucion, reporte) => {
   const [result] = await db.execute(
-    `INSERT INTO info_donador (rfc, id_usuario, correo, edad, ine, inst, nombre_institucion, correo_institucion, rfc_institucion, reporte, status, razon_rechazo)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, null)
+    `INSERT INTO info_donador(
+      rfc, id_usuario, correo, edad, ine, inst, nombre_institucion, 
+      correo_institucion, rfc_institucion, reporte, status
+    ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)
     ON DUPLICATE KEY UPDATE
-    rfc = VALUES(rfc),
-    id_usuario = VALUES(id_usuario),
-    correo = VALUES(correo),
-    edad = VALUES(edad),
-    ine = VALUES(ine),
-    inst = VALUES(inst),
-    nombre_institucion = VALUESnombre_institucion),
-    correo_institucion = VALUES(correo_institucion),
-    rfc_institucion = VALUES(rfc_institucion),
-    reporte = VALUES(reporte),
-    status = 1,
-    razon_rechazo = null;`,
-    [rfc, id_usuario,  correo, edad, ine, inst, nombre_institucion, correo_institucion, rfc_institucion, reporte]
+      correo = VALUES(correo),
+      edad = VALUES(edad),
+      ine = VALUES(ine),
+      inst = VALUES(inst),
+      nombre_institucion = VALUES(nombre_institucion),
+      correo_institucion = VALUES(correo_institucion),
+      rfc_institucion = VALUES(rfc_institucion),
+      reporte = VALUES(reporte),
+      status = 1`,
+    [rfc, id_usuario, correo, edad, ine, inst, nombre_institucion, correo_institucion, rfc_institucion, reporte]
   );
   return result;
 };
+
 
 const changeStatusDonante = async ( status, id, razon_rechazo ) => {
   const [result] = await db.execute(
@@ -32,7 +32,16 @@ const changeStatusDonante = async ( status, id, razon_rechazo ) => {
 
 const getSolicitudesDonantes = async () => {
   const [result] = await db.execute(
-    'SELECT * FROM info_donador WHERE status = 1'
+    `SELECT 
+    info_donador.*, 
+    usuarios.nombre 
+FROM 
+    info_donador
+JOIN 
+    usuarios ON info_donador.id_usuario = usuarios.id_usuario
+WHERE 
+    info_donador.status = 1;`
+
   );
   return result;
 };
