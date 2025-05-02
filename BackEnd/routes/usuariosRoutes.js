@@ -5,7 +5,7 @@ const { crearUsuario, loginUser, setProfilePicture, subirMiddleware, getProfileP
 
 router.put('/new/account', crearUsuario);
 router.post('/login', loginUser);
-router.post('/profile', verifyToken, subirMiddleware, setProfilePicture);
+router.patch('/profile', verifyToken, subirMiddleware, setProfilePicture);
 router.get('/get/profile', verifyToken, getProfilePicture);
 
 module.exports = router;
