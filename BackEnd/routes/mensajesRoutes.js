@@ -8,6 +8,6 @@ router.put('/save/chat', mensajesController.saveMessage);
 
 // Obtener todos los mensajes de un chat
 // Query que se espera: ?idChat=123
-router.get('/get/chat', mensajesController.getMessages);
+router.get('/get/:idChat', mensajesController.getMessages);
 
 module.exports = router;
