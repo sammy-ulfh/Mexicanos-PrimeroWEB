@@ -1,8 +1,8 @@
-const TarjetaProcesos = ({chat_id, type, last_message, navigate, data, user_rol}) => (
+const TarjetaProcesos = () => (
   <article className='p-[2%] w-[80%] h-auto font-bold font-montserrat flex justify-center items-start text-black font-montserrat border rounded-3xl m-[1%]'>
     <div className='w-[60%] h-[15vh] flex flex-col items-center justify-center'>
-      <h2 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>{type}</h2>
-      <button className='border rounded-3xl text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl w-[80%] lg:w-[40%] xl:w-[40%] h-[5vh] mt-[1%] bg-[#009933] hover:scale-105 transition duration-300' onClick={() => navigate('/apoyos/info', { state: [data,user_rol]})}>
+      <h2 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'></h2>
+      <button className='border rounded-3xl text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl w-[80%] lg:w-[40%] xl:w-[40%] h-[5vh] mt-[1%] bg-[#009933] hover:scale-105 transition duration-300' >
         Ver información
       </button>
     </div>
@@ -13,9 +13,9 @@ const TarjetaProcesos = ({chat_id, type, last_message, navigate, data, user_rol}
         WebkitLineClamp: 3,
         overflow: "hidden"
       }}>
-      {last_message}
+      
       </span>
-      <button className='w-[100%] xl:w-[50%] 2xl:w-[50%] h-[40%] flex justify-center items-center bg-[#009933] mt-[1%] rounded-3xl border font-bold font-montserrat hover:scale-105 transition duration-300 text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl' onClick={() => navigate(user_rol == 'admin' ? '/admin/chat' : '/portal/chat', { state: [chat_id,user_rol] })}>
+      <button className='w-[100%] xl:w-[50%] 2xl:w-[50%] h-[40%] flex justify-center items-center bg-[#009933] mt-[1%] rounded-3xl border font-bold font-montserrat hover:scale-105 transition duration-300 text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl' >
         Entrar al chat
       </button>
     </div>
