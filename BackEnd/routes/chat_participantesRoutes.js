@@ -8,7 +8,7 @@ const { verifyToken } = require('../middlewares/verifyToken');
 router.post('/agregar', chatParticipantesController.agregarParticipante);
 
 // Obtener participantes de un chat
-router.get('/:id_chat', chatParticipantesController.obtenerParticipantesPorChat);
+router.get('/chats', chatParticipantesController.obtenerParticipantesPorChat);
 
 router.get('/todos', verifyToken, chatParticipantesController.obtenerChats);
 

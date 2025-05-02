@@ -3,21 +3,20 @@ const jwt = require('jsonwebtoken');
 function verifyToken(req, res, next) {
     const token = req.cookies.jwtToken;
 
-    if(!token){
-        res.status(401).json({ mensaje: 'Token no valido.' });
+    if (!token) {
+        return res.status(401).json({ mensaje: 'Token no válido.' });
     }
 
     jwt.verify(token, process.env.SECRET_KEY, (err, payload) => {
-        if (err){
-            res.status(403).json({ mensaje: 'Token inválido' });
+        if (err) {
+            return res.status(403).json({ mensaje: 'Token inválido' });
         }
 
         req.payload = payload;
-        req.id = req.payload.id_usuario;
-        req.type = req.payload.tipo;
+        req.id = payload.id_usuario;
+        req.type = payload.tipo;
         next();
-    })
-
+    });
 }
 
 module.exports = {

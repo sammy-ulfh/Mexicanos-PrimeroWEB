@@ -14,6 +14,8 @@ function useImageFromType(type){
   }
   else if(type == 2){
     setImage('/src/client/assets/pages/login/escuela-alumnos.jpg');
+  }else{
+    setImage('https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.udima.es%2Fsites%2Fudima.es%2Ffiles%2FGettyImages-1358014313.jpg&f=1&nofb=1&ipt=528c24413705400482c6e30e5f07a31646b8d2459ff1560822caba84cf5d1ade');
   }
   }, [type]);
 
