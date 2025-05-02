@@ -32,7 +32,16 @@ const changeStatusEscuela = async ( status, id, razon_rechazo ) => {
 
 const getSolicitudesEscuelas = async () => {
   const [result] = await db.execute(
-    'SELECT * FROM info_escuela WHERE status = 1'
+    `SELECT 
+    info_escuela.*, 
+    usuarios.nombre 
+FROM 
+    info_escuela
+JOIN 
+    usuarios ON info_escuela.id_usuario = usuarios.id_usuario
+WHERE 
+    info_escuela.status = 1;` 
+
   );
   return result;
 };
