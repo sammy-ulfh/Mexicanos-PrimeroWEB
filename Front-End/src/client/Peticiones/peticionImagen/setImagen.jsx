@@ -3,7 +3,7 @@ import fetchAuth from "/src/utils/fetchAuth";
 const uploadProfileImage = async (formData) => {
     try {
       const res = await fetchAuth("http://localhost:3000/user/profile", {
-        method: "POST",
+        method: "PATCH",
         body: formData,
       });
   

@@ -7,25 +7,31 @@ import getProfileImage from '/src/client/Peticiones/peticionImagen/getImagen.jsx
 
 
 function ConfigurarPerfilEscuela() {
-    const [urlImagen, setUrlImagen] = useState("/img/default.jpg"); // imagen por defecto
+    const [fotoPerfil, setFotoPerfil] = useState("../../client/assets/other/persona.jpg");
+    const [urlImagen, setUrlImagen] = useState("https://mexicanosprimero.s3.mx-central-1.amazonaws.com/documentos/Carlos Monje.jpg");
     const inputFileRef = useRef();
-  
+
     const handleFileChange = async (event) => {
-      const file = event.target.files[0];
-      if (!file) return;
-  
-      const formData = new FormData();
-      formData.append("archivo", file);
-  
-      // Previsualización local
-      const localUrl = URL.createObjectURL(file);
-      setUrlImagen(localUrl);
-    }
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append('archivo', file);
+        
+        const localUrl = URL.createObjectURL(file);
+        setUrlImagen(localUrl);
+
+        try{
+            const url = await uploadProfileImage(formData);
+            setFotoPerfil(url);
+        } catch (error) {
+            alert("Error al subir la imagen. Por favor, inténtalo de nuevo.");
+        }
+    };
 
     const handleClickCambiar = () => {
         inputFileRef.current.click();
     };
-
 
     return (
       <>

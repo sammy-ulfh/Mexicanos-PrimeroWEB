@@ -1,7 +1,9 @@
 import '@fontsource/montserrat';
 import MainLayout from '../Layouts/MainLayout';
 import InstitutionValidation from '../Peticiones/infoCuentas/institutionValidation';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import uploadProfileImage from '/src/client/Peticiones/peticionImagen/setImagen.jsx';
+import getProfileImage from '/src/client/Peticiones/peticionImagen/getImagen.jsx';
 
 function ConfigurarPerfilDonador() {
 
@@ -12,6 +14,33 @@ function ConfigurarPerfilDonador() {
     //institucion - si aplica
     const [emailInst, setEmailInst] = useState('');
     const [resumenInst, setResumenInst] = useState('');
+
+        const [fotoPerfil, setFotoPerfil] = useState("../../client/assets/other/persona.jpg");
+        const [urlImagen, setUrlImagen] = useState("https://mexicanosprimero.s3.mx-central-1.amazonaws.com/documentos/Carlos Monje.jpg");
+        const inputFileRef = useRef();
+        const urlExample = "https://mexicanosprimero.s3.mx-central-1.amazonaws.com/documentos/2.png";
+    
+        const handleFileChange = async (event) => {
+            const file = event.target.files[0];
+            if (!file) return;
+    
+            const formData = new FormData();
+            formData.append('archivo', file);
+            
+            const localUrl = URL.createObjectURL(file);
+            setUrlImagen(localUrl);
+    
+            try{
+                const url = await uploadProfileImage(formData);
+                setFotoPerfil(url);
+            } catch (error) {
+                alert("Error al subir la imagen. Por favor, inténtalo de nuevo.");
+            }
+        };
+
+    const handleClickCambiar = () => {
+        inputFileRef.current.click();
+    };
 
     return (
       <>
@@ -29,9 +58,10 @@ function ConfigurarPerfilDonador() {
 
             <section className='font-montserrat text-xl mt-[10px] w-[60%] flex flex-row flex-wrap items-center justify-between'>
                 <div className="w-[50%] h-[50%] mt-[2vh]">
-                    <img src="\src\client\assets\other\persona.jpg" alt="foto de ejemplo persona" className='w-4/6 max-w-[200px] aspect-square object-cover rounded-full border-3 border-solid'/>
+                    <img src={urlImagen} alt="foto de ejemplo persona" className='w-4/6 max-w-[200px] aspect-square object-cover rounded-full border-3 border-solid'/>
                 </div>
-                <button className='flex justify-center items-center w-[40%] h-[10vh] mt-[20px] mb-[20px] rounded-4xl text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold border-3 border-solid hover:scale-105 transition duration-300' style={{ backgroundColor: '#009933' }}>
+                <input type="file" ref={inputFileRef} onChange={handleFileChange}  accept="image/*" style={{display: "none"}}/>
+                <button onClick={handleClickCambiar}  className='flex justify-center items-center w-[40%] h-[10vh] mt-[20px] mb-[20px] rounded-4xl text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold border-3 border-solid hover:scale-105 transition duration-300' style={{ backgroundColor: '#009933' }}>
                     Cambiar
                 </button>
             </section>
