@@ -98,6 +98,17 @@ const getNombre = async (req, res) => {
   }
 }
 
+const changePassword = async (req, res) => {
+  const { password } = req.body;
+  try {
+    const resultado = await Usuario.changePassword(req.payload.id_usuario, password);
+    res.status(201).json({ mensaje: 'Contraseña actualizada correctamente', response: resultado });
+  } catch (error) {
+    console.error('Error al actualizar la contraseña:', error);
+    res.status(500).json({ mensaje: 'Error al actualizar la contraseña', error });
+  }
+}
+
 module.exports = {
   crearUsuario,
   loginUser,
@@ -105,6 +116,7 @@ module.exports = {
   subirMiddleware,
   getProfilePicture, 
   setNombre,
-  getNombre
+  getNombre,
+  changePassword
 
 };

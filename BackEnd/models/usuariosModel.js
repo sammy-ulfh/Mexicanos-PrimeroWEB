@@ -48,6 +48,13 @@ const getNombre = async (id_usuario) => {
   return result;
 };
 
+const changePassword = async (id_usuario, password) => {
+  const [result] = await db.execute(
+    'UPDATE usuarios SET contrasena = ? WHERE id_usuario = ?',
+    [password, id_usuario]
+  );
+  return result;
+}
 
 module.exports = {
   crearUsuario,
@@ -55,5 +62,6 @@ module.exports = {
   setProfilePicture, 
   getProfilePicture, 
   setNombre,
-  getNombre
+  getNombre,
+  changePassword
 };
