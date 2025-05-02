@@ -4,6 +4,7 @@ const multer = require("multer");
 const Usuario = require('../models/usuariosModel.js');
 const upload = multer({ dest: "uploads/" }); 
 const path = require('path');
+const { get } = require('http');
 
 const subirMiddleware = upload.single("archivo");
 
@@ -73,10 +74,37 @@ const getProfilePicture = async (req, res) => {
     }
   }
 
+ const setNombre = async (req, res) => {
+  console.log('body:', req.body);
+  const { nombre } = req.body;
+  
+  try {
+    const resultado = await Usuario.setNombre(req.payload.id_usuario, nombre);
+    res.status(201).json({ mensaje: 'Nombre actualizado correctamente', response: resultado });
+  } catch (error) {
+    console.error('Error al actualizar el nombre:', error);
+    res.status(500).json({ mensaje: 'Error al actualizar el nombre', error });
+  }
+}
+
+const getNombre = async (req, res) => {
+  const { id_usuario } = req.body;
+  try {
+    const resultado = await Usuario.getNombre(id_usuario);
+    res.status(200).json({ mensaje: 'Nombre extraido correctamente', response: resultado });
+  } catch (error) {
+    console.error('Error al extraer el nombre:', error);
+    res.status(500).json({ mensaje: 'Error al extraer el nombre', error });
+  }
+}
+
 module.exports = {
   crearUsuario,
   loginUser,
   setProfilePicture,
   subirMiddleware,
-  getProfilePicture
+  getProfilePicture, 
+  setNombre,
+  getNombre
+
 };

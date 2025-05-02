@@ -32,9 +32,28 @@ const getProfilePicture = async (id_usuario) => {
   return result;
 };
 
+const setNombre = async (id_usuario, nombre) => {
+  const [result] = await db.execute(
+    'UPDATE usuarios SET nombre = ? WHERE id_usuario = ?',
+    [nombre, id_usuario]
+  );
+  return result;
+};
+
+const getNombre = async (id_usuario) => {
+  const [result] = await db.execute(
+    'SELECT nombre FROM usuarios WHERE id_usuario = ?',
+    [id_usuario]
+  );
+  return result;
+};
+
+
 module.exports = {
   crearUsuario,
   user,
   setProfilePicture, 
-  getProfilePicture
+  getProfilePicture, 
+  setNombre,
+  getNombre
 };

@@ -1,9 +1,9 @@
 const db = require('../config/db');
 
-const newInfoDonador = async (rfc, id_usuario, nombre, correo, edad, ine, inst, nombre_institucion, correo_institucion, rfc_institucion, reporte) => {
+const newInfoDonador = async (rfc, id_usuario, correo, edad, ine, inst, nombre_institucion, correo_institucion, rfc_institucion, reporte) => {
   const [result] = await db.execute(
-    'INSERT INTO info_donador(rfc, id_usuario, nombre, correo, edad, ine, inst, nombre_institucion, correo_institucion, rfc_institucion, reporte, status) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)',
-    [rfc, id_usuario, nombre, correo, edad, ine, inst, nombre_institucion, correo_institucion, rfc_institucion, reporte]
+    'INSERT INTO info_donador(rfc, id_usuario, correo, edad, ine, inst, nombre_institucion, correo_institucion, rfc_institucion, reporte, status) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)',
+    [rfc, id_usuario,  correo, edad, ine, inst, nombre_institucion, correo_institucion, rfc_institucion, reporte]
   );
   return result;
 };
