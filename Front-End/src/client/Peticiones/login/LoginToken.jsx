@@ -20,6 +20,7 @@ const loginToken = async ( username, password, navigate ) => {
   
        localStorage.setItem('id', data?.id);
        localStorage.setItem('type', data?.type);
+       localStorage.setItem('name', data?.name);
        Validation(navigate);
      } else if (data?.mensaje) {
        return data.mensaje;

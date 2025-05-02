@@ -7,6 +7,6 @@ router.post('/new',verifyToken, apoyoController.newApoyo);
 
 router.patch('/status',verifyToken, apoyoController.cambiarStatus);
 
-router.get('/info', apoyoController.getApoyos);
+router.get('/info', verifyToken,  apoyoController.getApoyos);
 
 module.exports = router;

@@ -25,7 +25,22 @@ const completarPerfil = async (req, res) => {
     }
   }
 
+  const extraerPerfiles = async (req, res) => {
+    try {
+  
+        const { search } = req.body;
+        const data = await Perfil.getProfiles(req.type, search);
+
+      res.status(201).json({ mensaje: 'Perfiles extraidos correctamente', data: data });
+  
+    } catch (error) {
+      console.error('Error al extraer los perfiles:', error);
+      res.status(500).json({ mensaje: 'Error al extraer los perfiles', error });
+    }
+  };
+
   module.exports = {
     completarPerfil,
-    getInfo
+    getInfo,
+    extraerPerfiles
   }

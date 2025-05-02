@@ -9,7 +9,7 @@ import cambioStatus from '../Peticiones/Apoyos/cambioStatus.jsx';
 function InfoSolicitudApoyo(){
 
   const loca = useLocation();
-  const data = loca.state;
+  const data = loca?.state;
   console.log(data);
   if (!data) {
     return (

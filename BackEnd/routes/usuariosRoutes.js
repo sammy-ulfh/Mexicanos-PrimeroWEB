@@ -8,7 +8,7 @@ router.post('/login', loginUser);
 router.patch('/profile', verifyToken, subirMiddleware, setProfilePicture);
 router.get('/get/profile', verifyToken, getProfilePicture);
 router.patch('/set/nombre', verifyToken, subirMiddleware, setNombre);
-router.post('/get/nombre', getNombre);
+router.post('/get/nombre',verifyToken, getNombre);
 router.patch('/change/password', verifyToken, changePassword);
 router.patch('/delete/user', verifyToken, deleteUser);
 module.exports = router;

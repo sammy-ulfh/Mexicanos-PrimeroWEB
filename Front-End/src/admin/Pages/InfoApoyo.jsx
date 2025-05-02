@@ -12,6 +12,8 @@ function InfoApoyo(){
   const data = loca.state;
   console.log(data);
   
+  const type = localStorage.getItem('type');
+  const id = localStorage.getItem('id');
 
   return(
     <>
