@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import TarjetaMensajes from '/src/GeneralComponents/TarjetaMensajes.jsx';
 import { getMessages, saveMessage } from '../services/chatService.js';
 
+
 function ClientChat() {
   const location = useLocation();
   const { chatId, userId } = location.state || {};
@@ -27,13 +28,13 @@ function ClientChat() {
     if (!texto.trim()) return;
     try {
       setCargando(true);
-      const resp = await saveMessage(chatId, userId, texto);
+      const resp = await saveMessage(1, texto);
       // Se añade al estado para no recargar toda la lista
       setMensajes((prev) => [
         ...prev,
         {
           id_mensaje: resp.idMensaje,
-          id_chat: chatId,
+          idChat: 1,
           id_sender: userId,
           contenido: texto,
           fecha_envio: new Date().toISOString(),
