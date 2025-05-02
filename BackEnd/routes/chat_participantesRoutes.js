@@ -12,6 +12,8 @@ router.get('/chats', chatParticipantesController.obtenerParticipantesPorChat);
 
 router.get('/todos', verifyToken, chatParticipantesController.obtenerChats);
 
+router.get('/procesos/activos', verifyToken, chatParticipantesController.obtenerProcesosActivos);
+
 // Eliminar un participante de un chat
 router.delete('/eliminar', chatParticipantesController.eliminarParticipante);
 

@@ -27,4 +27,5 @@ const completarPerfil = async (req, res) => {
 
   module.exports = {
     completarPerfil,
+    getInfo
   }
