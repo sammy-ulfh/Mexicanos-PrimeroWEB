@@ -11,12 +11,15 @@ const apoyoRoutes = require('./routes/apoyoRoutes.js');
 const archivosRoutes = require('./routes/archivosRoutes.js');
 const perfilRoutes = require('./routes/perfilRoutes.js');
 const chatRoutes = require('./routes/chatRoutes.js');
+const chatParticipantesRoutes = require('./routes/chat_participantesRoutes'); // aun no sale
+const mensajesRoutes = require('./routes/mensajesRoutes'); // aun no sale
+const chatParticipantesRoutes = require('./routes/chat_participantesRoutes.js');
+const mensajesRoutes = require('./routes/mensajesRoutes.js');
 
 // Middlewares
 app.use(cors({
-  origin: 'http://localhost:5173', // frontend Vite
-  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-  credentials: true // solo si usas cookies o autenticación por sesión
+  origin: 'http://localhost:5173', // El frontend
+  credentials: true                // Permite enviar cookies/sesiones
 }));
 app.use(express.json());
 app.use(cookieParser());
@@ -29,12 +32,9 @@ app.use('/perfil', perfilRoutes);
 app.use('/apoyo', apoyoRoutes);
 app.use('/archivos', archivosRoutes);
 app.use('/chat', chatRoutes);
-app.use('/mensajes', chatRoutes); // Ruta para mensajes (chat)
+app.use('/chat_participantes', chatParticipantesRoutes);
+app.use('/mensajes', mensajesRoutes);
 
-
-// Ruta de prueba directa (para aislar errores)
-app.get('/prueba/:id', (req, res) => {
-  res.json({ mensaje: `Ruta de prueba recibida con ID: ${req.params.id}` });
-});
+app.use('/api', mensajesRoutes);
 
 module.exports = app;
