@@ -57,17 +57,19 @@ const subirArchivo = async (archivoLocalPath, nombreArchivo) => {
   const bucket = "mexicanosprimero";
   const key = `documentos/${nombreArchivo}`;
   const body = fs.createReadStream(archivoLocalPath);
+  const region = "mx-central-1";
 
   const comando = new PutObjectCommand({
     Bucket: bucket,
     Key: key,
     Body: body,
     ContentType: obtenerContentType(nombreArchivo),
+    ACL: "public-read"
   });
 
   await s3.send(comando);
 
-  const urlPublica = `https://${bucket}.s3.amazonaws.com/${key}`;
+  const urlPublica = `https://${bucket}.s3.${region}.amazonaws.com/${key}`;
 
   fs.unlink(archivoLocalPath, err => {
     if (err) console.error("Error al borrar el archivo temporal:", err);

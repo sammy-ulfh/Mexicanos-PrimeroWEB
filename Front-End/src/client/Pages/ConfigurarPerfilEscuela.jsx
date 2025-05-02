@@ -1,9 +1,30 @@
 import '@fontsource/montserrat';
 import MainLayout from '../Layouts/MainLayout';
 import MostrarOpcion from '../../GeneralComponents/MostrarOpcion';
+import { useRef, useState } from 'react';
+import uploadProfileImage from '/src/client/Peticiones/peticionImagen/setImagen.jsx';
+import getProfileImage from '/src/client/Peticiones/peticionImagen/getImagen.jsx';
 
 
 function ConfigurarPerfilEscuela() {
+    const [urlImagen, setUrlImagen] = useState("/img/default.jpg"); // imagen por defecto
+    const inputFileRef = useRef();
+  
+    const handleFileChange = async (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+  
+      const formData = new FormData();
+      formData.append("archivo", file);
+  
+      // Previsualización local
+      const localUrl = URL.createObjectURL(file);
+      setUrlImagen(localUrl);
+    }
+
+    const handleClickCambiar = () => {
+        inputFileRef.current.click();
+    };
 
 
     return (
@@ -22,9 +43,10 @@ function ConfigurarPerfilEscuela() {
 
             <section className='font-montserrat text-xl mt-[10px] w-[60%] flex flex-row flex-wrap items-center justify-between'>
                 <div className="w-[50%] h-[50%] mt-[2vh]">
-                    <img src="/src/client/assets/other/persona.jpg" alt="foto de ejemplo persona" className='w-4/6 max-w-[200px] aspect-square object-cover rounded-full border-3 border-solid'/>
+                    <img src={urlImagen} alt="foto de ejemplo persona" className='w-4/6 max-w-[200px] aspect-square object-cover rounded-full border-3 border-solid'/>
                 </div>
-                <button className='flex justify-center items-center w-[40%] h-[10vh] mt-[20px] mb-[20px] rounded-4xl text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold border-3 border-solid hover:scale-105 transition duration-300' style={{ backgroundColor: '#009933' }}>
+                <input type="file" ref={inputFileRef} onChange={handleFileChange}  accept="image/*" style={{display: "none"}}/>
+                <button onClick={handleClickCambiar} className='flex justify-center items-center w-[40%] h-[10vh] mt-[20px] mb-[20px] rounded-4xl text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold border-3 border-solid hover:scale-105 transition duration-300' style={{ backgroundColor: '#009933' }}>
                     Cambiar
                 </button>
             </section>

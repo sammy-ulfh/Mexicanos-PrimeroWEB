@@ -1,6 +1,11 @@
 const jwt = require('jsonwebtoken');
-
+const subirArchivo  = require("../models/archivosModel.js");
+const multer = require("multer");
 const Usuario = require('../models/usuariosModel.js');
+const upload = multer({ dest: "uploads/" }); 
+const path = require('path');
+
+const subirMiddleware = upload.single("archivo");
 
 const loginUser =  async (req, res) => {
   const { email, password } = req.body;
@@ -42,7 +47,36 @@ const crearUsuario = async (req, res) => {
   }
 };
 
+const setProfilePicture = async (req, res) => {
+  try{
+    let urlImagen = '';
+    if (req.file) {
+      const archivoLocalPath = req.file.path;
+      const nombreArchivo = req.file.originalname;
+      urlImagen = await subirArchivo.subirArchivo(archivoLocalPath, nombreArchivo);
+    }
+    const resultado = await Usuario.setProfilePicture(req.payload.id_usuario, urlImagen);
+    res.status(201).json({ mensaje: 'Imagen extraida correctamente', response: resultado });
+  }catch (error){
+    console.error('Error al extraer la imagen:', error);
+    res.status(500).json({ mensaje: 'Error al extraer la imagen', error });
+  }
+};
+
+const getProfilePicture = async (req, res) => {
+    try{
+      const resultado = await Usuario.getProfilePicture(req.payload.id_usuario);
+      res.status(200).json({ mensaje: 'Imagen extraida correctamente', response: resultado });
+    }catch (error){
+      console.error('Error al extraer la imagen:', error);
+      res.status(500).json({ mensaje: 'Error al extraer la imagen', error });
+    }
+  }
+
 module.exports = {
   crearUsuario,
   loginUser,
+  setProfilePicture,
+  subirMiddleware,
+  getProfilePicture
 };
