@@ -1,10 +1,17 @@
 import '@fontsource/montserrat';
 import MainLayout from '../Layouts/MainLayout';
-import MostrarOpcion from '../../GeneralComponents/MostrarOpcion';
 import InstitutionValidation from '../Peticiones/infoCuentas/institutionValidation';
+import { useState } from 'react';
 
 function ConfigurarPerfilDonador() {
 
+    const [email, setEmail] = useState('');
+    const [genero, setGenero] = useState('');
+    const [resumen, setResumen] = useState('');
+
+    //institucion - si aplica
+    const [emailInst, setEmailInst] = useState('');
+    const [resumenInst, setResumenInst] = useState('');
 
     return (
       <>
@@ -30,11 +37,10 @@ function ConfigurarPerfilDonador() {
             </section>
                 
                 <article className='font-montserrat text-xl mt-[10px] w-[60%] xl:w-[40vw] flex flex-col justify-around'>
-                    <section className='font-montserrat text-xl mt-[20px] w-[auto%] flex items-center justify-between'>
+                    <section className='font-montserrat text-xl mt-[20px] w-[auto%] flex items-center justify-start'>
                         <p className='flex self-auto font-bold  w-[auto] '>Correo de contacto</p>
-                        <MostrarOpcion></MostrarOpcion> 
                     </section>
-                    <input placeholder='example@gmail.com' className='flex self-center mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input placeholder='example@gmail.com' className='flex self-center mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]' onChange={(e) => setEmail(e.target.value)}/>
                 </article>
 
                 <article className='font-montserrat text-xl mt-[20px] w-[60%] xl:w-[40vw] flex items-center flex-col items-center'>
@@ -44,7 +50,7 @@ function ConfigurarPerfilDonador() {
 
                 <article className='font-montserrat text-xl mt-[20px] w-[60%] xl:w-[40vw] flex items-center flex-col items-center'>
                     <p className='flex self-start font-bold  w-[auto] '>Resumen público</p>
-                    <input className='mt-[5px] w-[100%] h-[30vh] border border-black rounded-xl pl-[20px]'/>
+                    <textarea rows="200" className='mt-[5px] w-[100%] h-[30vh] border border-black rounded-xl pl-[20px]' onChange={(e) => setResumen(e.target.value)}/>
                 </article>
             {InstitutionValidation() == true &&( 
                 <>
@@ -68,14 +74,13 @@ function ConfigurarPerfilDonador() {
                 <article className='font-montserrat text-xl mt-[10px] w-[60%] xl:w-[40vw] flex flex-col justify-around'>
                     <section className='font-montserrat text-xl mt-[20px] w-[auto%] flex items-center justify-between'>
                         <p className='flex self-auto font-bold  w-[auto] '>Correo de contacto</p>
-                        <MostrarOpcion></MostrarOpcion> 
                     </section>
-                    <input placeholder='example@gmail.com' className='flex self-center mt-[5px] w-[100%]  h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input placeholder='example@gmail.com' className='flex self-center mt-[5px] w-[100%]  h-[5.5vh] border border-black rounded-xl pl-[20px]' onChange={(e) => setEmailInst(e.target.value) }/>
                 </article>
 
                 <article className='font-montserrat text-xl mt-[20px] w-[60%] xl:w-[40vw] flex items-center flex-col items-center'>
                     <p className='flex self-start font-bold  w-[auto] '>Resumen público de la Institución</p>
-                    <input className='mt-[5px] w-[100%] h-[30vh] border border-black rounded-xl pl-[20px]'/>
+                    <textarea rows="200" className='mt-[5px] w-[100%] h-[30vh] border border-black rounded-xl pl-[20px]' onChange={(e) => setResumenInst(e.target.value)}/>
                 </article>
                 </>
             )
