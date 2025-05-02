@@ -4,6 +4,7 @@ import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TarjetaProcesos from '../../GeneralComponents/TarjetaProcesos';
 import TarjetaChats from '../../GeneralComponents/TarjetaChats';
+import getChats from '../Peticiones/chats/getChats';
 
 const Chats = [
   {
@@ -133,6 +134,7 @@ function ClientChats() {
     const navigate = useNavigate();
 
     const user_rol = 'school';
+    getChats();
 
     return (
       <>

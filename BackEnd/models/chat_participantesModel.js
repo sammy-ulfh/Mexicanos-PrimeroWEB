@@ -27,8 +27,18 @@ const eliminarParticipante = async (id_chat, id_usuario) => {
     return result;
 };
 
+// Obtener todos los chats
+const obtenerChats = async (id) => {
+  const [result] = await db.execute(
+    'SELECT * FROM chat_participantes WHERE id_usuario = ?',
+    [id]
+  );
+  return result;
+};
+
 module.exports = {
     agregarParticipante,
     obtenerParticipantesPorChat,
-    eliminarParticipante
+    eliminarParticipante,
+    obtenerChats
 };

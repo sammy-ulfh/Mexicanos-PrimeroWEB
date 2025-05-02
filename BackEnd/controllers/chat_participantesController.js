@@ -34,8 +34,20 @@ const eliminarParticipante = async (req, res) => {
     }
 };
 
+const obtenerChats = async (req, res) => {
+    try {
+        const id = req.id;
+        const resultado = await Chat.obtenerChats(id);
+        res.status(200).json({ mensaje: 'Chats obtenidos exitosamente', chats: resultado });
+    } catch (error) {
+        console.error('Error al obtener los chats:', error);
+        res.status(500).json({ mensaje: 'Error al obtener los chats', error });
+    }
+};
+
 module.exports = {
     agregarParticipante,
     obtenerParticipantesPorChat,
-    eliminarParticipante
+    eliminarParticipante,
+    obtenerChats
 };
