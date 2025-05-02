@@ -64,6 +64,14 @@ const deleteUser = async (id_usuario) => {
   return result;
 };
 
+const getUserById = async (id_usuario) => {
+  const [result] = await db.execute(
+    'SELECT * FROM usuarios WHERE id_usuario = ?',
+    [id_usuario]
+  );
+  return result[0];
+};
+
 module.exports = {
   crearUsuario,
   user,
@@ -72,5 +80,6 @@ module.exports = {
   setNombre,
   getNombre,
   changePassword,
-  deleteUser
+  deleteUser,
+  getUserById
 };

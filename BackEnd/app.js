@@ -13,6 +13,7 @@ const perfilRoutes = require('./routes/perfilRoutes.js');
 const chatRoutes = require('./routes/chatRoutes.js');
 const chatParticipantesRoutes = require('./routes/chat_participantesRoutes'); // aun no sale
 const mensajesRoutes = require('./routes/mensajesRoutes'); // aun no sale
+const publicProfileRoutes = require('./routes/publicProfileRoutes');
 
 // Middlewares
 app.use(cors({
@@ -32,6 +33,7 @@ app.use('/archivos', archivosRoutes);
 app.use('/chat', chatRoutes);
 app.use('/chat_participantes', chatParticipantesRoutes);
 app.use('/mensajes', mensajesRoutes);
+app.use('/public', publicProfileRoutes);
 
 app.use('/api', mensajesRoutes);
 

@@ -78,6 +78,14 @@ const subirReporteEscuela = async (id_usuario, path) => {
   return result;
 };
 
+const getInfoEscuelaByUser = async (id_usuario) => {
+  const [result] = await db.execute(
+    'SELECT * FROM info_escuela WHERE id_usuario = ?',
+    [id_usuario]
+  );
+  return result[0];
+};
+
 module.exports = {
   newInfoSchool,
   changeStatusEscuela,
@@ -85,5 +93,6 @@ module.exports = {
   statusEscuelaInicial,
   newNecesidades,
   subirReporteEscuela,
-  getRazonRechazo
+  getRazonRechazo,
+  getInfoEscuelaByUser
 };
