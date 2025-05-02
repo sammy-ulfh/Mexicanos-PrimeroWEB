@@ -1,5 +1,5 @@
 // controllers/chat_participantesController.js
-const ChatParticipantes = require('../models/chatModel.js');
+const ChatParticipantes = require('../models/chat_participantesModel.js');
 
 const agregarParticipante = async (req, res) => {
     try {

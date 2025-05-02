@@ -11,6 +11,8 @@ const apoyoRoutes = require('./routes/apoyoRoutes.js');
 const archivosRoutes = require('./routes/archivosRoutes.js');
 const perfilRoutes = require('./routes/perfilRoutes.js');
 const chatRoutes = require('./routes/chatRoutes.js');
+const chatParticipantesRoutes = require('./routes/chat_participantesRoutes.js');
+const mensajesRoutes = require('./routes/mensajesRoutes.js');
 
 // Middlewares
 app.use(cors({
@@ -28,6 +30,8 @@ app.use('/perfil', perfilRoutes);
 app.use('/apoyo', apoyoRoutes);
 app.use('/archivos', archivosRoutes);
 app.use('/chat', chatRoutes);
+app.use('/chat_participantes', chatParticipantesRoutes);
+app.use('/mensajes', mensajesRoutes);
 
 // Ruta de prueba directa (para aislar errores)
 app.get('/prueba/:id', (req, res) => {
