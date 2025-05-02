@@ -2,18 +2,17 @@ const Mensajes = require('../models/mensajesModel.js');
 
 const saveMessage = async (req, res) => {
   try {
-    const { idChat, idSender, contenido } = req.body;
-
-    if (!idChat || !idSender || !contenido) {
+    const { idChat, contenido } = req.body;
+    console.log(req.body);
+    if (!idChat || !req.payload.id_usuario || !contenido) {
       return res.status(400).json({ mensaje: 'Faltan datos obligatorios' });
     }
-
-    const result = await Mensajes.saveMessage(idChat, idSender, contenido);
+    
+    const result = await Mensajes.saveMessage(idChat, req.payload.id_usuario, contenido);
     res.status(201).json({
       mensaje: 'Mensaje guardado correctamente',
       idMensaje: result.insertId,
       idChat,
-      idSender,
       contenido,
     });
   } catch (error) {

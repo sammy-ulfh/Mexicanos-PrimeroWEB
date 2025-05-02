@@ -11,6 +11,8 @@ const apoyoRoutes = require('./routes/apoyoRoutes.js');
 const archivosRoutes = require('./routes/archivosRoutes.js');
 const perfilRoutes = require('./routes/perfilRoutes.js');
 const chatRoutes = require('./routes/chatRoutes.js');
+const chatParticipantesRoutes = require('./routes/chat_participantesRoutes'); // aun no sale
+const mensajesRoutes = require('./routes/mensajesRoutes'); // aun no sale
 const chatParticipantesRoutes = require('./routes/chat_participantesRoutes.js');
 const mensajesRoutes = require('./routes/mensajesRoutes.js');
 
@@ -32,11 +34,7 @@ app.use('/archivos', archivosRoutes);
 app.use('/chat', chatRoutes);
 app.use('/chat_participantes', chatParticipantesRoutes);
 app.use('/mensajes', mensajesRoutes);
-app.use('/api', mensajesRoutes);
 
-// Ruta de prueba directa (para aislar errores)
-app.get('/prueba/:id', (req, res) => {
-  res.json({ mensaje: `Ruta de prueba recibida con ID: ${req.params.id}` });
-});
+app.use('/api', mensajesRoutes);
 
 module.exports = app;
