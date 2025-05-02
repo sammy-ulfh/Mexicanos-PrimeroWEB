@@ -57,12 +57,10 @@ function ClientChats() {
                 Procesos.length > 0 && isProcess ? (
                   Procesos.map((tarjeta) => (
                     <TarjetaProcesos
-                      chat_id={tarjeta.chat_id}
-                      type={tarjeta.type}
-                      last_message={tarjeta.last_message}
+                      user_id={id}
+                      info={tarjeta}
+                      rol={type}
                       navigate={navigate}
-                      data={tarjeta.info}
-                      user_rol={type}
                     />
                   ))
                 ) : Chats.length > 0 && !isProcess ? (

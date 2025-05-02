@@ -1,8 +1,9 @@
-const TarjetaProcesos = () => (
+const TarjetaProcesos = ({ user_id, info, rol, navigate }) => (
   <article className='p-[2%] w-[80%] h-auto font-bold font-montserrat flex justify-center items-start text-black font-montserrat border rounded-3xl m-[1%]'>
     <div className='w-[60%] h-[15vh] flex flex-col items-center justify-center'>
-      <h2 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'></h2>
-      <button className='border rounded-3xl text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl w-[80%] lg:w-[40%] xl:w-[40%] h-[5vh] mt-[1%] bg-[#009933] hover:scale-105 transition duration-300' >
+      <h2 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>{info.tipo_apoyo_escuela}</h2>
+      <button className='border rounded-3xl text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl w-[80%] lg:w-[40%] xl:w-[40%] h-[5vh] mt-[1%] bg-[#009933] hover:scale-105 transition duration-300' 
+      onClick={() => navigate('/apoyos/info', { state: { data: info } })}>
         Ver información
       </button>
     </div>

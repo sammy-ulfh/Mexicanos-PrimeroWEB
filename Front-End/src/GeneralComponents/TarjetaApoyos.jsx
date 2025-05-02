@@ -5,6 +5,7 @@ const TarjetaApoyos = ({ type, json }) => {
 
   return (
     <article className='border rounded-3xl w-[90%] mb-[2%] p-[2%]'>
+      <h1 className="mt-[1%] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl font-bold flex justify-start items-center pl-[2%]">{type == 2 ? 'Escuela' : 'Donador'}</h1>
       <span className='mt-[1%] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-3xl font-bold flex justify-start items-center pl-[2%]'>
         Tipo de apoyo: {tipo}
       </span>

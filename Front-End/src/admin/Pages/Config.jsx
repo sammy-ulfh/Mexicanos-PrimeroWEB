@@ -100,18 +100,20 @@ function Config() {
                 {errors.confirm && <p className="text-red-600 mt-1">{errors.confirm}</p>}
               </div>
   
-              <div className='w-[100%] mt-[5%] flex justify-center items-center'>
+              <div className='w-[100%] mt-[5%] flex-col justify-center items-center'>
               {successMessage && (
                 <p className="text-green-600 font-bold text-xl text-center mb-4">
                   {successMessage}
                 </p>
               )}
+              <div className="flex justify-center items-center">
                 <button
                   onClick={handleChangePassword}
-                  className='bg-[#009933] border rounded-3xl text-4xl w-[70%] xl:w-[40%] p-[1.5%] hover:scale-110 transition duration-500'
+                  className='bg-[#009933] border rounded-3xl text-4xl flex justify-center items-center w-[70%] xl:w-[40%] p-[1.5%] hover:scale-110 transition duration-500'
                 >
                   Cambiar
                 </button>
+                </div>
               </div>
             </article>
                 )
