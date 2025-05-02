@@ -1,11 +1,46 @@
 import '@fontsource/montserrat';
 import Initial from '../Layouts/Initial.jsx';
 import { useState } from 'react';
+import changePassword from '/src/client/Peticiones/createAccount/changePassword';
 
 function Config() {
   
     const [isPass, setIsPass] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
+
+    const [currentPassword, setCurrentPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [errors, setErrors] = useState({});
+    const [successMessage, setSuccessMessage] = useState('');
+
+    const validatePasswords = () => {
+          const newErrors = {};
+          if (!currentPassword) newErrors.current = 'La contraseña actual es requerida';
+          if (newPassword.length < 6) newErrors.new = 'La nueva contraseña es muy corta (mínimo 6 caracteres)';
+          if (newPassword.length > 30) newErrors.new = 'La nueva contraseña es muy larga (máximo 30 caracteres)';
+          if (newPassword !== confirmPassword) newErrors.confirm = 'Las contraseñas no coinciden';
+          setErrors(newErrors);
+          return Object.keys(newErrors).length === 0;
+        };
+    
+    const handleChangePassword = async () => {
+      console.log('Contraseña actual:', currentPassword);
+      if (validatePasswords()) {
+        try {
+          await changePassword(newPassword);
+          console.log('Contraseña cambiada');
+          setSuccessMessage('¡Contraseña cambiada con éxito!');
+          setCurrentPassword('');
+          setNewPassword('');
+          setConfirmPassword('');
+          setErrors({});
+        } catch (error) {
+          console.error('Error al cambiar la contraseña:', error);
+          setSuccessMessage('Hubo un error al cambiar la contraseña');
+        }
+      }
+    };
 
     return (
       <>
@@ -28,28 +63,57 @@ function Config() {
               </div>
 
               { isPass && (
-              <article id='modal1' className='mt-[-2%] pb-[3%] pt-[4%] w-[75%] bg-white border rounded-3xl font-bold font-motserrat flex flex-col'>
-                <div className='w-[80%] ml-[4%]'>
-                  <h2 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl'>Contraseña actual</h2>
-                  <input className='w-[113%] h-[45px] pl-[5%] border rounded-full bg-white text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-3xl' placeholder='*****' />
-                </div>
-
-                <div className='w-[80%] ml-[4%] mt-[3%]'>
-                  <h2 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl'>Nueva contraseña</h2>
-                  <input className='w-[113%] h-[45px] pl-[5%] border rounded-full bg-white text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-3xl' placeholder='*****' />
-                </div>
-
-                <div className='w-[80%] ml-[4%] mt-[3%]'>
-                  <h2 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl'>Nueva contraseña</h2>
-                  <input className='w-[113%] h-[45px] pl-[5%] border rounded-full bg-white text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-3xl' placeholder='*****' />
-                </div>
-
-                <div className='w-[100%] mt-[5%] flex justify-center items-center'>
-                <button className='bg-[#009933] border rounded-3xl text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl w-[70%] xl:w-[40%] 2xl:w-[40%] p-[1.5%] hover:scale-110 transition duration-500'>
-                Cambiar
+                <article className='mt-[-2%] pb-[3%] pt-[4%] w-[75%] bg-white border rounded-xl font-bold font-montserrat flex flex-col'>
+              <div className='w-[80%] ml-[4%]'>
+                <h2 className='text-3xl'>Contraseña actual</h2>
+                <input
+                  type='password'
+                  className='w-[113%] h-[45px] pl-[5%] border rounded-xl text-xl'
+                  value={currentPassword}
+                  onChange={(e) => setCurrentPassword(e.target.value)}
+                  placeholder='*****'
+                />
+                {errors.current && <p className="text-red-600 mt-1">{errors.current}</p>}
+              </div>
+  
+              <div className='w-[80%] ml-[4%] mt-[3%]'>
+                <h2 className='text-3xl'>Nueva contraseña</h2>
+                <input
+                  type='password'
+                  className='w-[113%] h-[45px] pl-[5%] border rounded-xl text-xl'
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  placeholder='*****'
+                />
+                {errors.new && <p className="text-red-600 mt-1">{errors.new}</p>}
+              </div>
+  
+              <div className='w-[80%] ml-[4%] mt-[3%]'>
+                <h2 className='text-3xl'>Confirmar nueva contraseña</h2>
+                <input
+                  type='password'
+                  className='w-[113%] h-[45px] pl-[5%] border rounded-xl text-xl'
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder='*****'
+                />
+                {errors.confirm && <p className="text-red-600 mt-1">{errors.confirm}</p>}
+              </div>
+  
+              <div className='w-[100%] mt-[5%] flex justify-center items-center'>
+              {successMessage && (
+                <p className="text-green-600 font-bold text-xl text-center mb-4">
+                  {successMessage}
+                </p>
+              )}
+                <button
+                  onClick={handleChangePassword}
+                  className='bg-[#009933] border rounded-3xl text-4xl w-[70%] xl:w-[40%] p-[1.5%] hover:scale-110 transition duration-500'
+                >
+                  Cambiar
                 </button>
-                </div>
-              </article>
+              </div>
+            </article>
                 )
               }
               
