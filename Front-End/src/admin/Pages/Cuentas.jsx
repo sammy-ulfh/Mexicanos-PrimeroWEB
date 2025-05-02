@@ -37,6 +37,7 @@ function Cuentas() {
 
         const data_donator = await infoDonantes();
         setInfoDonator(data_donator);
+        
       };
       fetchInfo();
     }, []);
