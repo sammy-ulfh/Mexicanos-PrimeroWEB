@@ -2,6 +2,7 @@ import '@fontsource/montserrat';
 import MainLayout from '../Layouts/MainLayout';
 import { useState } from 'react';
 import changePassword from '../Peticiones/createAccount/changePassword';
+//import deleteUser from '../Peticiones/DeletePeticiones/deletePeticiones';
 
 function ClientConfig() {
   
@@ -12,6 +13,8 @@ function ClientConfig() {
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [errors, setErrors] = useState({});
+    const [successMessage, setSuccessMessage] = useState('');
+
 
     const validatePasswords = () => {
       const newErrors = {};
@@ -26,10 +29,21 @@ function ClientConfig() {
     const handleChangePassword = async () => {
       console.log('Contraseña actual:', currentPassword);
       if (validatePasswords()) {
-        await changePassword(newPassword);
-        console.log('Contraseña cambiada');
+        try {
+          await changePassword(newPassword);
+          console.log('Contraseña cambiada');
+          setSuccessMessage('¡Contraseña cambiada con éxito!');
+          setCurrentPassword('');
+          setNewPassword('');
+          setConfirmPassword('');
+          setErrors({});
+        } catch (error) {
+          console.error('Error al cambiar la contraseña:', error);
+          setSuccessMessage('Hubo un error al cambiar la contraseña');
+        }
       }
     };
+    
 
     return (
       <>
@@ -44,7 +58,7 @@ function ClientConfig() {
                 <h2 className='w-[70%] flex justify-center items-center text-xl sm:text-2xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-5xl'>Cambiar contraseña</h2>
                 <div className='w-[30%] h-[100%] z-2 flex justify-center items-center'>
                 { isPass ? (
-                  <button id='triangle' className="w-[60%] xl:w-[30%] 2xl:w-[30%] h-[50%] z-2 rounded-4xl border hover:scale-105 transition duration-300 bg-[url('/src/admin/assets/pages/config/triangle.png')] bg-cover bg-no-repeat bg-center bg-white" style={{ backgroundSize: '50%'}} onClick={() => setIsPass(prev => !prev)}/>
+                  <button id='triangle' className="w-[60%] xl:w-[30%] 2xl:w-[30%] h-[50%] z-2 rounded-4xl border hover:scale-105 transition duration-300 bg-[url('/src/admin/assets/pages/config/triangle.png')] bg-cover bg-no-repeat bg-center bg-white" style={{ backgroundSize: '50%'}} onClick={isPass ? () => setIsPass(false) : () => setIsPass(true)} />
                   ) : (
                   <button id='triangle' className="w-[60%] xl:w-[30%] 2xl:w-[30%] h-[50%] z-2 rounded-4xl border hover:scale-105 transition duration-300 bg-[url('/src/admin/assets/pages/config/triangle.png')] bg-cover bg-no-repeat bg-center bg-white scale-y-[-1] hover:scale-y-[-1]" style={{ backgroundSize: '50%'}} onClick={isPass ? () => setIsPass(false) : () => setIsPass(true)} />
                 )} 
@@ -90,6 +104,11 @@ function ClientConfig() {
               </div>
   
               <div className='w-[100%] mt-[5%] flex justify-center items-center'>
+              {successMessage && (
+                <p className="text-green-600 font-bold text-xl text-center mb-4">
+                  {successMessage}
+                </p>
+              )}
                 <button
                   onClick={handleChangePassword}
                   className='bg-[#009933] border rounded-3xl text-4xl w-[70%] xl:w-[40%] p-[1.5%] hover:scale-110 transition duration-500'
@@ -116,7 +135,7 @@ function ClientConfig() {
               { isAdmin && (
               <article id='modal1' className='mt-[-2%] pb-[3%] pt-[4%] w-[75%] bg-white border rounded-xl font-bold font-motserrat flex flex-col'> 
                 <div className='w-[100%] mt-[5%] flex justify-center items-center'>
-                <button className='bg-[#009933] border rounded-3xl text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl w-[70%] xl:w-[40%] 2xl:w-[40%] p-[1.5%] hover:scale-110 transition duration-500'>
+                <button /*onClick> ={deleteUser}*/ className='bg-[#009933] border rounded-3xl text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl w-[70%] xl:w-[40%] 2xl:w-[40%] p-[1.5%] hover:scale-110 transition duration-500'>
                   Eliminar cuenta
                 </button>
                 </div>

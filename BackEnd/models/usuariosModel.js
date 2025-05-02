@@ -56,6 +56,14 @@ const changePassword = async (id_usuario, password) => {
   return result;
 }
 
+const deleteUser = async (id_usuario) => {
+  const [result] = await db.execute(
+    'DELETE FROM usuarios WHERE id_usuario = ?',
+    [id_usuario]
+  );
+  return result;
+};
+
 module.exports = {
   crearUsuario,
   user,
@@ -63,5 +71,6 @@ module.exports = {
   getProfilePicture, 
   setNombre,
   getNombre,
-  changePassword
+  changePassword,
+  deleteUser
 };

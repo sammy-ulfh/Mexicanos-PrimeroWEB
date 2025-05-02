@@ -109,6 +109,17 @@ const changePassword = async (req, res) => {
   }
 }
 
+const deleteUser = async (req, res) => {
+  try {
+    const resultado = await Usuario.deleteUser(req.payload.id_usuario);
+    res.status(200).json({ mensaje: 'Usuario eliminado correctamente', response: resultado });
+  } catch (error) {
+    console.error('Error al eliminar el usuario:', error);
+    res.status(500).json({ mensaje: 'Error al eliminar el usuario', error });
+  }
+}
+
+
 module.exports = {
   crearUsuario,
   loginUser,
@@ -117,6 +128,7 @@ module.exports = {
   getProfilePicture, 
   setNombre,
   getNombre,
-  changePassword
+  changePassword,
+  deleteUser
 
 };
