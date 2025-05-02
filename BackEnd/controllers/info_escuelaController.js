@@ -16,7 +16,6 @@ const completarForm = async (req, res) => {
             const nombreArchivo = req.file.originalname;
             urlReporte = await subirArchivo.subirArchivo(archivoLocalPath, nombreArchivo);
         }
-        console.log(correo_escuela, req.payload.id_usuario, turn, nombre_escuela, dir_matutino, dir_vespertino, direccion, urlReporte, nombre, correo, edad);
         await Escuela.newInfoSchool(correo_escuela, req.payload.id_usuario, turn, nombre_escuela, dir_matutino, dir_vespertino, direccion, urlReporte, nombre, correo, edad);
 
       res.status(201).json({ mensaje: 'Información almacenada', redirigir: 'portal/wait' });

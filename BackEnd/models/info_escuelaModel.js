@@ -2,8 +2,8 @@ const db = require('../config/db');
 
 const newInfoSchool = async (correo_escuela, id_usuario, turno, nombre_escuela, dir_matutino, dir_vespertino, direccion, urlReporte, nombre, correo, edad) => {
   const [result] = await db.execute(
-    `INSERT INTO info_escuela (correo_escuela, id_usuario, turno, nombre_escuela, dir_matutino, dir_vespertino, direccion, reporte, nombre, correo, edad, status, razon_rechazo)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, null)
+    `INSERT INTO info_escuela (correo_escuela, id_usuario, turno, nombre_escuela, dir_matutino, dir_vespertino, direccion, reporte, correo, edad, status, razon_rechazo)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, null)
      ON DUPLICATE KEY UPDATE
      turno = VALUES(turno),
      nombre_escuela = VALUES(nombre_escuela),
@@ -11,13 +11,12 @@ const newInfoSchool = async (correo_escuela, id_usuario, turno, nombre_escuela, 
      dir_vespertino = VALUES(dir_vespertino),
      direccion = VALUES(direccion),
      reporte = VALUES(reporte),
-     nombre = VALUES(nombre),
      correo = VALUES(correo),
      edad = VALUES(edad),
      status = 1,
-     razon_rechazo = null`
+     razon_rechazo = null;`
     ,
-    [correo_escuela, id_usuario, turno, nombre_escuela, dir_matutino, dir_vespertino, direccion, urlReporte, nombre, correo, edad]
+    [correo_escuela, id_usuario, turno, nombre_escuela, dir_matutino, dir_vespertino, direccion, urlReporte, correo, edad]
   );
   return result;
 };

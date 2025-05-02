@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import submit from '/src/client/Peticiones/PeticionesInicialForm/newInfoSubmit.jsx';
 
+
 function FormularioEscuela() {
 
     //const userId = localStorage.getItem("id_usuario");
@@ -14,6 +15,10 @@ function FormularioEscuela() {
     const Type = locate.state?.type;
     const userId = locate.state?.id;
     const navigate = useNavigate(); 
+ 
+    const [formName, setFormName] = useState('');
+
+    
 
     const [formData, setFormData] = useState({
         //correo_escuela, id_usuario, nombre_escuela, dir_matutino, dir_vespertino, direccion, necesidades, reporte, nombre, correo, edad,
@@ -24,9 +29,9 @@ function FormularioEscuela() {
         dir_vespertino: '',
         direccion: '',
         archivo: '', // si es un archivo se maneja diferente
-        nombre: '',
         correo: '',
         edad: 0,
+        nombre: '',
     });
 
     const handleChange = (e) => {
@@ -100,7 +105,7 @@ function FormularioEscuela() {
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
                     <p className='flex self-start w-[100%] '>Nombre del responsable</p>
-                    <input name= "nombre" onChange={handleChange} value={formData.name_resp} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
+                    <input name= "nombre" onChange={handleChange} value={formData.name} className='mt-[5px] w-[100%] h-[5.5vh] border border-black rounded-xl pl-[20px]'/>
                 </article>
 
                 <article className='font-montserrat font-bold text-xl mt-[20px] w-[60%] flex items-center flex-col items-center'>
