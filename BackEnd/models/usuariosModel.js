@@ -58,7 +58,7 @@ const changePassword = async (id_usuario, password) => {
 
 const deleteUser = async (id_usuario) => {
   const [result] = await db.execute(
-    'DELETE FROM usuarios WHERE id_usuario = ?',
+    'UPDATE usuarios SET correo = null, contrasena = null, nombre = null, img = null, correo_contacto = null, resumen = null  WHERE id_usuario = ?',
     [id_usuario]
   );
   return result;

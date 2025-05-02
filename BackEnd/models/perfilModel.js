@@ -16,6 +16,15 @@ const newInfo = async (id_usuario, img_institucion, correo_institucion, resumen_
         return result;
 }
 
+const getInfo = async (id_usuario) => {
+    const [result] = await db.execute(
+        'SELECT * FROM perfil WHERE id_usuario = ?',
+        [id_usuario]
+    );
+    return result;
+}
+
 module.exports = {
     newInfo,
+    getInfo
 }

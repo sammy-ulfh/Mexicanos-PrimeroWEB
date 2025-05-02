@@ -10,5 +10,5 @@ router.get('/get/profile', verifyToken, getProfilePicture);
 router.patch('/set/nombre', verifyToken, subirMiddleware, setNombre);
 router.post('/get/nombre', getNombre);
 router.patch('/change/password', verifyToken, changePassword);
-router.delete('/delete/user', verifyToken, deleteUser);
+router.patch('/delete/user', verifyToken, deleteUser);
 module.exports = router;

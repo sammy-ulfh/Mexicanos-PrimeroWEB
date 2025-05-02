@@ -14,6 +14,17 @@ const completarPerfil = async (req, res) => {
     }
   };
 
+  const getInfo = async (req, res) => {
+    try {
+        const { id_usuario } = req.body;
+        const info = await Perfil.getInfo(id_usuario);
+        res.status(200).json(info);
+    } catch (error) {
+        console.error('Error al obtener la información:', error);
+        res.status(500).json({ mensaje: 'Error al obtener la información', error });
+    }
+  }
+
   module.exports = {
     completarPerfil,
   }
