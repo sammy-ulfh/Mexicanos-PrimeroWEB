@@ -24,7 +24,7 @@ const saveMessage = async (req, res) => {
 
 const getMessages = async (req, res) => {
   try {
-    const { idChat } = req.query;
+    const { idChat } = req.params;
     if (!idChat) {
       return res.status(400).json({ mensaje: 'Debe especificar idChat' });
     }
