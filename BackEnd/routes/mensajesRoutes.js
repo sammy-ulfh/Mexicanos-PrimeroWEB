@@ -9,6 +9,6 @@ router.put('/save/chat',verifyToken, mensajesController.saveMessage);
 
 // Obtener todos los mensajes de un chat
 // Query que se espera: ?idChat=123
-router.get('/get/:idChat',verifyToken, mensajesController.getMessages);
+router.get('/get/:id_chat',verifyToken, mensajesController.getMessages);
 
 module.exports = router;

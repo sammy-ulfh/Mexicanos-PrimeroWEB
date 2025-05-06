@@ -2,18 +2,18 @@ const Mensajes = require('../models/mensajesModel.js');
 
 const saveMessage = async (req, res) => {
   try {
-    const { idChat, contenido } = req.body;
-    console.log(req.body);
-    if (!idChat || !req.payload.id_usuario || !contenido) {
+    const { id_chat, texto } = req.body;
+    if (!id_chat || !req.payload.id_usuario || !texto) {
       return res.status(400).json({ mensaje: 'Faltan datos obligatorios' });
     }
+    console.log(req.body);
     
-    const result = await Mensajes.saveMessage(idChat, req.payload.id_usuario, contenido);
+    const result = await Mensajes.saveMessage(id_chat, req.payload.id_usuario, texto);
     res.status(201).json({
       mensaje: 'Mensaje guardado correctamente',
-      idMensaje: result.insertId,
-      idChat,
-      contenido,
+      id_mensaje: result.insertId,
+      id_chat,
+      texto,
     });
   } catch (error) {
     console.error('Error al guardar el mensaje:', error);
@@ -23,15 +23,15 @@ const saveMessage = async (req, res) => {
 
 const getMessages = async (req, res) => {
   try {
-    const { idChat } = req.params;
-    if (!idChat) {
+    const { id_chat } = req.params;
+    if (!id_chat) {
       return res.status(400).json({ mensaje: 'Debe especificar idChat' });
     }
 
-    const mensajes = await Mensajes.getMessagesByChat(idChat);
+    const mensajes = await Mensajes.getMessagesByChat(id_chat);
     res.status(200).json({
       mensaje: 'Mensajes obtenidos correctamente',
-      mensajes,
+      response: mensajes,
     });
   } catch (error) {
     console.error('Error al obtener mensajes:', error);

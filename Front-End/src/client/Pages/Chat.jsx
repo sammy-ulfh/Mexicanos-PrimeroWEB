@@ -1,10 +1,11 @@
 import '@fontsource/montserrat';
 import MainLayout from '../Layouts/MainLayout.jsx';
-import { useState, useEffect } from 'react';
+import { React, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import TarjetaMensajes from '/src/GeneralComponents/TarjetaMensajes.jsx';
 import { getMessages, saveMessage } from '../services/chatService.js';
 import iniciarApoyo2 from '/src/client/Peticiones/PeticionesApoyo/iniciarApoyo.jsx';
+import getImagen from '/src/client/Peticiones/peticionImagen/getImagen.jsx';
 
 
 function ClientChat() {
@@ -12,7 +13,7 @@ function ClientChat() {
   const id = localStorage.getItem('id');
   const type = localStorage.getItem('type');
 
-  const { chatId, userId } = location.state || {};
+  const { id_chat, id_user } = location.state || {};
   const [mensajes, setMensajes] = useState([]);
   const [texto, setTexto] = useState('');
   const [cargando, setCargando] = useState(false);
@@ -20,30 +21,63 @@ function ClientChat() {
   const [iniciarApoyo, setIniciarApoyo] = useState(false);
 
   // Carga inicial de mensajes
+  /*
   useEffect(() => {
-    if (!chatId) return;
+    if (!id_chat) return;
     setCargando(true);
-    getMessages(chatId)
+    const fetchInfo = async () => {
+    await getMessages(id_chat)
       .then(setMensajes)
       .catch((e) => console.error('Error cargando mensajes:', e))
       .finally(() => setCargando(false));
-  }, [chatId]);
+    }
+    fetchInfo();
+  }, [id_chat]);
+  */
+
+  useEffect(() => {
+    if (!id_chat) return;
+    setCargando(true);
+
+    let intervalId;
+    const fetchInfo = async () => {
+      const datos_mensajes = await getMessages(id_chat);
+      if(!datos_mensajes){
+        setMensajes([]);
+        console.log('No hay datos disponibles');
+        setCargando(false);
+      }else{
+        console.log('Datos de mensajes:', datos_mensajes);
+        setMensajes(datos_mensajes);
+        setCargando(false);
+      }
+    };
+    fetchInfo();
+
+    intervalId = setInterval(fetchInfo, 5000);
+    return () => {clearInterval(intervalId)};
+
+  }, [id_chat]);
 
   // Al enviar un mensaje
   const handleEnviar = async () => {
     if (!texto.trim()) return;
     try {
       setCargando(true);
-      const resp = await saveMessage(1, texto);
+      const resp = await saveMessage(2, texto);
+      const PP = await getImagen();
       // Se añade al estado para no recargar toda la lista
       setMensajes((prev) => [
         ...prev,
         {
-          id_mensaje: resp.idMensaje,
-          idChat: 2,
-          id_sender: userId,
+          img: PP[0].img,
+          nombre: name,
+          id_mensaje: resp.id_mensaje,
+          id_chat: id_chat,
+          id_sender: id_user,
           contenido: texto,
           fecha_envio: new Date().toISOString(),
+          tipo: type
         },
       ]);
       setTexto('');
@@ -55,7 +89,7 @@ function ClientChat() {
   };
 
   const [formData, setFormData] = useState({
-    id_chat:2,
+    id_chat: id_chat,
     tipo_apoyo: '',
     descripcion: '',
   });
@@ -75,33 +109,27 @@ function ClientChat() {
           className="relative w-full h-[60vh] overflow-y-auto flex flex-col space-y-4 p-2"
         >
           {cargando && <p className="text-center">Cargando mensajes...</p>}
-          {!cargando && mensajes.length === 0 && (
-            <p className="text-center">No hay mensajes aún.</p>
-          )}
           {!cargando &&
+            mensajes.length > 0 ?(
             mensajes.map((m) => (
+              console.log('m:', m),
+              console.log('tipo:', m.tipo),
               <TarjetaMensajes
-                key={m.id_mensaje}
+                id={id}
+                key={`${m.id_mensaje}-${m.fecha_envio}`}
+                img={m.img}
                 message={m.contenido}
+                nombre={m.nombre}
                 day={new Date(m.fecha_envio).toLocaleDateString()}
                 hour={new Date(m.fecha_envio).toLocaleTimeString()}
                 user_message_id={m.id_sender}
-                type={type == 2 && 'Escuela' || type == 3 && 'Donador' || type == 1 && 'Administrador'}
-                info={{
-                  users_info: {
-                    images: {
-                      // Mapear aquí IDs a URLs, p.ej.:
-                      [userId]: '/src/client/assets/other/persona.jpg',
-                      /* ...otros usuarios */
-                    },
-                    names: {
-                      [userId]: name,
-                      /* ...otros usuarios */
-                    },
-                  },
-                }}
+                type={m.tipo}
+
+                //type={type == 2 && 'Escuela' || type == 3 && 'Donador' || type == 1 && 'Administrador'}
               />
-            ))}
+            ))) : (
+              <p className="text-center">No hay mensajes aún.</p>
+            )}
         </div>
 
         {/* Área de envío */}

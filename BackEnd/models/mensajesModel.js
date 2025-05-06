@@ -13,10 +13,11 @@ const saveMessage = async (id_chat, id_sender, contenido) => {
 const getMessagesByChat = async (id_chat) => {
   // Recuperar todos los mensajes de un chat ordenados por fecha
   const [rows] = await db.execute(
-    `SELECT id_mensaje, id_chat, id_sender, contenido, fecha_envio
-     FROM mensajes
-     WHERE id_chat = ?
-     ORDER BY fecha_envio ASC`,
+    `SELECT mensajes.id_mensaje, mensajes.id_chat, mensajes.id_sender, mensajes.contenido, mensajes.fecha_envio, usuarios.tipo, usuarios.img, usuarios.nombre
+      FROM mensajes
+      LEFT JOIN usuarios ON mensajes.id_sender = usuarios.id_usuario
+      WHERE mensajes.id_chat = ?
+      ORDER BY mensajes.fecha_envio ASC;`,
     [id_chat]
   );
   return rows;
