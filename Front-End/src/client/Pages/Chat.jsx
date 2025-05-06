@@ -12,6 +12,7 @@ function ClientChat() {
   const [mensajes, setMensajes] = useState([]);
   const [texto, setTexto] = useState('');
   const [cargando, setCargando] = useState(false);
+  const [iniciarApoyo, setiniciarApoyo] = useState(false);
 
   // Carga inicial de mensajes
   useEffect(() => {
@@ -87,7 +88,12 @@ function ClientChat() {
         </div>
 
         {/* Área de envío */}
-        <div id="sendArea" className="w-full flex mt-4">
+        <section className='w-[100%] h-[20%] flex items-center'>
+        <button className='rounded-full w-[30%] m-[1%] bg-[#009933] h-[80%] border hover:scale-110 transition duration-300 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl font-bold' onClick={() =>{setiniciarApoyo(true)}}>
+          Iniciar apoyo
+        </button> 
+        </section>
+        <div id="sendArea" className="w-full flex mt-4 flex items-center">
           <textarea
             value={texto}
             onChange={(e) => setTexto(e.target.value)}
@@ -99,11 +105,29 @@ function ClientChat() {
           <button
             onClick={handleEnviar}
             disabled={cargando}
-            className="w-1/4 bg-green-600 text-white font-bold rounded-r-3xl hover:scale-105 transition disabled:opacity-50"
+            className="w-1/4 h-[100%] bg-green-600 text-white font-bold rounded-r-3xl hover:scale-105 transition disabled:opacity-50"
           >
             Enviar
           </button>
         </div>
+
+        {iniciarApoyo && (
+            <div className='absolute z-1 bottom-5 w-[88%] h-[60%] bg-[#D9D9D9] rounded-3xl border border-black flex flex-col justify-start items-center'>
+              <section className='w-[100%] h-[20%] flex justify-between items-center'>
+                <h2 className='font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl w-[90%] h-full flex justify-start items-center pt-[1%] pl-[5%]'>Rechazo de solicitud</h2>
+                <textarea rows='1' className="bg-white w-[15%] sm:w-[10%] md:w-[8%] lg:w-[7%] xl:w-[7%] 2xl:w-[7%] h-[60%] mr-[4%] rounded-4xl hover:scale-110 transition duration-300 bg-[url('/src/admin/assets/pages/infoApoyo/cancel.png')] bg-cover bg-center bg-no-repeat" style={{ backgroundSize: '50%' }}/>
+              </section>
+              <section className='mt-[2%] w-[90%] h-[80%] flex flex-col justify-start items-center p-[2%]'>
+                <h3 className='font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl w-[100%] h-[10%] m-[1%] pl-[1%] '>Razon de rechazo</h3>
+                <textarea rows="200" placeholder='Razon de rechazo...' className='bg-white w-[100%] min-h-[60%] max-h-[60%] resize-none border rounded-3xl p-[2%]' name="razon_rechazo" onChange={handleChange} value={formData.razon_rechazo}/>
+                <div className='w-[100%] h-[30%] flex justify-center items-end'>
+                  <button className='w-[50%] sm:w-[45%] md:w-[40%] lg:w-[35%] xl:w-[30%] 2xl:w-[30%] h-[80%] bg-[#009933] rounded-full border hover:scale-110 transition duration-300 font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl'>
+                    Notificar
+                  </button>
+                </div>
+              </section>
+            </div>
+            )}
       </section>
     </MainLayout>
   );
