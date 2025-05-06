@@ -54,7 +54,7 @@ const cambiarStatus = async (id_apoyo, id_usuario, status, razon_rechazo) => {
 
 const getApoyos = async () => {
     const [result] = await db.execute(
-      'SELECT id_apoyo, tipo_apoyo_escuela, tipo_apoyo_donador, descripcion_escuela, descripcion_donador FROM apoyo WHERE status = 1 ORDER BY fecha_inicio ASC;'
+      'SELECT id_apoyo, tipo_apoyo_escuela, tipo_apoyo_donador, descripcion_escuela, descripcion_donador FROM apoyo WHERE status = 1 AND NOT tipo_apoyo_escuela = "" AND NOT tipo_apoyo_donador = "" ORDER BY fecha_inicio ASC;'
     );
     return result;
   };

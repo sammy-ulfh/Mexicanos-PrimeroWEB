@@ -27,6 +27,7 @@ function Apoyos() {
         const data_apoyos = await infoApoyos();
         if(!data_apoyos){
           setInfoSupport([]);
+          console.log('No hay datos disponibles');
         }else{
         setInfoSupport(data_apoyos);
         }
