@@ -25,7 +25,11 @@ function Apoyos() {
     useEffect(() => {
       const fetchInfo = async () => {
         const data_apoyos = await infoApoyos();
+        if(!data_apoyos){
+          setInfoSupport([]);
+        }else{
         setInfoSupport(data_apoyos);
+        }
       };
       fetchInfo();
     }, []);

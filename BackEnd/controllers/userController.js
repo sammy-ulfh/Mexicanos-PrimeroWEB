@@ -23,7 +23,7 @@ const loginUser =  async (req, res) => {
 
       const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '1h' });
 
-      res.status(201).json({ token, id: payload.id_usuario, type: payload.tipo });
+      res.status(201).json({ token, id: payload.id_usuario, type: payload.tipo, name: payload.nombre});
     }else{
       res.status(404).json({ mensaje: 'Correo o contraseña incorrecto.' });
     }

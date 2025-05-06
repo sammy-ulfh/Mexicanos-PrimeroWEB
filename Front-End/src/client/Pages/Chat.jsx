@@ -8,11 +8,15 @@ import { getMessages, saveMessage } from '../services/chatService.js';
 
 function ClientChat() {
   const location = useLocation();
+  const id = localStorage.getItem('id');
+  const type = localStorage.getItem('type');
+
   const { chatId, userId } = location.state || {};
   const [mensajes, setMensajes] = useState([]);
   const [texto, setTexto] = useState('');
   const [cargando, setCargando] = useState(false);
   const [iniciarApoyo, setiniciarApoyo] = useState(false);
+  const name = localStorage.getItem('name');
 
   // Carga inicial de mensajes
   useEffect(() => {
@@ -69,7 +73,7 @@ function ClientChat() {
                 day={new Date(m.fecha_envio).toLocaleDateString()}
                 hour={new Date(m.fecha_envio).toLocaleTimeString()}
                 user_message_id={m.id_sender}
-                type={m.id_sender === userId ? 'Cliente' : 'Admin'}
+                type={type == 2 && 'Escuela' || type == 3 && 'Donador' || type == 1 && 'Administrador'}
                 info={{
                   users_info: {
                     images: {
@@ -78,7 +82,7 @@ function ClientChat() {
                       /* ...otros usuarios */
                     },
                     names: {
-                      [userId]: 'Nombre',
+                      [userId]: name,
                       /* ...otros usuarios */
                     },
                   },

@@ -71,6 +71,8 @@ function ClientChats() {
                         info={tarjeta}
                         rol={type}
                         navigate={navigate}
+                        route='/portal/chat'
+                        perfilRoute='/portal/perfil'
                       />
                     );
                   })

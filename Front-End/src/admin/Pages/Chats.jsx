@@ -1,138 +1,44 @@
 import '@fontsource/montserrat';
 import Initial from '../Layouts/Initial.jsx';
-import { React, useState } from 'react';
+import { React, useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import TarjetaProcesos from '/src/GeneralComponents/TarjetaProcesos';
 import TarjetaChats from '/src/GeneralComponents/TarjetaChats';
+import getChats from '/src/client/Peticiones/chats/getChats.jsx';
+import getProcesosActivos from '/src/client/Peticiones/procesos/getProcesosActivos';
 
-const ChatsData = [
-  {
-      chat_id: 1,
-      user_id: 2,
-      rol: 'admin',
-      info: {
-        'Escuela': {
-        id: 1,
-        name: 'Miguel Hidalgo y Costilla de Sabrade Robles',
-        image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.recreoviral.com%2Fwp-content%2Fuploads%2F2015%2F01%2Fmitad-2-personas-4.jpg&f=1&nofb=1&ipt=a7b13ff6fcf7dabb797806f3cb1aa6da660c7c25a92b157dd688336252bab819',
-        type: 'school'
-        },
-        'Admin': {
-        id: 2,
-        name: 'Jose Pepe',
-        image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcovalto.com%2Fstatic%2F78498ccda70933a5f1e3edc3e40d3cbe%2F34aca%2FHero_Mobile_Cuenta_Personas_V1_1_8046e424ea.webp&f=1&nofb=1&ipt=59a7bca374102c037d0917182ea9914e652a59f006a6afe653ad45790c6088da',
-        type: 'admin'
-        }
-      },
-      last_message: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
-  }
-    ]
-
-const Procesos = [
-  {
-      chat_id: 1,
-      info: {
-        'Escuela': {
-        id: 1,
-        name: 'Everardo Romero Arenas #1',
-        type: 'Donación de libros',
-        resumen: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
-        },
-        'Donador': {
-        id: 2,
-        name: 'Everardo Romero Arenas #1',
-        type: 'Donación de libros',
-        resumen: 'El proceso de donación que se realizará, será para aportar libros que ayuden a que los niños tengan material para aprender cosas extras o leer temas de interés.'
-        }
-      },
-      type: 'Donación de libros',
-      last_message: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
-  },
-  {
-      chat_id: 1,
-      info: {
-        'Escuela': {
-        id: 1,
-        name: 'Everardo Romero Arenas #1',
-        type: 'Donación de libros',
-        resumen: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
-        },
-        'Donador': {
-        id: 2,
-        name: 'Everardo Romero Arenas #1',
-        type: 'Donación de libros',
-        resumen: 'El proceso de donación que se realizará, será para aportar libros que ayuden a que los niños tengan material para aprender cosas extras o leer temas de interés.'
-        }
-      },
-      type: 'Donación de libros',
-      last_message: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
-  },
-  {
-      chat_id: 1,
-      info: {
-        'Escuela': {
-        id: 1,
-        name: 'Everardo Romero Arenas #1',
-        type: 'Donación de libros',
-        resumen: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
-        },
-        'Donador': {
-        id: 2,
-        name: 'Everardo Romero Arenas #1',
-        type: 'Donación de libros',
-        resumen: 'El proceso de donación que se realizará, será para aportar libros que ayuden a que los niños tengan material para aprender cosas extras o leer temas de interés.'
-        }
-      },
-      type: 'Donación de libros',
-      last_message: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
-  },
-  {
-      chat_id: 1,
-      info: {
-        'Escuela': {
-        id: 1,
-        name: 'Everardo Romero Arenas #1',
-        type: 'Donación de libros',
-        resumen: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
-        },
-        'Donador': {
-        id: 2,
-        name: 'Everardo Romero Arenas #1',
-        type: 'Donación de libros',
-        resumen: 'El proceso de donación que se realizará, será para aportar libros que ayuden a que los niños tengan material para aprender cosas extras o leer temas de interés.'
-        }
-      },
-      type: 'Donación de libros',
-      last_message: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
-  },
-  {
-      chat_id: 1,
-      info: {
-        'Escuela': {
-        id: 1,
-        name: 'Everardo Romero Arenas #1',
-        type: 'Donación de libros',
-        resumen: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
-        },
-        'Donador': {
-        id: 2,
-        name: 'Everardo Romero Arenas #1',
-        type: 'Donación de libros',
-        resumen: 'El proceso de donación que se realizará, será para aportar libros que ayuden a que los niños tengan material para aprender cosas extras o leer temas de interés.'
-        }
-      },
-      type: 'Donación de libros',
-      last_message: 'El proceso de donación que recibiremos en este caso será de libros. Esto lo usaremos para poder crear una pequeña biblioteca de la cual los niños puedan tomar libros para leerlos y aprender cosas nuevas.'
-  }
-    ]
 
 function Chats() {
 
+    const [Chats, setChats] = useState([]);
+    const [Procesos, setProcesos] = useState([]);
     const [isActive, setIsActive] = useState(true);
     const [isChat, setIsChat] = useState(false);
     const [isProcess, setIsProcess] = useState(true);
     const navigate = useNavigate();
+
+    const id = Number(localStorage.getItem('id'));
+    const type = Number(localStorage.getItem('type'));
+
+    useEffect(() => {
+      async function fetchChats() {
+        try {
+          const data = await getChats();
+          setChats(data);
+
+          const data1 = await getProcesosActivos();
+          setProcesos(data1);
+        } catch (error) {
+          console.error("Error loading chats", error);
+        } finally {
+          setIsProcess(false);
+        }
+      }
+  
+      fetchChats();
+    }, []);
+
 
     return (
       <>
@@ -166,13 +72,12 @@ function Chats() {
                   isActive ? (
                   Procesos.length > 0 ? (
                   Procesos.map((tarjeta) => (
-                    <TarjetaProcesos 
-                    chat_id={tarjeta.chat_id}
-                    type={tarjeta.type}
-                    last_message={tarjeta.last_message}
-                    navigate={navigate}
-                    data={tarjeta.info}
-                    user_rol='admin' />
+                    <TarjetaProcesos
+                      user_id={id}
+                      info={tarjeta}
+                      rol={type}
+                      navigate={navigate}
+                    />
                   ) )) : (
                     <p>Sin procesos</p>
                   )
@@ -190,17 +95,16 @@ function Chats() {
 
                   <h2 className='font-bold text-4xl'>Chats</h2>
                 { 
-                  ChatsData.length > 0 ? (
-                  ChatsData.map((tarjeta) => { 
-                      const info = tarjeta.info['Escuela'] || tarjeta.info['Donador'];
+                  Chats.length > 0 ? (
+                  Chats.map((tarjeta) => { 
                       return (
                         <TarjetaChats
-                          user_id={tarjeta.user_id}
-                          chat_id={tarjeta.chat_id}
-                          info={info}
-                          last_message={tarjeta.last_message}
-                          navigate={navigate}
-                          rol={tarjeta.rol}
+                        user_id={id}
+                        info={tarjeta}
+                        rol={type}
+                        navigate={navigate}
+                        route='/admin/chat'
+                        perfilRoute='/admin/public/perfil'
                         />
                       );
                     })

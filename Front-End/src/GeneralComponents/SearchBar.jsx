@@ -7,7 +7,7 @@ const SearchBar = ({search, setSearch}) => {
           placeholder='Realiza una busqueda...'
           value={search}
           className="w-full py-2 pl-4 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => setSearch(e.target.value) }
         />
         
         <button
